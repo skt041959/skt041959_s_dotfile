@@ -1,0 +1,573 @@
+"skt041959
+
+if !has('nvim')
+    set nocompatible
+endif
+
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+"{{{
+Plugin 'gmarik/Vundle.vim'
+"Plugin 'jeaye/color_coded'
+Plugin 'amoffat/snake'
+Plugin 'benekastah/neomake'
+Plugin 'thinca/vim-quickrun'
+"Plugin 'lambdalisue/vim-pyenv'
+"Plugin 'jmcantrell/vim-virtualenv'
+Plugin 'tmhedberg/SimpylFold'
+
+Plugin 'KabbAmine/zeavim.vim'
+
+"Plugin 'jlanzarotta/bufexplorer'
+Plugin 'kshenoy/vim-signature'
+
+Plugin 'scrooloose/syntastic'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'rdnetto/YCM-Generator'
+
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Raimondi/delimitMate'
+Plugin 'tpope/vim-surround'
+Plugin 'honza/vim-snippets'
+Plugin 'SirVer/ultisnips'
+Plugin 'mbbill/fencview'
+Plugin 'mbbill/undotree'
+"Plugin 'DoxygenToolkit.vim'
+
+Plugin 'Shougo/unite.vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/unite-outline'
+Plugin 'Shougo/neoyank.vim'
+Plugin 'easymotion/vim-easymotion'
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+
+Plugin 'majutsushi/tagbar'
+Plugin 'bling/vim-airline'
+Plugin 'kopischke/vim-stay'
+
+Plugin 'rust-lang/rust.vim'
+Plugin 'phildawes/racer'
+
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'vim-pandoc/vim-pandoc-after'
+Plugin 'dhruvasagar/vim-table-mode'
+
+Plugin 'fatih/vim-go'
+
+Plugin 'peterhoeg/vim-qml'
+
+Plugin 'skt041959/markdown-preview.vim'
+
+Plugin 'a.vim'
+Plugin 'Mark--Karkat'
+Plugin 'renamer.vim'
+Plugin 'fcitx.vim'
+
+"Plugin 'VimIM'
+
+Plugin 'kurayama/systemd-vim-syntax'
+Plugin 'chrisbra/csv.vim'
+
+Plugin 'lambdalisue/vim-gista'
+Plugin 'guns/xterm-color-table.vim'
+Plugin 'skt041959/vim-color-skt'
+if has('nvim')
+    Plugin 'skt041959/vim-libpinyin'
+    Plugin 'skt041959/vim-mdpreview'
+    Plugin 'Shougo/deoplete.nvim'
+endif
+"}}}
+call vundle#end()
+
+filetype plugin indent on
+
+syntax enable
+set background=dark
+"set background=light
+"let g:solarized_termcolors=256
+"colorscheme jellybeans_skt
+colorscheme darkblack_skt
+
+set synmaxcol=1000
+set timeoutlen=4000
+set ttimeoutlen=100
+set updatetime=300
+
+"autocmd FileType c,cpp                          syn keyword cType uint_8 uint_16 uint_32 int_8 int_16 int_32
+
+"stm32
+autocmd FileType c                              syn keyword cType u8 u16 u32 s8 s16 s32
+autocmd FileType c,cpp                          syn keyword cType UINT8 UINT32
+
+"opencv
+autocmd FileType cpp                            syn keyword cType int8 uchar int64
+autocmd FileType cpp                            syn keyword Type cv Mat Point Rect Scalar Size Vec3b
+
+
+autocmd FileType python                         setlocal foldignore='#'
+autocmd FileType python,verilog,xml,svg,vim,qml setlocal foldmethod=indent
+autocmd FileType xml                            setlocal tabstop=2 shiftwidth=2
+
+autocmd FileType vim                            set keywordprg=
+
+"autocmd BufNewFile,BufRead *.pro set filetype=qtproject
+
+autocmd BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
+
+let mapleader = ';'
+
+set noeb vb t_vb=
+au GUIEnter * set vb t_vb=
+
+set number
+set autowrite
+set backspace=indent,eol,start
+"set guifont=Source\ Code\ Pro\ Semi-Bold\ 9
+set guifont=Droid\ Sans\ Mono\ 10
+set guifontwide=Source\ Han\ Sans\ SC\ 10
+"set guifont=Droid\ Sans\ Mono\ 8
+set guioptions=aegit
+set wildmode=longest,list,full
+set wildmenu
+
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set fileencodings=utf-8,cp936,cp932,gb2312,gb18030,gbk,ucs-bom
+set grepprg=grep\ -nH\ $*
+
+set cursorline
+set hlsearch
+set mouse=a
+set showcmd
+set showmatch
+set ignorecase smartcase
+
+set laststatus=2
+set statusline=%F%m%r,%Y,%{&fileformat}\ |%{&fileencoding}|\ ASC=%b,HEX=%B\ \ %l,%c%V\ %=%p%%\ \ [\ %L\ ]
+set shell=zsh
+
+set cscopequickfix=s-,c-,d-,i-,t-,e-
+set cscopetag
+set cscopeverbose
+
+set foldmethod=syntax
+set foldlevel=100
+
+set completeopt-=preview
+set completeopt+=menuone
+set completeopt+=longest
+
+set makeprg=make\ \-j\ 2
+nnoremap <C-B> :make!<CR>
+
+set viewoptions=cursor,folds,slash,unix
+
+set ssop-=options
+set ssop-=blank
+set ssop-=folds
+let g:session_autosave = 0
+let g:session_autoload = 0
+
+if maparg('<C-L>', 'n') ==# ''
+    nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
+endif
+
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+"nnoremap <silent> * *zz
+"nnoremap <silent> # #zz
+"nnoremap <silent> g* g*zz
+
+nnoremap <leader>k <C-W>k
+nnoremap <leader>j <C-W>j
+nnoremap <leader>h <C-W>h
+nnoremap <leader>l <C-W>l
+
+nnoremap <leader>] :cn<CR>
+nnoremap <leader>[ :cp<CR>
+nnoremap <leader>1 :bp<CR>
+nnoremap <leader>2 :bn<CR>
+nnoremap <leader>3 :tabp<CR>
+nnoremap <leader>4 :tabn<CR>
+
+nnoremap <leader>S :mksession!<CR>
+nnoremap <leader>qq :q<CR>
+nnoremap <C-Q> :q!<CR>
+nnoremap <leader>w :up<CR>
+nnoremap <leader>s :split<CR>
+nnoremap <leader>v :vsplit<CR>
+
+"nnoremap <leader>p "+p
+"vnoremap <leader>Y "+Y
+vnoremap <leader>y "+y
+
+noremap <F1> <Esc>
+nnoremap <F2> :set wrap! wrap?<CR>
+nnoremap <F3> :set number! number?<CR>
+"nnoremap <F3> :set list! list?<CR>
+
+"set paste
+autocmd InsertLeave * set nopaste " disbale paste mode when leaving insert mode
+nnoremap <F5> :set paste! paste?<CR>
+nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
+nnoremap <F12> :set spell!<CR>
+
+"====command-map===={{{
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+"}}}
+cnoremap w!! w !sudo tee >/dev/null %
+cnoremap make make!
+
+command -nargs=* -complete=help Help vertical belowright help <args>
+"====fix-command-cupper-error===={{{
+cnoreabbr <expr> Qa ((getcmdtype() == ':' && getcmdline() =~# '^Qa')?('qa'):('Qa'))
+cnoreabbr <expr> Wa ((getcmdtype() == ':' && getcmdline() =~# '^Wa')?('wa'):('Wa'))
+cnoreabbr <expr> Wq ((getcmdtype() == ':' && getcmdline() =~# '^Wq')?('wq'):('Wq'))
+cnoreabbr <expr> Q ((getcmdtype() == ':' && getcmdline() =~# '^Q')?('q'):('Q'))
+cnoreabbr <expr> W ((getcmdtype() == ':' && getcmdline() =~# '^W')?('w'):('W'))
+"}}}
+
+"====AutoSetFileHead===={{{
+function! AutoSetFileHead()
+    "如果文件类型为.sh文件
+    if &filetype == 'sh'
+        call setline(1, "\#!/bin/bash")
+    endif
+
+    "如果文件类型为python
+    if &filetype == 'python'
+        call setline(1, "\#!/usr/bin/env python")
+        call append(1, "\# encoding: utf-8")
+    endif
+
+    normal G
+    normal o
+    normal o
+endfunc
+autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
+"}}}
+
+"====StripTrailingWhitespaces===={{{
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,verilog autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+"}}}
+
+"====makeprg===={{{
+if isdirectory("./build")
+    set makeprg=make\ \-j\ 2\ -C\ build
+elseif filereadable("AFMS.pro")
+    set makeprg=make\ \-j\ 2\ -C\ ../build-AFMS-AFMS-Debug
+elseif filereadable("video_check.pro")
+    set makeprg=make\ \-j\ 2\ -C\ ../build-video_check-AFMS-Debug
+endif
+"}}}
+
+"=============plugin below================
+
+nnoremap <F9> :A<CR>
+nnoremap <F10> :AS<CR>
+
+autocmd FileType c,cpp                          nnoremap [d :MacroDisplay<CR>
+
+nnoremap <leader>e :FencView<CR>
+
+let NERD_c_alt_style=1
+
+"====zealdoc===={{{
+"nnoremap <leader>K :call investigate#Investigate()<CR>
+"let g:investigate_command_for_python = '/usr/bin/zeal --query python,opencv:^s'
+"let g:investigate_command_for_cpp = '/usr/bin/zeal --query c++,qt,opencv:^s'
+
+let g:zv_lazy_docset_dir = "/home/skt/.local/share/Zeal/Zeal/docsets"
+command Dcv Docset opencv
+command Dqt Docset qt
+
+nnoremap gz :!zeal "dash://<cword>"&<CR><CR>
+"}}}
+
+"====tagbar===={{{
+nnoremap <leader>tg :TagbarOpen j<CR>
+nnoremap <leader>to :TagbarOpenAutoClose<CR>
+nnoremap <leader>tf :TagbarTogglePause<CR>
+nnoremap <silent> <leader>tl :TagbarToggle<CR>
+let g:tagbar_left = 1
+let g:tagbar_width = 21
+let g:tagbar_sort = 0
+let g:tagbar_indent = 1
+let g:tagbar_show_linenumbers = 0
+let g:tagbar_autoclose = 1
+
+"}}}
+
+"====undotree===={{{
+"nnoremap <leader>gl :GundoToggle<CR>
+"let g:gundo_right = 1
+nnoremap <leader>gl :UndotreeToggle<CR>
+let g:undotree_WindowLayout = 4
+let g:undotree_SplitWidth = 30
+let g:undotree_SetFocusWhenToggle = 1
+"}}}
+
+"====NERDTree===={{{
+nnoremap <leader>fl :NERDTreeToggle<CR>
+let g:NERDTreeWinPos = 'right'
+let g:NERDTreeQuitOnOpen = 1
+"}}}
+
+"====bufE===={{{
+let g:bufExplorerShowRelativePath = 1
+let g:bufExplorerSplitVertSize = 30
+let g:bufExplorerSplitRight = 0
+let g:bufExplorerSortBy = 'name'
+"}}}
+
+"====delimitMate===={{{
+let b:delimitMate_jump_expansion = 1
+let b:delimitMate_expand_cr = 2
+let delimitMate_excluded_regions = "Comment,String"
+"}}}
+
+"====ycm===={{{
+let g:ycm_filetype_blacklist = {
+            \ 'tagbar' : 1,
+            \ 'qf' : 1,
+            \ 'notes' : 1,
+            \ 'markdown' : 1,
+            \ 'unite' : 1,
+            \ 'text' : 1,
+            \ 'vimwiki' : 1,
+            \ 'pandoc' : 1,
+            \ 'infolog' : 1,
+            \ 'mail' : 1,
+            \ 'rust' : 1,
+            \}
+let g:ycm_complete_in_comments = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_key_invoke_completion = '<C-c>'
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_autoclose_preview_window_after_insertion = 0
+let g:ycm_error_symbol = '✗'
+let g:ycm_warning_symbol = '⚠'
+nnoremap <leader>yg :YcmCompleter GoTo<CR>
+
+function! Ycm_preview()
+python << EOF
+import vim
+if 'preview' in vim.options['completeopt']:
+    vim.command("set completeopt-=preview")
+else:
+    vim.command("set completeopt+=preview")
+    vim.command("set previewheight=5")
+print(vim.options['completeopt'])
+EOF
+endfunction
+nmap <silent> <leader>u :call Ycm_preview()<CR>
+"}}}
+
+"=====pymode===={{{
+let g:pymode_python = 'python'
+let g:pymode_indent = 0
+let g:pymode_folding = 1
+let g:pymode_motion = 0
+let g:pymode_doc = 0
+let g:pymode_run = 0
+let g:pymode_breakpoint = 0
+let g:pymode_lint = 0
+let g:pymode_rope = 0
+let g:pymode_syntax = 0
+"}}}
+
+"====UltiSnips===={{{
+let g:UltiSnipsExpandTrigger="<leader><tab>"
+let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
+let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
+let g:UltiSnipsUsePythonVersion = 2
+""}}}
+
+"====syntastic===={{{
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_java_checkers = []
+let g:syntastic_python_python_exec = '/usr/bin/python3'
+let g:syntastic_python_pyflakes_quiet_messages = {
+            \ "!level":  "errors",
+            \ "type":    "style" }
+let g:syntastic_python_flake8_quiet_messages = {
+            \ "!level":  "errors",
+            \ "regex": "line too long" }
+let g:syntastic_c_checkers = []
+let g:syntastic_cpp_checkers = []
+let g:syntastic_cuda_checkers = []
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+"}}}
+
+"====jedi===={{{
+let g:jedi#auto_vim_configuration = 1
+let g:jedi#use_tabs_not_buffers = 0
+let g:jedi#use_splits_not_buffers = "right"
+let g:jedi#popup_select_first = 0
+let g:jedi#force_py_version = 2
+"}}}
+
+"====airline===={{{
+"if !exists('g:airline_symbols')
+"    let g:airline_symbols = {}
+"endif
+let g:airline_theme = 'light'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '◀'
+let g:airline_left_alt_sep = '▶'
+let g:airline_right_alt_sep = '◀'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tagbar#flags = 's'
+let g:airline_extensions = ['branch',
+            \'tabline',
+            \'syntastic',
+            \'tagbar',
+            \'hunks',
+            \'whitespace',
+            \]
+"}}}
+
+"====unite===={{{
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+nnoremap <space>p :Unite -start-insert file_rec/async:.<CR>
+nnoremap <space>g :Unite -start-insert grep:.::<C-R><C-W><CR>
+vnoremap <space>g :Unite -start-insert grep:.::<C-R>"<CR>
+nnoremap <space>s :Unite -start-insert grep:.<CR>
+nnoremap <space>t :Unite -start-insert outline<CR>
+nnoremap <space>y :Unite history/yank<CR>
+nnoremap <space>b :Unite buffer<CR>
+nnoremap <space>Y :Unite output/shellcmd:ydcv:<C-R><C-W><CR>
+vnoremap <space>Y :Unite output/shellcmd:ydcv:<C-R>"<CR>
+nnoremap <space>r :UniteResume<CR>
+" For ack.
+"if executable('ack-grep')
+"    let g:unite_source_grep_command = 'ack-grep'
+"    let g:unite_source_grep_default_opts = '-i --no-heading --no-color -k -H'
+"    let g:unite_source_grep_recursive_opt = ''
+"endif
+"let g:unite_source_rec_async_command =
+"            \ 'ag --follow --nocolor --nogroup --hidden -g ""'
+if executable('ag')
+    " Use ag in unite grep source.
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts =
+                \ '-i --line-numbers --nocolor --nogroup --hidden --ignore ' .
+                \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+    let g:unite_source_grep_recursive_opt = ''
+endif
+"}}}
+
+"====easymotion===={{{
+map ' <Plug>(easymotion-prefix)
+"let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_prompt = '{n}>>> '
+"nmap 'w <Plug>(easymotion-w)
+"nmap 'b <Plug>(easymotion-b)
+nmap 's <Plug>(easymotion-s2)
+nmap 't <Plug>(easymotion-t2)
+"}}}
+
+"====pandoc===={{{
+function! ToHtml()
+	exec 'w'
+	exec "!pandoc  -s -S --self-contained -c style.css % -o %<.html "
+endfunction
+
+function! ToPdf()
+	exec 'w'
+	exec "!pandoc  % -o %<.pdf --latex-engine=xelatex --template=another.tex"
+endfunction
+nmap <silent> <F7> :call ToHtml()<CR>
+nmap <silent> <F8> :call ToPdf()<CR>
+let g:pandoc#spell#enabled = 0
+let g:pandoc#after#modules#enabled = ["unite", "ultisnips", "tablemode"]
+"}}}
+
+"====markdownpreview===={{{
+let g:mkdp_path_to_chrome='chromium'
+let g:mkdp_refresh_slow=1
+let g:mkdp_auto_close=0
+nnoremap <C-m> :MarkdownPreview<CR>
+"}}}
+
+"====racer===={{{
+let g:racer_cmd="/usr/bin/racer"
+let $RUST_SRC_PATH="/usr/local/src/rust/src"
+"}}}
+
+"====quickrun===={{{
+let g:quickrun_no_default_key_mappings = 1
+map <leader>qr <Plug>(quickrun)
+" quickrun
+let g:quickrun_config={
+    \"_" : {
+        \"runner" : "vimproc",
+        \"runner/vimproc/updatetime" : 60,
+    \},
+    \"qml/qmlscene" : {
+    \   'command'  : 'qmlscene',
+    \   'exec'     : '%c %s:p',
+    \   'runner'   : 'vimproc',
+    \   'outputter': 'buffer',
+    \},
+\}
+let g:quickrun_config['qml'] = g:quickrun_config['qml/qmlscene']
+"}}}
+
+"====vim-go===={{{
+au FileType go nmap <leader>gr <Plug>(go-run)
+au FileType go nmap <leader>gb <Plug>(go-build)
+au FileType go nmap <leader>gt <Plug>(go-test)
+au FileType go nmap <leader>gc <Plug>(go-coverage)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <Leader>gd <Plug>(go-def-vertical)
+au FileType go nmap <Leader>gi <Plug>(go-info)
+"}}}
+
+"====gitgutter===={{{
+let g:gitgutter_map_keys = 0
+"}}}
+
+"====vimim===={{{
+let g:vimim_cloud = ''
+let g:vimim_map = 'tab_as_gi'
+"let g:vimim_mode = 'dynamic'
+let g:vimim_mycloud = 0
+"let g:vimim_plugin = 'C:/var/mobile/vim/vimfiles/plugin'
+"let g:vimim_punctuation = 2
+"let g:vimim_shuangpin = 0
+"let g:vimim_toggle = 'pinyin,google,sogou'
+"}}}
+
+"====SimpylFold===={{{
+let g:SimpylFold_docstring_preview = 1
+let g:SimpylFold_fold_docstring = 0
+autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
+autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
+"}}}
+
+" vim: set ft=vim fdm=marker:
