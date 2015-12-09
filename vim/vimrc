@@ -297,7 +297,6 @@ let NERD_c_alt_style=1
 "let g:investigate_command_for_python = '/usr/bin/zeal --query python,opencv:^s'
 "let g:investigate_command_for_cpp = '/usr/bin/zeal --query c++,qt,opencv:^s'
 
-let g:zv_lazy_docset_dir = "/home/skt/.local/share/Zeal/Zeal/docsets"
 command Dcv Docset opencv
 command Dqt Docset qt
 
