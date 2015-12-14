@@ -2,8 +2,8 @@
 call plug#begin()
 "{{{
 Plug 'thinca/vim-quickrun'
-Plug 'critiqjo/lldb.nvim'
-Plug 'tmhedberg/SimpylFold'
+Plug 'critiqjo/lldb.nvim', {'for': ['c++', 'c']}
+Plug 'tmhedberg/SimpylFold', {'for': 'python'}
 "Plug 'lambdalisue/vim-pyenv'
 "Plug 'jmcantrell/vim-virtualenv'
 "Plug 'KabbAmine/zeavim.vim'
@@ -11,7 +11,7 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'kshenoy/vim-signature'
 Plug 'scrooloose/syntastic'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'bfredl/nvim-ipy'
+Plug 'bfredl/nvim-ipy', {'for': 'python'}
 Plug 'Valloric/YouCompleteMe'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 
@@ -102,11 +102,48 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python'
 
+"====deoplete===={{{
 "let g:deoplete#enable_at_startup = 1
 "autocmd FileType python setlocal omnifunc=jedi#completions
 "let g:jedi#completions_enabled = 0
 "let g:jedi#auto_vim_configuration = 0
 "let g:jedi#smart_auto_mappings = 0
 "let g:jedi#show_call_signatures = 0
+"}}}
+
+"====neomake===={{{
+"let g:neomake_python_enabled_makers = ['flake8']
+"autocmd! BufWritePost * Neomake
+"}}}
+
+"====nvim-ipy===={{{
+let g:nvim_ipy_perform_mappings = 0
+function Map_nvim_ipy()
+    nnoremap <F5> <Plug>(IPy-Run)
+    nnoremap <F10> <Plug>(IPy-Interrupt)
+    nnoremap <space>o <Plug>(IPy-WordObjInfo)
+    inoremap <C-F> <Plug>(IPy-Complete)
+endfunction
+autocmd FileType python call Map_nvim_ipy()
+"}}}
+
+"====lldb.nvim===={{{
+function LLDB_debug_mode()
+    vmap <F2> <Plug>LLStdInSelected
+    nnoremap <C-F4> :LLstdin<CR>
+    nnoremap <F8> :LL continue<CR>
+    nnoremap <F9> :LL next<CR>
+    nnoremap <S-F8> :LL process interrupt<CR>
+    nnoremap <F10> :LL print <C-R>=expand('<cword>')<CR>
+    vnoremap <F10> :<C-U>LL print <C-R>=lldb#util#get_selection()<CR><CR>
+    LLmode debug
+endfunction
+function LLDB_code_mode()
+    LLmode code
+endfunction
+nmap <M-b> <Plug>LLBreakSwitch
+autocmd FileType c,cpp nmap <F5> :call LLDB_debug_mode()<CR>
+autocmd FileType c,cpp nmap <S-F5> :call LLDB_code_mode()<CR>
+"}}}
 
 " vim: set ft=vim fdm=marker

@@ -204,13 +204,13 @@ nnoremap <leader>v :vsplit<CR>
 vnoremap <leader>y "+y
 
 noremap <F1> <Esc>
-nnoremap <F2> :set wrap! wrap?<CR>
+"nnoremap <F2> :set wrap! wrap?<CR>
 nnoremap <F3> :set number! number?<CR>
 "nnoremap <F3> :set list! list?<CR>
 
 "set paste
 autocmd InsertLeave * set nopaste " disbale paste mode when leaving insert mode
-nnoremap <F5> :set paste! paste?<CR>
+nnoremap <F2> :set paste! paste?<CR>
 nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
 nnoremap <F12> :set spell!<CR>
 
@@ -276,8 +276,8 @@ endif
 
 "=============plugin below================
 
-nnoremap <F9> :A<CR>
-nnoremap <F10> :AS<CR>
+nnoremap <C-e> :A<CR>
+nnoremap <C-E> :AS<CR>
 
 autocmd FileType c,cpp                          nnoremap [d :MacroDisplay<CR>
 
@@ -490,8 +490,8 @@ function! ToPdf()
 	exec 'w'
 	exec "!pandoc  % -o %<.pdf --latex-engine=xelatex --template=another.tex"
 endfunction
-nmap <silent> <F7> :call ToHtml()<CR>
-nmap <silent> <F8> :call ToPdf()<CR>
+"nmap <silent> <F7> :call ToHtml()<CR>
+"nmap <silent> <F8> :call ToPdf()<CR>
 let g:pandoc#spell#enabled = 0
 let g:pandoc#after#modules#enabled = ["unite", "ultisnips", "tablemode"]
 "}}}
@@ -539,6 +539,10 @@ au FileType go nmap <Leader>gi <Plug>(go-info)
 
 "====gitgutter===={{{
 let g:gitgutter_map_keys = 0
+nmap <space>] <Plug>GitGutterNextHunk
+nmap <space>[ <Plug>GitGutterPrevHunk
+nmap <space>a <Plug>GitGutterStageHunk
+nmap <space>u <Plug>GitGutterRevertHunk
 "}}}
 
 "====vimim===={{{
@@ -557,11 +561,6 @@ let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_docstring = 0
 autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
 autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
-"}}}
-
-"====neomake===={{{
-"let g:neomake_python_enabled_makers = ['flake8']
-"autocmd! BufWritePost * Neomake
 "}}}
 
 " vim: set ft=vim fdm=marker:
