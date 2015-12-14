@@ -2,90 +2,83 @@
 
 if !has('nvim')
     set nocompatible
+
+    filetype off
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin() "{{{
+        Plugin 'gmarik/Vundle.vim'
+        "Plugin 'amoffat/snake'
+        Plugin 'thinca/vim-quickrun'
+        "Plugin 'lambdalisue/vim-pyenv'
+        "Plugin 'jmcantrell/vim-virtualenv'
+        Plugin 'tmhedberg/SimpylFold'
+
+        "Plugin 'KabbAmine/zeavim.vim'
+
+        "Plugin 'jlanzarotta/bufexplorer'
+        Plugin 'kshenoy/vim-signature'
+
+        Plugin 'scrooloose/syntastic'
+        Plugin 'davidhalter/jedi-vim'
+        Plugin 'Valloric/YouCompleteMe'
+        Plugin 'rdnetto/YCM-Generator'
+
+        Plugin 'nathanaelkane/vim-indent-guides'
+        Plugin 'terryma/vim-multiple-cursors'
+        Plugin 'scrooloose/nerdcommenter'
+        Plugin 'scrooloose/nerdtree'
+        Plugin 'Raimondi/delimitMate'
+        Plugin 'tpope/vim-surround'
+        Plugin 'honza/vim-snippets'
+        Plugin 'SirVer/ultisnips'
+        Plugin 'mbbill/fencview'
+        Plugin 'mbbill/undotree'
+        "Plugin 'DoxygenToolkit.vim'
+
+        Plugin 'Shougo/unite.vim'
+        Plugin 'Shougo/vimproc.vim'
+        Plugin 'Shougo/unite-outline'
+        Plugin 'Shougo/neoyank.vim'
+        Plugin 'easymotion/vim-easymotion'
+
+        Plugin 'tpope/vim-fugitive'
+        Plugin 'airblade/vim-gitgutter'
+
+        Plugin 'majutsushi/tagbar'
+        Plugin 'bling/vim-airline'
+        Plugin 'kopischke/vim-stay'
+
+        Plugin 'rust-lang/rust.vim'
+        Plugin 'phildawes/racer'
+
+        Plugin 'vim-pandoc/vim-pandoc'
+        Plugin 'vim-pandoc/vim-pandoc-syntax'
+        Plugin 'vim-pandoc/vim-pandoc-after'
+        Plugin 'dhruvasagar/vim-table-mode'
+
+        Plugin 'fatih/vim-go'
+
+        Plugin 'peterhoeg/vim-qml'
+
+        Plugin 'skt041959/markdown-preview.vim'
+
+        Plugin 'a.vim'
+        Plugin 'Mark--Karkat'
+        Plugin 'renamer.vim'
+        Plugin 'fcitx.vim'
+
+        "Plugin 'VimIM'
+
+        Plugin 'kurayama/systemd-vim-syntax'
+        Plugin 'chrisbra/csv.vim'
+
+        Plugin 'lambdalisue/vim-gista'
+        Plugin 'guns/xterm-color-table.vim'
+        Plugin 'skt041959/vim-color-skt'
+        "}}}
+    call vundle#end()
+
 endif
-
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-"{{{
-Plugin 'gmarik/Vundle.vim'
-"Plugin 'jeaye/color_coded'
-Plugin 'amoffat/snake'
-Plugin 'benekastah/neomake'
-Plugin 'thinca/vim-quickrun'
-"Plugin 'lambdalisue/vim-pyenv'
-"Plugin 'jmcantrell/vim-virtualenv'
-Plugin 'tmhedberg/SimpylFold'
-
-Plugin 'KabbAmine/zeavim.vim'
-
-"Plugin 'jlanzarotta/bufexplorer'
-Plugin 'kshenoy/vim-signature'
-
-Plugin 'scrooloose/syntastic'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'rdnetto/YCM-Generator'
-
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Raimondi/delimitMate'
-Plugin 'tpope/vim-surround'
-Plugin 'honza/vim-snippets'
-Plugin 'SirVer/ultisnips'
-Plugin 'mbbill/fencview'
-Plugin 'mbbill/undotree'
-"Plugin 'DoxygenToolkit.vim'
-
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'Shougo/unite-outline'
-Plugin 'Shougo/neoyank.vim'
-Plugin 'easymotion/vim-easymotion'
-
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
-
-Plugin 'majutsushi/tagbar'
-Plugin 'bling/vim-airline'
-Plugin 'kopischke/vim-stay'
-
-Plugin 'rust-lang/rust.vim'
-Plugin 'phildawes/racer'
-
-Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
-Plugin 'vim-pandoc/vim-pandoc-after'
-Plugin 'dhruvasagar/vim-table-mode'
-
-Plugin 'fatih/vim-go'
-
-Plugin 'peterhoeg/vim-qml'
-
-Plugin 'skt041959/markdown-preview.vim'
-
-Plugin 'a.vim'
-Plugin 'Mark--Karkat'
-Plugin 'renamer.vim'
-Plugin 'fcitx.vim'
-
-"Plugin 'VimIM'
-
-Plugin 'kurayama/systemd-vim-syntax'
-Plugin 'chrisbra/csv.vim'
-
-Plugin 'lambdalisue/vim-gista'
-Plugin 'guns/xterm-color-table.vim'
-Plugin 'skt041959/vim-color-skt'
-if has('nvim')
-    Plugin 'skt041959/vim-libpinyin'
-    Plugin 'skt041959/vim-mdpreview'
-    Plugin 'Shougo/deoplete.nvim'
-endif
-"}}}
-call vundle#end()
 
 filetype plugin indent on
 
@@ -162,7 +155,7 @@ set cscopeverbose
 set foldmethod=syntax
 set foldlevel=100
 
-set completeopt-=preview
+"set completeopt-=preview
 set completeopt+=menuone
 set completeopt+=longest
 
@@ -297,9 +290,6 @@ let NERD_c_alt_style=1
 "let g:investigate_command_for_python = '/usr/bin/zeal --query python,opencv:^s'
 "let g:investigate_command_for_cpp = '/usr/bin/zeal --query c++,qt,opencv:^s'
 
-command Dcv Docset opencv
-command Dqt Docset qt
-
 nnoremap gz :!zeal "dash://<cword>"&<CR><CR>
 "}}}
 
@@ -426,7 +416,7 @@ let g:jedi#auto_vim_configuration = 1
 let g:jedi#use_tabs_not_buffers = 0
 let g:jedi#use_splits_not_buffers = "right"
 let g:jedi#popup_select_first = 0
-let g:jedi#force_py_version = 2
+let g:jedi#force_py_version = 3
 "}}}
 
 "====airline===={{{
@@ -567,6 +557,11 @@ let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_docstring = 0
 autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
 autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
+"}}}
+
+"====neomake===={{{
+"let g:neomake_python_enabled_makers = ['flake8']
+"autocmd! BufWritePost * Neomake
 "}}}
 
 " vim: set ft=vim fdm=marker:
