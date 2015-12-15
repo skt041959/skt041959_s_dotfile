@@ -112,7 +112,10 @@ let g:python3_host_prog = '/usr/bin/python'
 "}}}
 
 "====neomake===={{{
+"let g:neomake_python_flake8_args = ['--ignore=E501']
 "let g:neomake_python_enabled_makers = ['flake8']
+"let g:neomake_cpp_enabled_makers = ['clang++']
+"let g:neomake_shell_enabled_makers = ['shellcheck']
 "autocmd! BufWritePost * Neomake
 "}}}
 
@@ -129,13 +132,14 @@ autocmd FileType python call Map_nvim_ipy()
 
 "====lldb.nvim===={{{
 function LLDB_debug_mode()
-    vmap <F2> <Plug>LLStdInSelected
-    nnoremap <C-F4> :LLstdin<CR>
+    "vmap <F2> <Plug>LLStdInSelected
+    nnoremap <F2> :LLstdin<CR>
     nnoremap <F8> :LL continue<CR>
-    nnoremap <F9> :LL next<CR>
     nnoremap <S-F8> :LL process interrupt<CR>
-    nnoremap <F10> :LL print <C-R>=expand('<cword>')<CR>
-    vnoremap <F10> :<C-U>LL print <C-R>=lldb#util#get_selection()<CR><CR>
+    nnoremap <F9> :LL next<CR>
+    nnoremap <F10> :LL step<CR>
+    nnoremap <F12> :LL print <C-R>=expand('<cword>')<CR>
+    vnoremap <F12> :<C-U>LL print <C-R>=lldb#util#get_selection()<CR><CR>
     LLmode debug
 endfunction
 function LLDB_code_mode()

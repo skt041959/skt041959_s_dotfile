@@ -420,9 +420,6 @@ let g:jedi#force_py_version = 3
 "}}}
 
 "====airline===={{{
-"if !exists('g:airline_symbols')
-"    let g:airline_symbols = {}
-"endif
 let g:airline_theme = 'light'
 let g:airline_left_sep = '▶'
 let g:airline_right_sep = '◀'
@@ -432,10 +429,10 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#flags = 's'
 let g:airline_extensions = ['branch',
             \'tabline',
-            \'syntastic',
             \'tagbar',
             \'hunks',
             \'whitespace',
+            \'neomake',
             \]
 "}}}
 
