@@ -1,19 +1,23 @@
 
 call plug#begin()
 "{{{
+Plug 'KabbAmine/zeavim.vim'
 Plug 'thinca/vim-quickrun'
 Plug 'critiqjo/lldb.nvim', {'for': ['c++', 'c']}
 Plug 'tmhedberg/SimpylFold', {'for': 'python'}
+Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
 "Plug 'lambdalisue/vim-pyenv'
 "Plug 'jmcantrell/vim-virtualenv'
 "Plug 'KabbAmine/zeavim.vim'
 
 Plug 'kshenoy/vim-signature'
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 Plug 'bfredl/nvim-ipy', {'for': 'python'}
-Plug 'Valloric/YouCompleteMe'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+
+Plug 'Valloric/YouCompleteMe', {'on': 'YcmCompleter'}
+autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
 
 Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/echodoc.vim'
@@ -22,21 +26,22 @@ Plug 'benekastah/neomake'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips', { 'on': [] } | Plug 'honza/vim-snippets'
 Plug 'mbbill/fencview'
 Plug 'mbbill/undotree'
-"Plug 'DoxygenToolkit.vim'
+Plug 'kana/vim-submode'
 
-Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
 Plug 'chemzqm/unite-git-log'
 Plug 'Shougo/neoyank.vim'
-Plug 'easymotion/vim-easymotion'
 
+Plug 'easymotion/vim-easymotion'
+Plug 'rhysd/clever-f.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
@@ -61,7 +66,7 @@ Plug 'fatih/vim-go', {'for': 'go'}
 
 Plug 'peterhoeg/vim-qml', {'for': 'qml'}
 
-Plug 'skt041959/markdown-preview.vim'
+Plug 'skt041959/markdown-preview.vim', {'for': ['pandoc','markdown']}
 
 Plug 'kurayama/systemd-vim-syntax'
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
@@ -71,9 +76,16 @@ Plug 'lambdalisue/vim-gista'
 Plug 'guns/xterm-color-table.vim'
 Plug 'skt041959/vim-color-skt'
 Plug 'skt041959/vim-libpinyin'
-Plug 'skt041959/vim-mdpreview'
+"Plug 'skt041959/vim-mdpreview'
+"Plug '/home/skt/code/gdbmi.nvim'
 "}}}
 call plug#end()
+
+augroup load_us_ycm
+  autocmd!
+  autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
+                     \| call youcompleteme#Enable() | autocmd! load_us_ycm
+augroup END
 
 execute 'source' '/home/skt/.vim/vimrc'
 
@@ -112,11 +124,18 @@ let g:python3_host_prog = '/usr/bin/python'
 "}}}
 
 "====neomake===={{{
-"let g:neomake_python_flake8_args = ['--ignore=E501']
-"let g:neomake_python_enabled_makers = ['flake8']
-"let g:neomake_cpp_enabled_makers = ['clang++']
-"let g:neomake_shell_enabled_makers = ['shellcheck']
-"autocmd! BufWritePost * Neomake
+let g:neomake_python_flake8_args = ['--first', '--ignore=E501,E128,E265,E261,E251,W391']
+let g:neomake_python_enabled_makers = ['flake8']
+"let g:neomake_cpp_enabled_makers = ['clang']
+"let gjneomake_c_enabled_makers = ['clang']
+let g:airline_extensions = ['branch',
+            \'tabline',
+            \'tagbar',
+            \'hunks',
+            \'whitespace',
+            \'neomake',
+            \]
+autocmd! BufWritePost * Neomake
 "}}}
 
 "====nvim-ipy===={{{

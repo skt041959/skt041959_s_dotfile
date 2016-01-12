@@ -232,7 +232,7 @@ man() {
 		LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
 		LESS_TERMCAP_ue=$(printf "\e[0m") \
 		LESS_TERMCAP_us=$(printf "\e[1;32m") \
-		viman -c "Man $1 $2" -c 'slient only'
+		nvim -c "Man $1 $2" -c 'silent only'
 }
 
 proxy() {
@@ -376,6 +376,11 @@ rsync_afms()
 pic2jpg()
 {
     find -name "*.$1"|xargs -l -i basename {} .$1|xargs -l -i convert {}.$1 {}.jpg
+}
+
+lmgrd()
+{
+    /home/skt/.local/bin/wine_subreap.py wine lmgrd.exe -z -c "C:\\Cadence\\LicenseManager\\license.dat" -l "C:\\Cadence\\LicenseManager\\debug.log"
 }
 
 #命令别名 {{{

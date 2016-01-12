@@ -49,7 +49,7 @@ case $TERM in (*xterm*|*rxvt*|(dt|k|E)term)
     ;;
 esac
 
-export EDITOR=vim
+export EDITOR=nvim
 #export TERM=xterm-256color
 
 #关于历史纪录的配置 {{{
@@ -128,8 +128,8 @@ setopt EXTENDED_GLOB
 #prompt redhat
 
 # adopt orphan process
-#zmodload zsh/subreap
-#subreap
+zmodload zsh/subreap
+subreap
 
 setopt correctall
 autoload compinstall
