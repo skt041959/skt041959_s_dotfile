@@ -26,7 +26,7 @@ Plug 'benekastah/neomake'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
 Plug 'SirVer/ultisnips', { 'on': [] } | Plug 'honza/vim-snippets'
@@ -77,7 +77,7 @@ Plug 'guns/xterm-color-table.vim'
 Plug 'skt041959/vim-color-skt'
 Plug 'skt041959/vim-libpinyin'
 "Plug 'skt041959/vim-mdpreview'
-"Plug '/home/skt/code/gdbmi.nvim'
+Plug '~/code/gdbmi.nvim'
 "}}}
 call plug#end()
 
