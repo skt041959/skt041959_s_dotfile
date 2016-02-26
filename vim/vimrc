@@ -19,8 +19,8 @@ if !has('nvim')
         Plugin 'kshenoy/vim-signature'
 
         Plugin 'scrooloose/syntastic'
-        Plugin 'davidhalter/jedi-vim'
-        Plugin 'Valloric/YouCompleteMe'
+        "Plugin 'davidhalter/jedi-vim'
+        "Plugin 'Valloric/YouCompleteMe'
         Plugin 'rdnetto/YCM-Generator'
 
         Plugin 'nathanaelkane/vim-indent-guides'
@@ -45,7 +45,8 @@ if !has('nvim')
         Plugin 'airblade/vim-gitgutter'
 
         Plugin 'majutsushi/tagbar'
-        Plugin 'bling/vim-airline'
+        Plugin 'vim-airline/vim-airline'
+        Plugin 'vim-airline/vim-airline-themes'
         Plugin 'kopischke/vim-stay'
 
         Plugin 'rust-lang/rust.vim'
@@ -86,7 +87,8 @@ set background=dark
 "set background=light
 "let g:solarized_termcolors=256
 "colorscheme jellybeans_skt
-colorscheme darkblack_skt
+"colorscheme darkblack_skt
+colorscheme jellybeans
 
 set synmaxcol=1000
 set timeoutlen=4000
@@ -105,11 +107,10 @@ autocmd FileType cpp                  syn keyword Type cv Mat Point Rect Scalar 
 
 
 autocmd FileType python               setlocal foldignore='#'
-autocmd FileType python,verilog,cmake setlocal foldmethod=indent
+autocmd FileType python               setlocal foldmethod=indent
+autocmd FileType verilog,cmake        setlocal foldmethod=indent
 autocmd FileType xml,svg,vim,qml      setlocal foldmethod=indent
 autocmd FileType xml                  setlocal tabstop=2 shiftwidth=2
-
-autocmd FileType vim                  set keywordprg=
 
 "autocmd BufNewFile,BufRead *.pro set filetype=qtproject
 
@@ -195,7 +196,7 @@ nnoremap <leader>4 :tabn<CR>
 
 nnoremap <leader>S :mksession!<CR>
 nnoremap <leader>qq :q<CR>
-nnoremap <C-Q> :q!<CR>
+nnoremap <C-Q>     :q!<CR>
 nnoremap <leader>w :up<CR>
 nnoremap <leader>s :split<CR>
 nnoremap <leader>v :vsplit<CR>
@@ -244,7 +245,7 @@ function! AutoSetFileHead()
 
     "如果文件类型为python
     if &filetype == 'python'
-        call setline(1, "\#!/usr/bin/env python")
+    "    call setline(1, "\#!/usr/bin/env python")
         call append(1, "\# encoding: utf-8")
     endif
 
@@ -252,7 +253,7 @@ function! AutoSetFileHead()
     normal o
     normal o
 endfunc
-"autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
+autocmd BufNewFile *.sh *.py exec ":call AutoSetFileHead()"
 "}}}
 
 "====StripTrailingWhitespaces===={{{
@@ -272,6 +273,8 @@ elseif filereadable("AFMS.pro")
     set makeprg=make\ \-j\ 2\ -C\ ../build-AFMS-AFMS-Debug
 elseif filereadable("video_check.pro")
     set makeprg=make\ \-j\ 2\ -C\ ../build-video_check-AFMS-Debug
+elseif filereadable("udisk.sh")
+    set makeprg=make\ \-j\ 2\ -C\ build udiskbox.bin
 endif
 "}}}
 
@@ -292,14 +295,10 @@ nmap gz <Plug>Zeavim
 vmap gz <Plug>ZVVisSelection
 nmap gZ <Plug>ZVKeyDocset
 let g:zv_file_types = {
-            \ 'python': 'python 2,python 3',
+            \ 'python': 'python 3,numpy',
             \ 'vim': 'vim',
             \ }
 let g:zv_docsets_dir = '/home/skt/.local/share/Zeal/Zeal/docsets'
-"nnoremap <leader>K :call investigate#Investigate()<CR>
-"let g:investigate_command_for_python = '/usr/bin/zeal --query python,opencv:^s'
-"let g:investigate_command_for_cpp = '/usr/bin/zeal --query c++,qt,opencv:^s'
-
 "nnoremap gz :!zeal "dash://<cword>"&<CR><CR>
 "}}}
 
@@ -318,9 +317,7 @@ autocmd FileType tagbar setlocal nocursorline nocursorcolumn
 "}}}
 
 "====undotree===={{{
-"nnoremap <leader>gl :GundoToggle<CR>
-"let g:gundo_right = 1
-nnoremap <leader>gl :UndotreeToggle<CR>
+nnoremap <leader>ul :UndotreeToggle<CR>
 let g:undotree_WindowLayout = 4
 let g:undotree_SplitWidth = 30
 let g:undotree_SetFocusWhenToggle = 1
@@ -361,13 +358,13 @@ let g:ycm_filetype_blacklist = {
             \ 'mail' : 1,
             \ 'rust' : 1,
             \}
+let g:ycm_confirm_extra_conf = 0
 let g:ycm_complete_in_comments = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_key_invoke_completion = '<C-c>'
-let g:ycm_confirm_extra_conf = 0
+let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_autoclose_preview_window_after_insertion = 0
 let g:ycm_error_symbol = '✗'
 let g:ycm_warning_symbol = '⚠'
@@ -384,7 +381,7 @@ else:
 print(vim.options['completeopt'])
 EOF
 endfunction
-nmap <silent> <leader>u :call Ycm_preview()<CR>
+"nmap <silent> <leader>u :call Ycm_preview()<CR>
 "}}}
 
 "=====pymode===={{{
@@ -408,7 +405,7 @@ let g:UltiSnipsUsePythonVersion = 2
 ""}}}
 
 "====syntastic===={{{
-let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_checkers = []
 let g:syntastic_java_checkers = []
 let g:syntastic_python_python_exec = '/usr/bin/python3'
 let g:syntastic_python_pyflakes_quiet_messages = {
@@ -424,7 +421,7 @@ let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 "}}}
 
-"====jedi===={{{
+"====jedi-vim===={{{
 let g:jedi#auto_vim_configuration = 1
 let g:jedi#use_tabs_not_buffers = 0
 let g:jedi#use_splits_not_buffers = "right"
@@ -434,10 +431,20 @@ let g:jedi#force_py_version = 3
 
 "====airline===={{{
 let g:airline_theme = 'light'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '◀'
-let g:airline_left_alt_sep = '▶'
-let g:airline_right_alt_sep = '◀'
+"let g:airline_left_sep = '▶'
+"let g:airline_right_sep = '◀'
+"let g:airline_left_alt_sep = '▶'
+"let g:airline_right_alt_sep = '◀'
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_alt_sep = ''
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#flags = 's'
 let g:airline_extensions = ['branch',
@@ -452,6 +459,7 @@ let g:airline_extensions = ['branch',
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 nnoremap <space>p :Unite file_rec/async:.<CR>
 nnoremap <space>g :Unite grep:.::<C-R><C-W><CR>
+nnoremap <space>G :Unite grep:%::<C-R><C-W><CR>
 vnoremap <space>g y<Esc>:silent exec
             \ ":<C-u>Unite grep:.::<C-R>""<CR>
 nnoremap <space>s :Unite grep:.<CR>
@@ -543,7 +551,6 @@ let g:quickrun_config['qml'] = g:quickrun_config['qml/qmlscene']
 "}}}
 
 "====vim-go===={{{
-au FileType go nmap <leader>gr <Plug>(go-run)
 au FileType go nmap <leader>gb <Plug>(go-build)
 au FileType go nmap <leader>gt <Plug>(go-test)
 au FileType go nmap <leader>gc <Plug>(go-coverage)
@@ -572,10 +579,15 @@ let g:vimim_mycloud = 0
 "}}}
 
 "====SimpylFold===={{{
-let g:SimpylFold_docstring_preview = 1
-let g:SimpylFold_fold_docstring = 0
-autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
-autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
+"let g:SimpylFold_docstring_preview = 1
+"let g:SimpylFold_fold_docstring = 0
+"autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
+"autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
+"}}}
+
+"====neoman===={{{
+set keywordprg=:Nman
+autocmd FileType vim                  set keywordprg=
 "}}}
 
 " vim: set ft=vim fdm=marker:

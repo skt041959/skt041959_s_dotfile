@@ -1,4 +1,8 @@
 #created by skt
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+
 #. /usr/share/zsh/site-contrib/powerline.zsh
 source $HOME/.zsh_plugin/skt_define.zsh
 
@@ -129,7 +133,7 @@ setopt EXTENDED_GLOB
 
 # adopt orphan process
 zmodload zsh/subreap
-subreap
+#subreap
 
 setopt correctall
 autoload compinstall

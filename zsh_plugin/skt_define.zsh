@@ -223,17 +223,17 @@ emu()
 }
 
 # Set colors for man pages
-man() {
-	env \
-		LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-		LESS_TERMCAP_md=$(printf "\e[1;31m") \
-		LESS_TERMCAP_me=$(printf "\e[0m") \
-		LESS_TERMCAP_se=$(printf "\e[0m") \
-		LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-		LESS_TERMCAP_ue=$(printf "\e[0m") \
-		LESS_TERMCAP_us=$(printf "\e[1;32m") \
-		nvim -c "Man $1 $2" -c 'silent only'
-}
+#man() {
+#    env \
+#        LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+#        LESS_TERMCAP_md=$(printf "\e[1;31m") \
+#        LESS_TERMCAP_me=$(printf "\e[0m") \
+#        LESS_TERMCAP_se=$(printf "\e[0m") \
+#        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+#        LESS_TERMCAP_ue=$(printf "\e[0m") \
+#        LESS_TERMCAP_us=$(printf "\e[1;32m") \
+#        nvim -c "Man $1 $2" -c 'silent only'
+#}
 
 proxy() {
     case $1 in
@@ -383,6 +383,36 @@ lmgrd()
     /home/skt/.local/bin/wine_subreap.py wine lmgrd.exe -z -c "C:\\Cadence\\LicenseManager\\license.dat" -l "C:\\Cadence\\LicenseManager\\debug.log"
 }
 
+_nman()
+{
+    if [[ "$@" == "" ]]; then
+        print "What manual page do you want?"
+        return
+    fi
+    /usr/bin/man "$@" > /dev/null 2>&1
+    if [[ "$?" != "0" ]]; then
+        print "No manual entry for $*"
+        return
+    fi
+    if [[ -z $NVIM_LISTEN_ADDRESS ]]; then
+        /usr/bin/env nvim -c $cmd
+    else
+        nvr --remote-send "<c-n>" -c $cmd
+    fi
+}
+nman()
+{
+    cmd="Nman $*"
+    _nman "$@"
+}
+nman!()
+{
+    cmd="Nman! $*"
+    _nman "$@"
+}
+compdef nman="man"
+compdef nman!="man"
+
 #命令别名 {{{
 alias cp='cp -i -v'
 alias mv='mv -i -v'
@@ -417,6 +447,7 @@ alias ycm_gen='/home/skt/.vim/bundle/YCM-Generator/config_gen.py'
 alias rez='source /home/skt/.zsh_plugin/skt_define.zsh'
 alias restart_kde='kbuildsycoca5 && kquitapp plasma-desktop && kstart plasma-desktop'
 alias arc='tar zcvf config.tar.gz .vim/ .ptpython/ .zsh_plugin/ .pandoc/ .zshrc .tmux.conf --exclude="*.git" --exclude="racer"'
+alias man='nman'
 #alias -g DASH='-ex "dashboard -output $(tmux splitw -d -h -P -F \"#{pane_tty}\")"'
 #}}}
 

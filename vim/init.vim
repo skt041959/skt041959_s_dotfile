@@ -4,23 +4,34 @@ call plug#begin()
 Plug 'KabbAmine/zeavim.vim'
 Plug 'thinca/vim-quickrun'
 Plug 'critiqjo/lldb.nvim', {'for': ['c++', 'c']}
-Plug 'tmhedberg/SimpylFold', {'for': 'python'}
-Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
+"Plug 'tmhedberg/SimpylFold', {'for': 'python'}
+Plug 'tweekmonster/braceless.vim'
+"Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
 "Plug 'lambdalisue/vim-pyenv'
 "Plug 'jmcantrell/vim-virtualenv'
-"Plug 'KabbAmine/zeavim.vim'
 
 Plug 'kshenoy/vim-signature'
-"Plug 'scrooloose/syntastic'
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
+Plug 'scrooloose/syntastic', {'for': []}
+Plug 'davidhalter/jedi-vim', {'for': []}
 Plug 'bfredl/nvim-ipy', {'for': 'python'}
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 
-Plug 'Valloric/YouCompleteMe', {'on': 'YcmCompleter'}
-autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
+"Plug 'Valloric/YouCompleteMe', {'on': 'YcmCompleter'}
+"autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
+"augroup load_us_ycm
+"  autocmd!
+"  autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
+"                     \| call youcompleteme#Enable() | autocmd! load_us_ycm
+"augroup END
+Plug 'Valloric/YouCompleteMe', {'for': ['c', 'cpp', 'cmake']}
 
-Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim', {'for': ['python', 'java', 'lua', 'pandoc', 'markdown', 'sh', 'vim', 'html']}
 Plug 'Shougo/echodoc.vim'
+Plug 'zchee/deoplete-jedi'
+Plug 'Shougo/neco-vim'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+
 Plug 'benekastah/neomake'
 
 Plug 'nathanaelkane/vim-indent-guides'
@@ -29,7 +40,9 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
-Plug 'SirVer/ultisnips', { 'on': [] } | Plug 'honza/vim-snippets'
+"Plug 'SirVer/ultisnips', {'for': []}
+"
+Plug 'honza/vim-snippets'
 Plug 'mbbill/fencview'
 Plug 'mbbill/undotree'
 Plug 'kana/vim-submode'
@@ -37,16 +50,21 @@ Plug 'kana/vim-submode'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
-Plug 'chemzqm/unite-git-log'
 Plug 'Shougo/neoyank.vim'
+Plug 'chemzqm/unite-git-log'
+Plug 'junegunn/vim-peekaboo'
+Plug 'wellle/visual-split.vim'
 
 Plug 'easymotion/vim-easymotion'
+Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'rhysd/clever-f.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 Plug 'majutsushi/tagbar'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'kopischke/vim-stay'
 
 Plug 'a.vim'
@@ -55,7 +73,6 @@ Plug 'renamer.vim'
 Plug 'fcitx.vim'
 
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
-Plug 'phildawes/racer', {'for': 'rust'}
 
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -66,28 +83,31 @@ Plug 'fatih/vim-go', {'for': 'go'}
 
 Plug 'peterhoeg/vim-qml', {'for': 'qml'}
 
-Plug 'skt041959/markdown-preview.vim', {'for': ['pandoc','markdown']}
+"Plug 'skt041959/markdown-preview.vim', {'for': ['pandoc', 'markdown']}
+Plug 'miyakogi/livemark.vim'
 
 Plug 'kurayama/systemd-vim-syntax'
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 
-Plug 'vim-utils/vim-man'
+"Plug 'vim-utils/vim-man'
+Plug 'nhooyr/neoman.vim'
 Plug 'lambdalisue/vim-gista'
 Plug 'guns/xterm-color-table.vim'
 Plug 'skt041959/vim-color-skt'
+Plug 'nanotech/jellybeans.vim'
 Plug 'skt041959/vim-libpinyin'
-"Plug 'skt041959/vim-mdpreview'
+
 Plug '~/code/gdbmi.nvim'
+
+Plug '/usr/share/vim/vimfiles/eclim/'
+
+"Plug 'rhysd/nyaovim-popup-tooltip'
+"Plug 'rhysd/nyaovim-markdown-preview'
 "}}}
 call plug#end()
 
-augroup load_us_ycm
-  autocmd!
-  autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
-                     \| call youcompleteme#Enable() | autocmd! load_us_ycm
-augroup END
-
 execute 'source' '/home/skt/.vim/vimrc'
+colorscheme darkblack_skt
 
 set termencoding=utf-8
 
@@ -114,27 +134,45 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python'
 
+" Neovim-qt Guifont command
+command -nargs=? Guifont call rpcnotify(0, 'Gui', 'SetFont', "<args>") | let g:Guifont="<args>"
+" Set the font to DejaVu Sans Mono:h13
+Guifont Source Code Pro:h10
+
 "====deoplete===={{{
-"let g:deoplete#enable_at_startup = 1
-"autocmd FileType python setlocal omnifunc=jedi#completions
+let g:deoplete#enable_at_startup = 1
 "let g:jedi#completions_enabled = 0
 "let g:jedi#auto_vim_configuration = 0
 "let g:jedi#smart_auto_mappings = 0
 "let g:jedi#show_call_signatures = 0
+"let g:jedi#force_py_version = 3
+"function s:enable_deoplete()
+"    "DeopleteEnable
+"    setlocal omnifunc=jedi#completions
+"endfunction
+"autocmd FileType python call <SID>enable_deoplete()
+"}}}
+
+"====neosnippt===={{{
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets'
 "}}}
 
 "====neomake===={{{
-let g:neomake_python_flake8_args = ['--first', '--ignore=E501,E128,E265,E261,E251,W391']
 let g:neomake_python_enabled_makers = ['flake8']
-"let g:neomake_cpp_enabled_makers = ['clang']
-"let gjneomake_c_enabled_makers = ['clang']
+let g:neomake_python_flake8_args = ['--first', '--ignore=E501,E128,E265,E261,E251,W391']
+let g:neomake_vim_enabled_makers = ['vint']
 let g:airline_extensions = ['branch',
-            \'tabline',
-            \'tagbar',
-            \'hunks',
-            \'whitespace',
-            \'neomake',
-            \]
+            \ 'tabline',
+            \ 'hunks',
+            \ 'whitespace',
+            \ 'neomake',
+            \ 'unite',
+            \ 'virtualenv',
+            \ ]
 autocmd! BufWritePost * Neomake
 "}}}
 
@@ -164,9 +202,47 @@ endfunction
 function LLDB_code_mode()
     LLmode code
 endfunction
-nmap <M-b> <Plug>LLBreakSwitch
-autocmd FileType c,cpp nmap <F5> :call LLDB_debug_mode()<CR>
-autocmd FileType c,cpp nmap <S-F5> :call LLDB_code_mode()<CR>
+"nmap <M-b> <Plug>LLBreakSwitch
+"autocmd FileType c,cpp nmap <F5> :call LLDB_debug_mode()<CR>
+"autocmd FileType c,cpp nmap <S-F5> :call LLDB_code_mode()<CR>
+"}}}
+
+"====eclim===={{{
+let g:EclimCompletionMethod = 'omnifunc'
+"}}}
+
+"====livemark===={{{
+let g:livemark_browser = 'chromium'
+let g:livemark_python = '/usr/bin/python'
+"}}}
+
+"====jellybeans===={{{
+let g:jellybeans_use_lowcolor_black = 0
+let g:jellybeans_overrides = {
+            \ 'Todo': { 'guifg': '303030', 'guibg': 'f0f000',
+            \           'ctermfg': 'Black', 'ctermbg': 'Yellow',
+            \           'attr': 'bold' },
+            \ }
+"}}}
+
+"====braceless===={{{
+autocmd FileType python BracelessEnable +indent +fold-inner
+""}}}
+
+"{{{
+function! s:termlog() abort
+    vsplit
+    wincmd l
+    terminal
+    let s:term_id = b:terminal_job_id
+    wincmd h
+    call jobsend(s:term_id, "tail -f ~/tmp/nvimlog-python_".string(g:gdbmi#_python_pid)."\n")
+    stopinsert
+endfunction
+command Termlog call <SID>termlog()
+nnoremap <leader>br :GDBBreakSwitch<CR>
+au BufRead ab.c silent GdbmiInitializePython
+au VimEnter ab.c silent Termlog
 "}}}
 
 " vim: set ft=vim fdm=marker
