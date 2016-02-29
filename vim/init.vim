@@ -23,13 +23,13 @@ Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 "  autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
 "                     \| call youcompleteme#Enable() | autocmd! load_us_ycm
 "augroup END
-Plug 'Valloric/YouCompleteMe', {'for': ['c', 'cpp', 'cmake']}
+Plug 'Valloric/YouCompleteMe', {'for': ['c', 'cpp', 'cmake', 'python']}
 
-Plug 'Shougo/deoplete.nvim', {'for': ['python', 'java', 'lua', 'pandoc', 'markdown', 'sh', 'vim', 'html']}
+Plug 'Shougo/deoplete.nvim', {'for': ['java', 'lua', 'pandoc', 'markdown', 'sh', 'vim', 'html']}
 Plug 'Shougo/echodoc.vim'
 Plug 'zchee/deoplete-jedi'
 Plug 'Shougo/neco-vim'
-Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet.vim', {'for': []}
 Plug 'Shougo/neosnippet-snippets'
 
 Plug 'benekastah/neomake'
@@ -40,7 +40,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
-"Plug 'SirVer/ultisnips', {'for': []}
+Plug 'SirVer/ultisnips'
 "
 Plug 'honza/vim-snippets'
 Plug 'mbbill/fencview'
@@ -50,6 +50,7 @@ Plug 'kana/vim-submode'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
+Plug 'tsukkee/unite-tag'
 Plug 'Shougo/neoyank.vim'
 Plug 'chemzqm/unite-git-log'
 Plug 'junegunn/vim-peekaboo'
@@ -99,7 +100,7 @@ Plug 'skt041959/vim-libpinyin'
 
 Plug '~/code/gdbmi.nvim'
 
-Plug '/usr/share/vim/vimfiles/eclim/'
+Plug '~/.vim/plugged/eclim/', {'for': ['java']}
 
 "Plug 'rhysd/nyaovim-popup-tooltip'
 "Plug 'rhysd/nyaovim-markdown-preview'
@@ -165,6 +166,8 @@ let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets'
 let g:neomake_python_enabled_makers = ['flake8']
 let g:neomake_python_flake8_args = ['--first', '--ignore=E501,E128,E265,E261,E251,W391']
 let g:neomake_vim_enabled_makers = ['vint']
+let g:neomake_cpp_enabled_makers = []
+let g:neomake_c_enabled_makers = []
 let g:airline_extensions = ['branch',
             \ 'tabline',
             \ 'hunks',
