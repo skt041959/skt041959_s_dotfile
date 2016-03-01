@@ -38,9 +38,9 @@ rc = vim.eval("g:esession_registerd_cmd")
 vim.command("mksession!")
 with open("Session.vim", "at") as f:
     for v in rv:
-        f.write("call Register_variable('{}', '{}')\n".format(v, vim.eval(v)))
+        f.write("call Register_variable('{}', '{}')\n".format(v, repr(vim.eval(v)).replace("'", '"')))
     for o in ro:
-        f.write("call Register_option('{}', '{}')\n".format(o, vim.eval("&"+o)))
+        f.write("call Register_option('{}', '{}')\n".format(o, repr(vim.eval("&"+o)).replace("'", '"')))
     for c in rc:
         f.write("call Register_command('{}')\n".format(c))
 EOF

@@ -168,6 +168,11 @@ let g:neomake_python_flake8_args = ['--first', '--ignore=E501,E128,E265,E261,E25
 let g:neomake_vim_enabled_makers = ['vint']
 let g:neomake_cpp_enabled_makers = []
 let g:neomake_c_enabled_makers = []
+let g:neomake_c_cscope_maker = {
+            \ 'exec': 'cscope',
+            \ 'argc': ['-RbqkU'],
+            \ 'append_file': 0,
+            \ }
 let g:airline_extensions = ['branch',
             \ 'tabline',
             \ 'hunks',
