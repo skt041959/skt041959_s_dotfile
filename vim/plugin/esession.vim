@@ -42,6 +42,6 @@ with open("Session.vim", "at") as f:
     for o in ro:
         f.write("call Register_option('{}', '{}')\n".format(o, repr(vim.eval("&"+o)).replace("'", '"')))
     for c in rc:
-        f.write("call Register_command('{}')\n".format(c))
+        f.write("call Register_command('{}', 1)\n".format(c))
 EOF
 endfunction

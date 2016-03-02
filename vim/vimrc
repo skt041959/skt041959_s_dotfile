@@ -287,7 +287,7 @@ autocmd FileType c,cpp nnoremap [d :MacroDisplay<CR>
 
 nnoremap <leader>e :FencView<CR>
 
-let NERD_c_alt_style=1
+let  g:NERDCustomDelimiters = {'c': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' } }
 
 "====zealdoc===={{{
 let g:zv_disable_mapping = 1
@@ -450,11 +450,12 @@ let g:airline_symbols.linenr = ''
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#flags = 's'
 let g:airline_extensions = ['branch',
-            \'tabline',
-            \'tagbar',
-            \'hunks',
-            \'whitespace',
-            \]
+            \ 'tabline',
+            \ 'hunks',
+            \ 'whitespace',
+            \ 'unite',
+            \ 'virtualenv',
+            \ ]
 "}}}
 
 "====unite===={{{

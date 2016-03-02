@@ -170,17 +170,10 @@ let g:neomake_cpp_enabled_makers = []
 let g:neomake_c_enabled_makers = []
 let g:neomake_c_cscope_maker = {
             \ 'exec': 'cscope',
-            \ 'argc': ['-RbqkU'],
+            \ 'args': ['-RbqkU'],
             \ 'append_file': 0,
             \ }
-let g:airline_extensions = ['branch',
-            \ 'tabline',
-            \ 'hunks',
-            \ 'whitespace',
-            \ 'neomake',
-            \ 'unite',
-            \ 'virtualenv',
-            \ ]
+call add(g:airline_extensions, 'neomake')
 autocmd! BufWritePost * Neomake
 "}}}
 

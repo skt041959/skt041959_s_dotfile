@@ -54,7 +54,7 @@ case $TERM in (*xterm*|*rxvt*|(dt|k|E)term)
 esac
 
 export EDITOR=nvim
-#export TERM=xterm-256color
+export TERM=screen
 
 #关于历史纪录的配置 {{{
 export HISTFILESIZE=1000000
