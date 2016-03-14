@@ -5,8 +5,8 @@ Plug 'KabbAmine/zeavim.vim'
 Plug 'thinca/vim-quickrun'
 Plug 'critiqjo/lldb.nvim', {'for': ['c++', 'c']}
 "Plug 'tmhedberg/SimpylFold', {'for': 'python'}
-Plug 'tweekmonster/braceless.vim'
-"Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
+Plug 'tweekmonster/braceless.vim', {'for': ['python']}
+Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
 "Plug 'lambdalisue/vim-pyenv'
 "Plug 'jmcantrell/vim-virtualenv'
 
@@ -25,7 +25,7 @@ Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 "augroup END
 Plug 'Valloric/YouCompleteMe', {'for': ['c', 'cpp', 'cmake', 'python']}
 
-Plug 'Shougo/deoplete.nvim', {'for': ['java', 'lua', 'pandoc', 'markdown', 'sh', 'vim', 'html']}
+Plug 'Shougo/deoplete.nvim', {'for': ['java', 'lua', 'pandoc', 'markdown', 'sh', 'vim', 'html', 'make'], 'on': ['DeopleteEnable']}
 Plug 'Shougo/echodoc.vim'
 Plug 'zchee/deoplete-jedi'
 Plug 'Shougo/neco-vim'
@@ -50,8 +50,8 @@ Plug 'kana/vim-submode'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/unite-outline'
-Plug 'tsukkee/unite-tag'
 Plug 'Shougo/neoyank.vim'
+Plug 'amitab/vim-unite-cscope'
 Plug 'chemzqm/unite-git-log'
 Plug 'junegunn/vim-peekaboo'
 Plug 'wellle/visual-split.vim'
@@ -88,7 +88,7 @@ Plug 'peterhoeg/vim-qml', {'for': 'qml'}
 Plug 'miyakogi/livemark.vim'
 
 Plug 'kurayama/systemd-vim-syntax'
-Plug 'chrisbra/csv.vim', {'for': 'csv'}
+Plug 'chrisbra/csv.vim', {'on': ['InitCSV']}
 
 "Plug 'vim-utils/vim-man'
 Plug 'nhooyr/neoman.vim'
@@ -227,7 +227,7 @@ let g:jellybeans_overrides = {
 "}}}
 
 "====braceless===={{{
-autocmd FileType python BracelessEnable +indent +fold-inner
+"autocmd FileType python BracelessEnable +indent +fold-inner
 ""}}}
 
 "{{{
