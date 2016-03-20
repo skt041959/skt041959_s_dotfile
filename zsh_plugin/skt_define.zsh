@@ -18,6 +18,7 @@ source $HOME/.zsh_plugin/compl.zsh
 source $HOME/.zsh_plugin/zsh-git-prompt/zshrc.sh
 source $HOME/.zsh_plugin/bd.zsh
 source $HOME/.zsh_plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.vim/plugged/neoman.vim/scripts/neovim.zsh
 
 #{{{
 typeset -A ZSH_HIGHLIGHT_STYLES
@@ -383,35 +384,35 @@ lmgrd()
     /home/skt/.local/bin/wine_subreap.py wine lmgrd.exe -z -c "C:\\Cadence\\LicenseManager\\license.dat" -l "C:\\Cadence\\LicenseManager\\debug.log"
 }
 
-_nman()
-{
-    if [[ "$@" == "" ]]; then
-        print "What manual page do you want?"
-        return
-    fi
-    /usr/bin/man "$@" > /dev/null 2>&1
-    if [[ "$?" != "0" ]]; then
-        print "No manual entry for $*"
-        return
-    fi
-    if [[ -z $NVIM_LISTEN_ADDRESS ]]; then
-        /usr/bin/env nvim -c $cmd
-    else
-        nvr --remote-send "<c-n>" -c $cmd
-    fi
-}
-nman()
-{
-    cmd="Nman $*"
-    _nman "$@"
-}
-nman!()
-{
-    cmd="Nman! $*"
-    _nman "$@"
-}
-compdef nman="man"
-compdef nman!="man"
+#_nman()
+#{
+#    if [[ "$@" == "" ]]; then
+#        print "What manual page do you want?"
+#        return
+#    fi
+#    /usr/bin/man "$@" > /dev/null 2>&1
+#    if [[ "$?" != "0" ]]; then
+#        print "No manual entry for $*"
+#        return
+#    fi
+#    if [[ -z $NVIM_LISTEN_ADDRESS ]]; then
+#        /usr/bin/env nvim -c $cmd
+#    else
+#        nvr --remote-send "<c-n>" -c $cmd
+#    fi
+#}
+#nman()
+#{
+#    cmd="Nman $*"
+#    _nman "$@"
+#}
+#nman!()
+#{
+#    cmd="Nman! $*"
+#    _nman "$@"
+#}
+#compdef nman="man"
+#compdef nman!="man"
 
 #命令别名 {{{
 alias cp='cp -i -v'
@@ -447,7 +448,7 @@ alias ycm_gen='/home/skt/.vim/bundle/YCM-Generator/config_gen.py'
 alias rez='source /home/skt/.zsh_plugin/skt_define.zsh'
 alias restart_kde='kbuildsycoca5 && kquitapp plasma-desktop && kstart plasma-desktop'
 alias arc='tar zcvf config.tar.gz .vim/ .ptpython/ .zsh_plugin/ .pandoc/ .zshrc .tmux.conf --exclude="*.git" --exclude="racer"'
-alias man='nman'
+#alias man='nman'
 #alias -g DASH='-ex "dashboard -output $(tmux splitw -d -h -P -F \"#{pane_tty}\")"'
 #}}}
 

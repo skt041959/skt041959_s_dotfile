@@ -117,10 +117,10 @@ autocmd FileType xml                  setlocal tabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead .tmux.conf*,tmux.conf* set ft=tmux
 autocmd BufNewFile,BufRead *.dat set ft=dat
 
-let mapleader = ';'
+let g:mapleader = ';'
 
-set noeb vb t_vb=
-au GUIEnter * set vb t_vb=
+set noerrorbells vb t_vb=
+autocmd GUIEnter * set vb t_vb=
 
 set number
 set autowrite
@@ -133,6 +133,7 @@ set guifontwide=Source\ Han\ Sans\ SC\ 10
 set guioptions=aegit
 set wildmode=longest,list,full
 set wildmenu
+set mouse=a
 
 set expandtab
 set tabstop=4
@@ -142,7 +143,6 @@ set grepprg=grep\ -nH\ $*
 
 set cursorline
 set hlsearch
-set mouse=a
 set showcmd
 set showmatch
 set ignorecase smartcase
@@ -170,8 +170,6 @@ set viewoptions=cursor,folds,slash,unix
 set ssop-=options
 set ssop-=blank
 set ssop-=folds
-let g:session_autosave = 0
-let g:session_autoload = 0
 
 if maparg('<C-L>', 'n') ==# ''
     nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
@@ -268,7 +266,7 @@ endfun
 autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,verilog autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 "}}}
 
-if isdirectory("./build")
+if isdirectory('./build')
     set makeprg=make\ \-j\ 2\ -C\ build
 endif
 
@@ -362,7 +360,7 @@ let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_autoclose_preview_window_after_insertion = 0
 let g:ycm_error_symbol = '✗'
 let g:ycm_warning_symbol = '⚠'
-let g:ycm_python_binary_path = '/usr/bin/python3'
+let g:ycm_python_binary_path = '/usr/bin/python2'
 let g:ycm_goto_buffer_command = 'horizontal-split'
 nnoremap <leader>yg :YcmCompleter GoTo<CR>
 nnoremap <leader>yd :YcmCompleter GetDoc <C-R>w<CR>
@@ -532,18 +530,17 @@ let $RUST_SRC_PATH="/usr/local/src/rust/src"
 "====quickrun===={{{
 let g:quickrun_no_default_key_mappings = 1
 map <leader>qr <Plug>(quickrun)
-" quickrun
 let g:quickrun_config={
-            \"_" : {
-            \"runner" : "vimproc",
-            \"runner/vimproc/updatetime" : 60,
-            \},
-            \"qml/qmlscene" : {
-            \   'command'  : 'qmlscene',
-            \   'exec'     : '%c %s:p',
-            \   'runner'   : 'vimproc',
-            \   'outputter': 'buffer',
-            \},
+            \'_' : {
+            \    'runner' : 'vimproc',
+            \    'runner/vimproc/updatetime' : 60,
+            \    },
+            \'qml/qmlscene' : {
+            \    'command': 'qmlscene',
+            \    'exec': '%c %s:p',
+            \    'runner': 'vimproc',
+            \    'outputter': 'buffer',
+            \    },
             \}
 let g:quickrun_config['qml'] = g:quickrun_config['qml/qmlscene']
 "}}}

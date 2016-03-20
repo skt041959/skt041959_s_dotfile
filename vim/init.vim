@@ -14,7 +14,7 @@ Plug 'kshenoy/vim-signature'
 Plug 'scrooloose/syntastic', {'for': []}
 Plug 'davidhalter/jedi-vim', {'for': []}
 Plug 'bfredl/nvim-ipy', {'for': 'python'}
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 
 "Plug 'Valloric/YouCompleteMe', {'on': 'YcmCompleter'}
 "autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
@@ -40,8 +40,9 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'SirVer/ultisnips'
-"
+
 Plug 'honza/vim-snippets'
 Plug 'mbbill/fencview'
 Plug 'mbbill/undotree'
