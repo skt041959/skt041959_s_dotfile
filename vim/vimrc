@@ -87,35 +87,38 @@ set background=dark
 "set background=light
 "let g:solarized_termcolors=256
 "colorscheme jellybeans_skt
-"colorscheme darkblack_skt
-colorscheme jellybeans
+colorscheme darkblack_skt
+"colorscheme jellybeans
 
 set synmaxcol=1000
 set timeoutlen=4000
 set ttimeoutlen=100
 set updatetime=300
 
-"autocmd FileType c,cpp                          syn keyword cType uint_8 uint_16 uint_32 int_8 int_16 int_32
-
 "stm32
-autocmd FileType c                    syn keyword cType u8 u16 u32 s8 s16 s32
-autocmd FileType c,cpp                syn keyword cType UINT8 UINT32
+augroup BASIC
+    "{{{
+    autocmd!
+    autocmd FileType c                    syn keyword cType u8 u16 u32 s8 s16 s32
+    autocmd FileType c,cpp                syn keyword cType UINT8 UINT32
 
-"opencv
-autocmd FileType cpp                  syn keyword cType int8 uchar int64
-autocmd FileType cpp                  syn keyword Type cv Mat Point Rect Scalar Size Vec3b
+    "opencv
+    autocmd FileType cpp                  syn keyword cType int8 uchar int64
+    autocmd FileType cpp                  syn keyword Type cv Mat Point Rect Scalar Size Vec3b
 
 
-autocmd FileType python               setlocal foldignore='#'
-autocmd FileType python               setlocal foldmethod=indent
-autocmd FileType verilog,cmake        setlocal foldmethod=indent
-autocmd FileType xml,svg,vim,qml      setlocal foldmethod=indent
-autocmd FileType xml                  setlocal tabstop=2 shiftwidth=2
+    autocmd FileType python               setlocal foldignore='#'
+    autocmd FileType python               setlocal foldmethod=indent
+    autocmd FileType verilog,cmake        setlocal foldmethod=indent
+    autocmd FileType xml,svg,vim,qml      setlocal foldmethod=indent
+    autocmd FileType xml                  setlocal tabstop=2 shiftwidth=2
 
-"autocmd BufNewFile,BufRead *.pro set filetype=qtproject
+    "autocmd BufNewFile,BufRead *.pro set filetype=qtproject
 
-autocmd BufNewFile,BufRead .tmux.conf*,tmux.conf* set ft=tmux
-autocmd BufNewFile,BufRead *.dat set ft=dat
+    autocmd BufNewFile,BufRead .tmux.conf*,tmux.conf* set ft=tmux
+    autocmd BufNewFile,BufRead *.dat set ft=dat
+    "}}}
+augroup END
 
 let g:mapleader = ';'
 
@@ -124,7 +127,7 @@ autocmd GUIEnter * set vb t_vb=
 
 set number
 set autowrite
-set noreadonly
+"au BufEnter * set noro
 set backspace=indent,eol,start
 "set guifont=Source\ Code\ Pro\ Semi-Bold\ 9
 set guifont=Droid\ Sans\ Mono\ 10
@@ -210,7 +213,7 @@ nnoremap <F3> :set number! number?<CR>
 "nnoremap <F3> :set list! list?<CR>
 
 "set paste
-autocmd InsertLeave * set nopaste " disbale paste mode when leaving insert mode
+"autocmd InsertLeave * set nopaste " disbale paste mode when leaving insert mode
 nnoremap <F2> :set paste! paste?<CR>
 nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
 nnoremap <F12> :set spell!<CR>
@@ -239,27 +242,27 @@ cnoreabbr <expr> W  ((getcmdtype() == ':' && getcmdline() =~# '^W')?('w'):('W'))
 function! AutoSetFileHead()
     "如果文件类型为.sh文件
     if &filetype == 'sh'
-        call setline(1, "\#!/bin/bash")
+        call setline(1, '\#!/bin/bash')
     endif
 
-    "如果文件类型为python
+    '如果文件类型为python
     if &filetype == 'python'
-        "    call setline(1, "\#!/usr/bin/env python")
-        call append(1, "\# encoding: utf-8")
+        '    call setline(1, '\#!/usr/bin/env python')
+        call append(1, '\# encoding: utf-8')
     endif
 
     normal G
     normal o
     normal o
 endfunc
-autocmd BufNewFile *.sh exec ":call AutoSetFileHead()"
-autocmd BufNewFile *.py exec ":call AutoSetFileHead()"
+autocmd BufNewFile *.sh exec ':call AutoSetFileHead()'
+autocmd BufNewFile *.py exec ':call AutoSetFileHead()'
 "}}}
 
 "====StripTrailingWhitespaces===={{{
 fun! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
+    let l = line('.')
+    let c = col('.')
     %s/\s\+$//e
     call cursor(l, c)
 endfun
@@ -276,8 +279,6 @@ nnoremap <leader>S :call EMksession()<CR>
 nnoremap <C-E> :A<CR>
 "nnoremap <C-S-E> :AS<CR>
 
-autocmd FileType c,cpp nnoremap [d :MacroDisplay<CR>
-
 nnoremap <leader>e :FencView<CR>
 
 let  g:NERDCustomDelimiters = {'c': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' } }
@@ -292,7 +293,7 @@ let g:zv_file_types = {
             \ 'vim': 'vim',
             \ }
 let g:zv_docsets_dir = '/home/skt/.local/share/Zeal/Zeal/docsets'
-"nnoremap gz :!zeal "dash://<cword>"&<CR><CR>
+"nnoremap gz :!zeal 'dash://<cword>'&<CR><CR>
 "}}}
 
 "====tagbar===={{{
@@ -333,7 +334,7 @@ let g:bufExplorerSortBy = 'name'
 "====delimitMate===={{{
 let b:delimitMate_jump_expansion = 1
 let b:delimitMate_expand_cr = 2
-let delimitMate_excluded_regions = "Comment,String"
+let delimitMate_excluded_regions = 'Comment,String'
 "}}}
 
 "====ycm===={{{
@@ -362,6 +363,7 @@ let g:ycm_error_symbol = '✗'
 let g:ycm_warning_symbol = '⚠'
 let g:ycm_python_binary_path = '/usr/bin/python2'
 let g:ycm_goto_buffer_command = 'horizontal-split'
+let g:ycm_rust_src_path = '/usr/src/rust/src/'
 nnoremap <leader>yg :YcmCompleter GoTo<CR>
 nnoremap <leader>yd :YcmCompleter GetDoc <C-R>w<CR>
 nnoremap <leader>yf :YcmForceCompileAndDiagnostics<CR>
@@ -369,10 +371,10 @@ nnoremap <leader>yf :YcmForceCompileAndDiagnostics<CR>
 function! Ycm_preview()
 python << EOF
 if 'preview' in vim.options['completeopt']:
-    vim.command("set completeopt-=preview")
+    vim.command('set completeopt-=preview')
 else:
-    vim.command("set completeopt+=preview")
-    vim.command("set previewheight=5")
+    vim.command('set completeopt+=preview')
+    vim.command('set previewheight=5')
     print(vim.options['completeopt'])
 EOF
 endfunction
@@ -393,22 +395,22 @@ let g:pymode_syntax = 0
 "}}}
 
 "====UltiSnips===={{{
-let g:UltiSnipsExpandTrigger="<leader><tab>"
-let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
-let g:UltiSnipsJumpBackwardTrigger="<leader><s-tab>"
+let g:UltiSnipsExpandTrigger='<C-k>'
+let g:UltiSnipsJumpForwardTrigger='<C-k>'
+let g:UltiSnipsJumpBackwardTrigger='<leader><s-tab>'
 let g:UltiSnipsUsePythonVersion = 2
-""}}}
+"}}}
 
 "====syntastic===={{{
 let g:syntastic_python_checkers = []
 let g:syntastic_java_checkers = []
 let g:syntastic_python_python_exec = '/usr/bin/python3'
 let g:syntastic_python_pyflakes_quiet_messages = {
-            \ "!level":  "errors",
-            \ "type":    "style" }
+            \ '!level':  'errors',
+            \ 'type':    'style' }
 let g:syntastic_python_flake8_quiet_messages = {
-            \ "!level":  "errors",
-            \ "regex": "line too long" }
+            \ '!level':  'errors',
+            \ 'regex': 'line too long' }
 let g:syntastic_c_checkers = []
 let g:syntastic_cpp_checkers = []
 let g:syntastic_cuda_checkers = []
@@ -419,7 +421,7 @@ let g:syntastic_warning_symbol = '⚠'
 "====jedi-vim===={{{
 let g:jedi#auto_vim_configuration = 1
 let g:jedi#use_tabs_not_buffers = 0
-let g:jedi#use_splits_not_buffers = "right"
+let g:jedi#use_splits_not_buffers = 'right'
 let g:jedi#popup_select_first = 0
 let g:jedi#force_py_version = 3
 "}}}
@@ -502,17 +504,17 @@ nmap 't <Plug>(easymotion-t2)
 "====pandoc===={{{
 function! ToHtml()
     exec 'w'
-    exec "!pandoc  -s -S --self-contained -c style.css % -o %<.html "
+    exec '!pandoc  -s -S --self-contained -c style.css % -o %<.html '
 endfunction
 
 function! ToPdf()
     exec 'w'
-    exec "!pandoc  % -o %<.pdf --latex-engine=xelatex --template=another.tex"
+    exec '!pandoc  % -o %<.pdf --latex-engine=xelatex --template=another.tex'
 endfunction
 "nmap <silent> <F7> :call ToHtml()<CR>
 "nmap <silent> <F8> :call ToPdf()<CR>
 let g:pandoc#spell#enabled = 0
-let g:pandoc#after#modules#enabled = ["unite", "ultisnips", "tablemode"]
+let g:pandoc#after#modules#enabled = ['unite', 'ultisnips', 'tablemode']
 "}}}
 
 "====markdownpreview===={{{
@@ -520,11 +522,6 @@ let g:mkdp_path_to_chrome='chromium'
 let g:mkdp_refresh_slow=1
 let g:mkdp_auto_close=0
 "nnoremap <C-m> :MarkdownPreview<CR>
-"}}}
-
-"====racer===={{{
-let g:racer_cmd="/usr/bin/racer"
-let $RUST_SRC_PATH="/usr/local/src/rust/src"
 "}}}
 
 "====quickrun===={{{

@@ -38,6 +38,8 @@ endfunction
 command MacroDisplay call s:macroDisplay()
 command MacroFind call s:macroFind('')
 
+autocmd FileType c,cpp nnoremap [d :MacroDisplay<CR>
+
 "nnoremap [d :MacroDisplay<CR>
 
 let &cpo = s:save_cpo

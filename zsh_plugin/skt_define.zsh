@@ -6,11 +6,12 @@ export NPM_PACKAGES=$HOME/.npm-packages
 export NODE_PATH=$NPM_PACKAGES/lib/node_modules
 
 export PYTHONSTARTUP=$HOME/.pythonstartup
-#export LD_LIBRARY_PATH='/usr/local/lib':$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
 export PATH=$HOME/.local/bin:$HOME/code/go/bin:$NPM_PACKAGES/bin:$PATH
 export MANPATH=$NPM_PACKAGES/share/man:$MANPATH
 
+#{{{
 source $HOME/.zsh_plugin/autojump.plugin.zsh
 source $HOME/.zsh_plugin/rsync.plugin.zsh
 source $HOME/.zsh_plugin/per-directory-history.zsh
@@ -19,6 +20,7 @@ source $HOME/.zsh_plugin/zsh-git-prompt/zshrc.sh
 source $HOME/.zsh_plugin/bd.zsh
 source $HOME/.zsh_plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOME/.vim/plugged/neoman.vim/scripts/neovim.zsh
+#}}}
 
 #{{{
 typeset -A ZSH_HIGHLIGHT_STYLES
@@ -29,13 +31,6 @@ ZSH_HIGHLIGHT_STYLES[function]='fg=green,bold'
 #}}}
 
 #eval $(thefuck --alias)
-
-convhistory()
-{
-	cat $1 |grep '^:'|sort|\
-		sed 's/^:\([ 0-9]*\):[0-9]*;\(.*\)/\1::::::\2/' |\
-		awk -F"::::::" '{ $1=strftime("%Y-%m-%d %T",$1) "|"; print}'
-}
 
 zhisall()
 {
@@ -53,28 +48,6 @@ zhisall()
             sed 's/^:\([ 0-9]*\):[0-9]*;\(.*\)/\1::::::\2/' |\
             awk -F"::::::" '{ $1=strftime("%Y-%m-%d %T",$1) "|"; print}'|tail -$@;;
     esac
-}
-
-zhisb()
-{
-	local N eachpath filelist
-	N=1
-	for eachpath in $(dirs -lp|tr " " "\?"); do
-		eachpath=$(echo $eachpath|tr "\?" " ")
-		filelist[$N]="$HOME/.zsh_history$eachpath/zhistory"
-		N=$[$N+1]
-	done
-	cat $filelist |grep '^:'|sort|\
-		sed 's/^:\([ 0-9]*\):[0-9]*;\(.*\)/\1::::::\2/' |\
-		awk -F"::::::" '{ $1=strftime("%Y-%m-%d %T",$1) "|"; print}'|tail -$1
-}
-
-#使用 hist 查看当前目录历史纪录
-zhis()
-{
-	cat $HISTFILE |grep '^:'|sort|\
-		sed 's/^:\([ 0-9]*\):[0-9]*;\(.*\)/\1::::::\2/' |\
-		awk -F"::::::" '{ $1=strftime("%Y-%m-%d %T",$1) "|"; print}'|tail -$1
 }
 
 calcu()
@@ -178,45 +151,6 @@ vbox_prewin8()
     sudo chmod 666 /dev/sda*
 }
 
-_ocd()
-{
-	openocd -f board/skt.cfg;
-}
-
-ocd_stlinkv1()
-{
-	case $1 in
-		'e')
-			SIZE="0x80000";;
-		'c')
-			SIZE="0x40000";;
-		*)
-			SIZE="0x4000";;
-	esac
-	openocd -f interface/stlink-v1.cfg \
-		-c "set WORKAREASIZE $SIZE" \
-		-f target/stm32f1x_stlink.cfg;
-}
-
-ocd_stlinkv2()
-{
-	case $1 in
-		'e')
-			SIZE="0x80000";;
-		'c')
-			SIZE="0x40000";;
-		*)
-			SIZE="0x4000";;
-	esac
-	openocd -f interface/stlink-v2.cfg \
-		-f target/stm32f1x_stlink.cfg;
-}
-
-#ocd()
-#{
-	#openocd -f interface/jlink.cfg -f target/stm32f1x.cfg;
-#}
-
 emu()
 {
     set -x
@@ -236,43 +170,52 @@ emu()
 #        nvim -c "Man $1 $2" -c 'silent only'
 #}
 
-proxy() {
-    case $1 in
-        goagent)
-            export http_proxy=http://127.0.0.1:8087;
-            export https_proxy=https://127.0.0.1:8087;
-            ;;
-        polipo)
-            export http_proxy=http://127.0.0.1:8123;
-            export https_proxy=https://127.0.0.1:8123;
-            ;;
-    esac
+proxy()
+{
+    if [ -n "$1" ]
+    then
+        case $1 in
+            goagent)
+                export http_proxy=http://127.0.0.1:8087;
+                export https_proxy=https://127.0.0.1:8087;
+                ;;
+            polipo)
+                export http_proxy=http://127.0.0.1:8123;
+                export https_proxy=https://127.0.0.1:8123;
+                ;;
+        esac
+    fi
 }
 
-uproxy() {
+uproxy()
+{
 	unset http_proxy
 	unset https_proxy
 }
 
-dirtree() {
+dirtree()
+{
 	find . -print 2>/dev/null|awk '!/\.$/ {for (i=1;i<NF;i++){d=length($i);if ( d < 5 && i != 1 )d=5;printf("%"d"s","|")}print "---"$NF}' FS='/'
 }
 
-y() {
+y()
+{
 	sdcv -n $1;
 	#ydcv --color=never $1;
 	ydcv $1;
 }
 
 # Memory overview
-memusage() {
+memusage()
+{
     ps aux |grep $1|grep -v grep| awk '{print $5;
                    if (NR > 1) print "+"}
                    END { print "p" }' | dc
 }
 
 # print hex value of a number
-hex() {
+hex()
+{
     emulate -L zsh
     if [[ -n "$1" ]]; then
         printf "%x\n" $1
@@ -282,38 +225,9 @@ hex() {
     fi
 }
 
-digitalocean() {
+digitalocean()
+{
     echo "&I^$%TKIUGAGITHUB-c28da474"
-}
-
-#bilibili()
-#{
-#    clip "javascript:(function(r){!!r?r():(function(d){s=d.createElement('script');s.setAttribute('src','http://keyfunc.github.io/bilibili_hkj/assets/js/heikeji.min.js');s.setAttribute('charset','utf-8');d.getElementsByTagName('head')[0].appendChild(s)})(document)})(window.bilibili_hkj)"
-#}
-
-teamviewer_on()
-{
-    set -x
-    sudo systemctl start teamviewerd
-}
-
-teamviewer_off()
-{
-    set -x
-    sudo systemctl stop teamviewerd
-}
-
-teamviewer_re()
-{
-    set -x
-    sudo systemctl restart teamviewerd
-}
-
-bookmark()
-{
-    set -x
-    hash -d $1="$(pwd -P)"
-    echo "hash -d $1=\"$(pwd -P)\"" >> $HOME/.zsh_plugin/skt_define.zsh
 }
 
 killqq()
@@ -384,35 +298,10 @@ lmgrd()
     /home/skt/.local/bin/wine_subreap.py wine lmgrd.exe -z -c "C:\\Cadence\\LicenseManager\\license.dat" -l "C:\\Cadence\\LicenseManager\\debug.log"
 }
 
-#_nman()
-#{
-#    if [[ "$@" == "" ]]; then
-#        print "What manual page do you want?"
-#        return
-#    fi
-#    /usr/bin/man "$@" > /dev/null 2>&1
-#    if [[ "$?" != "0" ]]; then
-#        print "No manual entry for $*"
-#        return
-#    fi
-#    if [[ -z $NVIM_LISTEN_ADDRESS ]]; then
-#        /usr/bin/env nvim -c $cmd
-#    else
-#        nvr --remote-send "<c-n>" -c $cmd
-#    fi
-#}
-#nman()
-#{
-#    cmd="Nman $*"
-#    _nman "$@"
-#}
-#nman!()
-#{
-#    cmd="Nman! $*"
-#    _nman "$@"
-#}
-#compdef nman="man"
-#compdef nman!="man"
+m_rpi()
+{
+    sshfs alarm@192.168.3.101:/home/alarm /home/skt/code/udiskbox/rpi/run/
+}
 
 #命令别名 {{{
 alias cp='cp -i -v'
@@ -430,7 +319,7 @@ alias wl='wc -l'
 alias feh='/home/skt/.local/bin/feh.sh'
 alias pgrep='nocorrect pgrep -lf'
 alias ppy='ptipython'
-alias ppy2='ptipython2'
+alias ppy2='ptpython2'
 alias vim='nvim'
 alias vims='nvim -S Session.vim'
 alias vimrc='nvim /home/skt/.vim/vimrc'
@@ -438,17 +327,17 @@ alias viminit='nvim /home/skt/.vim/init.vim'
 alias vimz='nvim /home/skt/.zsh_plugin/skt_define.zsh'
 alias grep='nocorrect grep --color=auto'
 alias sudo='nocorrect sudo'
-alias ctl='setxkbmap -option ctrl:swapcaps'
+alias ctls='setxkbmap -option ctrl:swapcaps'
 alias reblue='sudo systemctl restart bluetooth'
 alias teamon='sudo systemctl start teamviewerd'
 alias teamoff='sudo systemctl stop teamviewerd'
 alias teamre='sudo systemctl restart teamviewerd'
 alias printer_on='sudo systemctl start org.cups.cupsd.service'
-alias ycm_gen='/home/skt/.vim/bundle/YCM-Generator/config_gen.py'
+alias ycm_gen='/home/skt/.vim/plugged/YCM-Generator/config_gen.py'
 alias rez='source /home/skt/.zsh_plugin/skt_define.zsh'
-alias restart_kde='kbuildsycoca5 && kquitapp plasma-desktop && kstart plasma-desktop'
+alias restart_kde='kbuildsycoca5 && kquitapp plasmashell && kstart plasmashell'
 alias arc='tar zcvf config.tar.gz .vim/ .ptpython/ .zsh_plugin/ .pandoc/ .zshrc .tmux.conf --exclude="*.git" --exclude="racer"'
-#alias man='nman'
+alias man='nman'
 #alias -g DASH='-ex "dashboard -output $(tmux splitw -d -h -P -F \"#{pane_tty}\")"'
 #}}}
 

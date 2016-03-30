@@ -23,7 +23,7 @@ Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 "  autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
 "                     \| call youcompleteme#Enable() | autocmd! load_us_ycm
 "augroup END
-Plug 'Valloric/YouCompleteMe', {'for': ['c', 'cpp', 'cmake', 'python']}
+Plug 'Valloric/YouCompleteMe', {'for': ['c', 'cpp', 'cmake', 'python', 'rust']}
 
 Plug 'Shougo/deoplete.nvim', {'for': ['java', 'lua', 'pandoc', 'markdown', 'sh', 'vim', 'html', 'make'], 'on': ['DeopleteEnable']}
 Plug 'Shougo/echodoc.vim'
@@ -101,7 +101,7 @@ Plug 'skt041959/vim-libpinyin'
 
 Plug '~/code/gdbmi.nvim'
 
-Plug '~/.vim/plugged/eclim/', {'for': ['java']}
+Plug '~/.vim/plugged/eclim/', {'for': ['java', 'python']}
 
 "Plug 'rhysd/nyaovim-popup-tooltip'
 "Plug 'rhysd/nyaovim-markdown-preview'
@@ -165,7 +165,7 @@ let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets'
 
 "====neomake===={{{
 let g:neomake_python_enabled_makers = ['flake8']
-let g:neomake_python_flake8_args = ['--first', '--ignore=E501,E128,E265,E261,E251,W391']
+let g:neomake_python_flake8_args = ['--first', '--ignore=E111,E114,E121,E125,E126,E127,E128,E129,E131,E133,E201,E202,E203,E211,E221,E222,E241,E251,E261,E303,E402,E501,W503']
 let g:neomake_vim_enabled_makers = ['vint']
 let g:neomake_cpp_enabled_makers = []
 let g:neomake_c_enabled_makers = []
@@ -211,6 +211,7 @@ endfunction
 
 "====eclim===={{{
 let g:EclimCompletionMethod = 'omnifunc'
+let g:EclimFileTypeValidate = 0
 "}}}
 
 "====livemark===={{{
