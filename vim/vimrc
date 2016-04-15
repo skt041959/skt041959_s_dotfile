@@ -68,8 +68,6 @@ if !has('nvim')
     Plugin 'renamer.vim'
     Plugin 'fcitx.vim'
 
-    "Plugin 'VimIM'
-
     Plugin 'kurayama/systemd-vim-syntax'
     Plugin 'chrisbra/csv.vim'
 
@@ -107,8 +105,8 @@ augroup BASIC
     autocmd FileType cpp                  syn keyword Type cv Mat Point Rect Scalar Size Vec3b
 
 
-    autocmd FileType python               setlocal foldignore='#'
-    autocmd FileType python               setlocal foldmethod=indent
+    "autocmd FileType python               setlocal foldignore='#'
+    "autocmd FileType python               setlocal foldmethod=indent
     autocmd FileType verilog,cmake        setlocal foldmethod=indent
     autocmd FileType xml,svg,vim,qml      setlocal foldmethod=indent
     autocmd FileType xml                  setlocal tabstop=2 shiftwidth=2
@@ -170,32 +168,63 @@ nnoremap <C-B> :make!<CR>
 
 set viewoptions=cursor,folds,slash,unix
 
-set ssop-=options
-set ssop-=blank
-set ssop-=folds
+set sessionoptions-=options
+set sessionoptions-=blank
+set sessionoptions-=folds
 
 if maparg('<C-L>', 'n') ==# ''
     nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 endif
 
-nnoremap <silent> n nzz
-nnoremap <silent> N Nzz
-"nnoremap <silent> * *zz
-"nnoremap <silent> # #zz
-"nnoremap <silent> g* g*zz
+" Don't cancel visual select when shifting
+xnoremap <  <gv
+xnoremap >  >gv
+
+" Don't yank to default register when changing something
+nnoremap c "xc
+xnoremap c "xc
+
+nnoremap n nzz
+nnoremap N Nzz
+vnoremap n nzz
+vnoremap N Nzz
+
+nnoremap <C-u> <C-b>zz
+nnoremap <C-d> <C-f>zz
+nnoremap <C-o> <C-o>zz
+nnoremap <C-i> <C-i>zz
+vnoremap <C-u> <C-u>zz
+vnoremap <C-d> <C-d>zz
+vnoremap <C-f> <C-f>zz
+vnoremap <C-b> <C-b>zz
 
 nnoremap <leader>k <C-W>k
 nnoremap <leader>j <C-W>j
 nnoremap <leader>h <C-W>h
 nnoremap <leader>l <C-W>l
-nnoremap <leader>P <C-W>p
+nnoremap <leader>p <C-W>p
 
-nnoremap <leader>] :cn<CR>
-nnoremap <leader>[ :cp<CR>
-nnoremap <leader>1 :bp<CR>
-nnoremap <leader>2 :bn<CR>
 nnoremap <leader>3 :tabp<CR>
 nnoremap <leader>4 :tabn<CR>
+" Buffers navigation and management
+nnoremap <silent> + :bn<CR>
+nnoremap <silent> _ :bp<CR>
+
+" Ctags navigation (:tselect to select from menu)
+nnoremap ]t :tn<CR>
+nnoremap [t :tp<CR>
+
+" Quick-fix window navigation
+nnoremap ]q :cnext<CR>
+nnoremap [q :cprevious<CR>
+
+" Location list navigation
+nnoremap ]l :lnext<CR>
+nnoremap [l :lprevious<CR>
+
+" Error mnemonic (Neomake uses location list)
+nnoremap ]e :lnext<CR>
+nnoremap [e :lprevious<CR>
 
 nnoremap <leader>qq :q<CR>
 nnoremap <C-Q>     :q!<CR>
@@ -203,9 +232,17 @@ nnoremap <leader>w :up<CR>
 nnoremap <leader>s :split<CR>
 nnoremap <leader>v :vsplit<CR>
 
-nnoremap <leader>p "+p
-"vnoremap <leader>Y "+Y
-vnoremap <leader>y "+y
+" Yank and paste from clipboard
+nnoremap ,y "+y
+vnoremap ,y "+y
+nnoremap ,yy "+yy
+nnoremap ,p "+p
+
+" Intelligent windows resizing using Ctrl + arrow keys
+nnoremap <silent> <C-Right> :call utils#intelligentVerticalResize('right')<CR>
+nnoremap <silent> <C-Left> :call utils#intelligentVerticalResize('left')<CR>
+nnoremap <silent> <C-Up> :resize +1<CR>
+nnoremap <silent> <C-Down> :resize -1<CR>
 
 noremap <F1> <Esc>
 "nnoremap <F2> :set wrap! wrap?<CR>
@@ -241,30 +278,33 @@ cnoreabbr <expr> W  ((getcmdtype() == ':' && getcmdline() =~# '^W')?('w'):('W'))
 "====AutoSetFileHead===={{{
 function! AutoSetFileHead()
     "如果文件类型为.sh文件
-    if &filetype == 'sh'
-        call setline(1, '\#!/bin/bash')
+    if &filetype ==? 'sh'
+        call setline(1, '#!/bin/bash')
     endif
 
-    '如果文件类型为python
-    if &filetype == 'python'
-        '    call setline(1, '\#!/usr/bin/env python')
-        call append(1, '\# encoding: utf-8')
+    "如果文件类型为python
+    if &filetype ==? 'python'
+        "    call setline(1, '#!/usr/bin/env python')
+        call append(1, '# encoding: utf-8')
     endif
 
-    normal G
-    normal o
-    normal o
+    exec 'normal G'
+    exec 'normal o'
+    exec 'normal o'
 endfunc
-autocmd BufNewFile *.sh exec ':call AutoSetFileHead()'
-autocmd BufNewFile *.py exec ':call AutoSetFileHead()'
+augroup FILEHEAD
+    autocmd!
+    autocmd BufNewFile *.sh exec ':call AutoSetFileHead()'
+    autocmd BufNewFile *.py exec ':call AutoSetFileHead()'
+augroup END
 "}}}
 
 "====StripTrailingWhitespaces===={{{
 fun! <SID>StripTrailingWhitespaces()
-    let l = line('.')
-    let c = col('.')
-    %s/\s\+$//e
-    call cursor(l, c)
+    let l:l = line('.')
+    let l:c = col('.')
+    exec '%s/\s\+$//e'
+    call cursor(l:l, l:c)
 endfun
 autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,verilog autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 "}}}
@@ -281,7 +321,7 @@ nnoremap <C-E> :A<CR>
 
 nnoremap <leader>e :FencView<CR>
 
-let  g:NERDCustomDelimiters = {'c': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' } }
+let g:NERDCustomDelimiters = {'c': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' } }
 
 "====zealdoc===={{{
 let g:zv_disable_mapping = 1
@@ -334,7 +374,7 @@ let g:bufExplorerSortBy = 'name'
 "====delimitMate===={{{
 let b:delimitMate_jump_expansion = 1
 let b:delimitMate_expand_cr = 2
-let delimitMate_excluded_regions = 'Comment,String'
+let g:delimitMate_excluded_regions = 'Comment,String'
 "}}}
 
 "====ycm===={{{
@@ -450,6 +490,7 @@ let g:airline_extensions = ['branch',
             \ 'whitespace',
             \ 'unite',
             \ 'virtualenv',
+            \ 'tagbar',
             \ ]
 "}}}
 
@@ -459,7 +500,9 @@ nnoremap <space>p :Unite file_rec/async:.<CR>
 nnoremap <space>g :Unite grep:.::<C-R><C-W><CR>
 nnoremap <space>G :Unite grep:%::<C-R><C-W><CR>
 vnoremap <space>g y<Esc>:silent exec
-            \ ":<C-u>Unite grep:.::<C-R>""<CR>
+            \ ":<C-u>Unite grep:.::<C-R>"<CR>"<CR>
+vnoremap <space>G y<Esc>:silent exec
+            \ ":<C-u>Unite grep:%::<C-R>"<CR>"<CR>
 nnoremap <space>s :Unite grep:.<CR>
 nnoremap <space>t :Unite -start-insert outline<CR>
 nnoremap <space>y :Unite history/yank<CR>
@@ -468,7 +511,7 @@ nnoremap <space>j :Unite jump<CR>
 nnoremap <space>Y :Unite output/shellcmd:ydcv:<C-R><C-W><CR>
 "vnoremap <space>Y :<C-u>Unite output/shellcmd:ydcv:<C-R>=<SID>getselection()<CR>
 vnoremap <space>Y y<Esc>:silent exec
-            \ ":<C-u>Unite output/shellcmd:ydcv:<C-R>""<CR>
+            \ ":<C-u>Unite output/shellcmd:ydcv:<C-R>"<CR>"<CR>
 nnoremap <space>r :UniteResume<CR>
 " For ack.
 "if executable('ack-grep')
@@ -511,8 +554,6 @@ function! ToPdf()
     exec 'w'
     exec '!pandoc  % -o %<.pdf --latex-engine=xelatex --template=another.tex'
 endfunction
-"nmap <silent> <F7> :call ToHtml()<CR>
-"nmap <silent> <F8> :call ToPdf()<CR>
 let g:pandoc#spell#enabled = 0
 let g:pandoc#after#modules#enabled = ['unite', 'ultisnips', 'tablemode']
 "}}}
@@ -543,12 +584,15 @@ let g:quickrun_config['qml'] = g:quickrun_config['qml/qmlscene']
 "}}}
 
 "====vim-go===={{{
-au FileType go nmap <leader>gb <Plug>(go-build)
-au FileType go nmap <leader>gt <Plug>(go-test)
-au FileType go nmap <leader>gc <Plug>(go-coverage)
-au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-au FileType go nmap <Leader>gd <Plug>(go-def-vertical)
-au FileType go nmap <Leader>gi <Plug>(go-info)
+augroup GOMAP
+    autocmd!
+    autocmd FileType go nmap <leader>gb <Plug>(go-build)
+    autocmd FileType go nmap <leader>gt <Plug>(go-test)
+    autocmd FileType go nmap <leader>gc <Plug>(go-coverage)
+    autocmd FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+    autocmd FileType go nmap <Leader>gd <Plug>(go-def-vertical)
+    autocmd FileType go nmap <Leader>gi <Plug>(go-info)
+augroup END
 "}}}
 
 "====gitgutter===={{{
@@ -571,10 +615,10 @@ let g:vimim_mycloud = 0
 "}}}
 
 "====SimpylFold===={{{
-"let g:SimpylFold_docstring_preview = 1
-"let g:SimpylFold_fold_docstring = 0
 "autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
 "autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
+let g:SimpylFold_docstring_preview = 1
+let g:SimpylFold_fold_docstring = 1
 "}}}
 
 "====neoman===={{{

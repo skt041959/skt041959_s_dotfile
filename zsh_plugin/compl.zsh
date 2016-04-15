@@ -67,3 +67,5 @@ zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directori
 #  'm:{a-z\-}={A-Z\_}' \
 #  'r:[^[:alpha:]]||[[:alpha:]]=** r:|=* m:{a-z\-}={A-Z\_}' \
 #  'r:[[:ascii:]]||[[:ascii:]]=** r:|=* m:{a-z\-}={A-Z\_}'
+#
+compdef yaourt="pacman"

@@ -1,110 +1,106 @@
 
 call plug#begin()
 "{{{
-Plug 'KabbAmine/zeavim.vim'
-Plug 'thinca/vim-quickrun'
-Plug 'critiqjo/lldb.nvim', {'for': ['c++', 'c']}
-"Plug 'tmhedberg/SimpylFold', {'for': 'python'}
-Plug 'tweekmonster/braceless.vim', {'for': ['python']}
-Plug 'hynek/vim-python-pep8-indent', {'for': 'python'}
-"Plug 'lambdalisue/vim-pyenv'
-"Plug 'jmcantrell/vim-virtualenv'
+    Plug 'KabbAmine/zeavim.vim'
+    Plug 'thinca/vim-quickrun'
+    Plug 'critiqjo/lldb.nvim', {'for': ['c++', 'c']}
+    Plug 'hynek/vim-python-pep8-indent', {'for': ['python']}
 
-Plug 'kshenoy/vim-signature'
-Plug 'scrooloose/syntastic', {'for': []}
-Plug 'davidhalter/jedi-vim', {'for': []}
-Plug 'bfredl/nvim-ipy', {'for': 'python'}
-Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
+    Plug 'kshenoy/vim-signature'
+    Plug 'scrooloose/syntastic', {'for': []}
+    Plug 'davidhalter/jedi-vim', {'for': []}
+    Plug 'bfredl/nvim-ipy', {'for': 'python'}
+    Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
+    Plug 'tmhedberg/SimpylFold'
 
-"Plug 'Valloric/YouCompleteMe', {'on': 'YcmCompleter'}
-"autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
-"augroup load_us_ycm
-"  autocmd!
-"  autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
-"                     \| call youcompleteme#Enable() | autocmd! load_us_ycm
-"augroup END
-Plug 'Valloric/YouCompleteMe', {'for': ['c', 'cpp', 'cmake', 'python', 'rust']}
+    "Plug 'Valloric/YouCompleteMe', {'on': 'YcmCompleter'}
+    "autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
+    "augroup load_us_ycm
+    "  autocmd!
+    "  autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
+    "                     \| call youcompleteme#Enable() | autocmd! load_us_ycm
+    "augroup END
+    Plug 'Valloric/YouCompleteMe', {'for': ['c', 'cpp', 'cmake', 'python', 'rust']}
 
-Plug 'Shougo/deoplete.nvim', {'for': ['java', 'lua', 'pandoc', 'markdown', 'sh', 'vim', 'html', 'make'], 'on': ['DeopleteEnable']}
-Plug 'Shougo/echodoc.vim'
-Plug 'zchee/deoplete-jedi'
-Plug 'Shougo/neco-vim'
-Plug 'Shougo/neosnippet.vim', {'for': []}
-Plug 'Shougo/neosnippet-snippets'
+    Plug 'Shougo/deoplete.nvim', {'for': ['java', 'lua', 'pandoc', 'markdown', 'sh', 'vim', 'html', 'make'], 'on': ['DeopleteEnable']}
+    Plug 'Shougo/echodoc.vim'
+    Plug 'zchee/deoplete-jedi'
+    Plug 'Shougo/neco-vim'
+    Plug 'Shougo/neosnippet.vim', {'for': []}
+    Plug 'Shougo/neosnippet-snippets'
 
-Plug 'benekastah/neomake'
+    Plug 'benekastah/neomake'
 
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
-Plug 'Raimondi/delimitMate'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'SirVer/ultisnips'
+    Plug 'nathanaelkane/vim-indent-guides'
+    Plug 'terryma/vim-multiple-cursors'
+    Plug 'scrooloose/nerdcommenter'
+    Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
+    Plug 'Raimondi/delimitMate'
+    Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-repeat'
+    Plug 'SirVer/ultisnips'
 
-Plug 'honza/vim-snippets'
-Plug 'mbbill/fencview'
-Plug 'mbbill/undotree'
-Plug 'kana/vim-submode'
+    Plug 'honza/vim-snippets'
+    Plug 'mbbill/fencview'
+    Plug 'mbbill/undotree'
+    Plug 'kana/vim-submode'
 
-Plug 'Shougo/vimproc.vim', {'do': 'make'}
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/unite-outline'
-Plug 'Shougo/neoyank.vim'
-Plug 'amitab/vim-unite-cscope'
-Plug 'chemzqm/unite-git-log'
-Plug 'junegunn/vim-peekaboo'
-Plug 'wellle/visual-split.vim'
+    Plug 'Shougo/vimproc.vim', {'do': 'make'}
+    Plug 'Shougo/unite.vim'
+    Plug 'Shougo/unite-outline'
+    Plug 'Shougo/neoyank.vim'
+    Plug 'chemzqm/unite-git-log'
+    Plug 'junegunn/vim-peekaboo'
+    Plug 'wellle/visual-split.vim'
 
-Plug 'easymotion/vim-easymotion'
-Plug 'haya14busa/incsearch.vim'
-Plug 'haya14busa/incsearch-easymotion.vim'
-Plug 'rhysd/clever-f.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+    Plug 'easymotion/vim-easymotion'
+    Plug 'haya14busa/incsearch.vim'
+    Plug 'haya14busa/incsearch-easymotion.vim'
+    Plug 'rhysd/clever-f.vim'
+    Plug 'tpope/vim-fugitive'
+    Plug 'airblade/vim-gitgutter'
 
-Plug 'majutsushi/tagbar'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'kopischke/vim-stay'
+    Plug 'majutsushi/tagbar'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'kopischke/vim-stay'
 
-Plug 'a.vim'
-Plug 'Mark--Karkat'
-Plug 'renamer.vim'
-Plug 'fcitx.vim'
+    Plug 'a.vim'
+    Plug 'Mark--Karkat'
+    Plug 'renamer.vim'
+    Plug 'fcitx.vim'
 
-Plug 'rust-lang/rust.vim', {'for': 'rust'}
+    Plug 'rust-lang/rust.vim', {'for': 'rust'}
 
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'vim-pandoc/vim-pandoc-after'
-Plug 'dhruvasagar/vim-table-mode'
+    Plug 'vim-pandoc/vim-pandoc'
+    Plug 'vim-pandoc/vim-pandoc-syntax'
+    Plug 'vim-pandoc/vim-pandoc-after'
+    Plug 'dhruvasagar/vim-table-mode'
 
-Plug 'fatih/vim-go', {'for': 'go'}
+    Plug 'fatih/vim-go', {'for': 'go'}
 
-Plug 'peterhoeg/vim-qml', {'for': 'qml'}
+    Plug 'peterhoeg/vim-qml', {'for': 'qml'}
 
-"Plug 'skt041959/markdown-preview.vim', {'for': ['pandoc', 'markdown']}
-Plug 'miyakogi/livemark.vim'
+    "Plug 'skt041959/markdown-preview.vim', {'for': ['pandoc', 'markdown']}
+    Plug 'miyakogi/livemark.vim'
 
-Plug 'kurayama/systemd-vim-syntax'
-Plug 'chrisbra/csv.vim', {'on': ['InitCSV']}
+    Plug 'kurayama/systemd-vim-syntax'
+    Plug 'chrisbra/csv.vim', {'on': ['InitCSV']}
+    Plug 'keith/tmux.vim'
 
-"Plug 'vim-utils/vim-man'
-Plug 'nhooyr/neoman.vim'
-Plug 'lambdalisue/vim-gista'
-Plug 'guns/xterm-color-table.vim'
-Plug 'skt041959/vim-color-skt'
-Plug 'nanotech/jellybeans.vim'
-Plug 'skt041959/vim-libpinyin'
+    Plug 'nhooyr/neoman.vim'
+    Plug 'lambdalisue/vim-gista'
+    Plug 'guns/xterm-color-table.vim'
+    Plug 'skt041959/vim-color-skt'
+    Plug 'nanotech/jellybeans.vim'
+    Plug 'skt041959/vim-libpinyin'
 
-Plug '~/code/gdbmi.nvim'
+    Plug '~/code/gdbmi.nvim'
 
-Plug '~/.vim/plugged/eclim/', {'for': ['java', 'python']}
+    "Plug '~/.vim/plugged/eclim/', {'for': ['java', 'python']}
 
-"Plug 'rhysd/nyaovim-popup-tooltip'
-"Plug 'rhysd/nyaovim-markdown-preview'
+    "Plug 'rhysd/nyaovim-popup-tooltip'
+    "Plug 'rhysd/nyaovim-markdown-preview'
 "}}}
 call plug#end()
 
@@ -138,21 +134,10 @@ let g:python3_host_prog = '/usr/bin/python'
 
 " Neovim-qt Guifont command
 command -nargs=? Guifont call rpcnotify(0, 'Gui', 'SetFont', "<args>") | let g:Guifont="<args>"
-" Set the font to DejaVu Sans Mono:h13
 Guifont Source Code Pro:h10
 
 "====deoplete===={{{
 let g:deoplete#enable_at_startup = 1
-"let g:jedi#completions_enabled = 0
-"let g:jedi#auto_vim_configuration = 0
-"let g:jedi#smart_auto_mappings = 0
-"let g:jedi#show_call_signatures = 0
-"let g:jedi#force_py_version = 3
-"function s:enable_deoplete()
-"    "DeopleteEnable
-"    setlocal omnifunc=jedi#completions
-"endfunction
-"autocmd FileType python call <SID>enable_deoplete()
 "}}}
 
 "====neosnippt===={{{
@@ -222,21 +207,14 @@ let g:livemark_python = '/usr/bin/python'
 "====jellybeans===={{{
 let g:jellybeans_use_lowcolor_black = 0
 let g:jellybeans_overrides = {
-            \ 'Todo': { 'guifg': '303030', 'guibg': 'f0f000',
-            \           'ctermfg': 'Black', 'ctermbg': 'Yellow',
-            \           'attr': 'bold' },
-            \ }
+            \ 'Todo': { 'guifg': '303030', 'guibg': 'f0f000', 'ctermfg': 'Black', 'ctermbg': 'Yellow', 'attr': 'bold' } }
 "}}}
-
-"====braceless===={{{
-"autocmd FileType python BracelessEnable +indent +fold-inner
-""}}}
 
 "{{{
 function! s:termlog() abort
     vsplit
     wincmd l
-    terminal
+    exec 'terminal'
     let s:term_id = b:terminal_job_id
     wincmd h
     call jobsend(s:term_id, "tail -f ~/tmp/nvimlog-python_".string(g:gdbmi#_python_pid)."\n")
