@@ -25,9 +25,12 @@ call plug#begin()
     Plug 'Shougo/deoplete.nvim', {'for': ['java', 'lua', 'pandoc', 'markdown', 'sh', 'vim', 'html', 'make'], 'on': ['DeopleteEnable']}
     Plug 'Shougo/echodoc.vim'
     Plug 'zchee/deoplete-jedi'
+    Plug 'artur-shaik/vim-javacomplete2', {'for': ['java']}
     Plug 'Shougo/neco-vim'
     Plug 'Shougo/neosnippet.vim', {'for': []}
     Plug 'Shougo/neosnippet-snippets'
+
+    Plug 'vhakulinen/neovim-intellij-complete-deoplete'
 
     Plug 'benekastah/neomake'
 
@@ -123,6 +126,7 @@ nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
+let $TERM = "screen"
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 

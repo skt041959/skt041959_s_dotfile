@@ -565,6 +565,10 @@ let g:mkdp_auto_close=0
 "nnoremap <C-m> :MarkdownPreview<CR>
 "}}}
 
+"=====indentguide===={{{
+let g:indent_guides_guide_size = 1
+"}}}
+
 "====quickrun===={{{
 let g:quickrun_no_default_key_mappings = 1
 map <leader>qr <Plug>(quickrun)
