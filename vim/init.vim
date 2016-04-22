@@ -13,24 +13,17 @@ call plug#begin()
     Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
     Plug 'tmhedberg/SimpylFold'
 
-    "Plug 'Valloric/YouCompleteMe', {'on': 'YcmCompleter'}
-    "autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
-    "augroup load_us_ycm
-    "  autocmd!
-    "  autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
-    "                     \| call youcompleteme#Enable() | autocmd! load_us_ycm
-    "augroup END
     Plug 'Valloric/YouCompleteMe', {'for': ['c', 'cpp', 'cmake', 'python', 'rust']}
 
     Plug 'Shougo/deoplete.nvim', {'for': ['java', 'lua', 'pandoc', 'markdown', 'sh', 'vim', 'html', 'make'], 'on': ['DeopleteEnable']}
     Plug 'Shougo/echodoc.vim'
-    Plug 'zchee/deoplete-jedi'
-    Plug 'artur-shaik/vim-javacomplete2', {'for': ['java']}
+    Plug 'zchee/deoplete-jedi', {'for': ['python']}
+    Plug 'artur-shaik/vim-javacomplete2', {'for': []}
     Plug 'Shougo/neco-vim'
     Plug 'Shougo/neosnippet.vim', {'for': []}
     Plug 'Shougo/neosnippet-snippets'
 
-    Plug 'vhakulinen/neovim-intellij-complete-deoplete'
+    Plug 'vhakulinen/neovim-intellij-complete-deoplete', {'for': ['java']}
 
     Plug 'benekastah/neomake'
 
@@ -67,35 +60,35 @@ call plug#begin()
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'kopischke/vim-stay'
+    Plug 'Konfekt/FastFold'
 
     Plug 'a.vim'
     Plug 'Mark--Karkat'
     Plug 'renamer.vim'
     Plug 'fcitx.vim'
-
-    Plug 'rust-lang/rust.vim', {'for': 'rust'}
+    Plug 'DoxygenToolkit.vim'
 
     Plug 'vim-pandoc/vim-pandoc'
     Plug 'vim-pandoc/vim-pandoc-syntax'
     Plug 'vim-pandoc/vim-pandoc-after'
     Plug 'dhruvasagar/vim-table-mode'
-
-    Plug 'fatih/vim-go', {'for': 'go'}
-
-    Plug 'peterhoeg/vim-qml', {'for': 'qml'}
-
     "Plug 'skt041959/markdown-preview.vim', {'for': ['pandoc', 'markdown']}
     Plug 'miyakogi/livemark.vim'
+
+    Plug 'fatih/vim-go', {'for': 'go'}
+    Plug 'peterhoeg/vim-qml', {'for': 'qml'}
+    Plug 'rust-lang/rust.vim', {'for': 'rust'}
 
     Plug 'kurayama/systemd-vim-syntax'
     Plug 'chrisbra/csv.vim', {'on': ['InitCSV']}
     Plug 'keith/tmux.vim'
-
     Plug 'nhooyr/neoman.vim'
     Plug 'lambdalisue/vim-gista'
+
     Plug 'guns/xterm-color-table.vim'
     Plug 'skt041959/vim-color-skt'
     Plug 'nanotech/jellybeans.vim'
+
     Plug 'skt041959/vim-libpinyin'
 
     Plug '~/code/gdbmi.nvim'
@@ -107,7 +100,7 @@ call plug#begin()
 "}}}
 call plug#end()
 
-execute 'source' '/home/skt/.vim/vimrc'
+execute 'source' fnamemodify(expand('<sfile>'), ':h').'/vimrc'
 colorscheme darkblack_skt
 
 set termencoding=utf-8
@@ -126,7 +119,6 @@ nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
-let $TERM = "screen"
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 
@@ -142,6 +134,8 @@ Guifont Source Code Pro:h10
 
 "====deoplete===={{{
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#ignore_sources = {}
+let g:deoplete#ignore_sources._ = ['javacomplete2']
 "}}}
 
 "====neosnippt===={{{
@@ -163,6 +157,7 @@ let g:neomake_c_cscope_maker = {
             \ 'args': ['-RbqkU'],
             \ 'append_file': 0,
             \ }
+"let g:neomake_java_javac_args = ['-d', '../out']
 call add(g:airline_extensions, 'neomake')
 autocmd! BufWritePost * Neomake
 "}}}
@@ -170,10 +165,11 @@ autocmd! BufWritePost * Neomake
 "====nvim-ipy===={{{
 let g:nvim_ipy_perform_mappings = 0
 function Map_nvim_ipy()
-    nnoremap <F5> <Plug>(IPy-Run)
-    nnoremap <F10> <Plug>(IPy-Interrupt)
-    nnoremap <space>o <Plug>(IPy-WordObjInfo)
-    inoremap <C-F> <Plug>(IPy-Complete)
+    nmap <F5> <Plug>(IPy-Run)
+    vmap <F5> <Plug>(IPy-Run)
+    nmap <F10> <Plug>(IPy-Interrupt)
+    nmap <space>? <Plug>(IPy-WordObjInfo)
+    imap <C-F> <Plug>(IPy-Complete)
 endfunction
 autocmd FileType python call Map_nvim_ipy()
 "}}}
@@ -221,7 +217,7 @@ function! s:termlog() abort
     exec 'terminal'
     let s:term_id = b:terminal_job_id
     wincmd h
-    call jobsend(s:term_id, "tail -f ~/tmp/nvimlog-python_".string(g:gdbmi#_python_pid)."\n")
+    call jobsend(s:term_id, 'tail -f ~/tmp/nvimlog-python_'.string(g:gdbmi#_python_pid).'\n')
     stopinsert
 endfunction
 command Termlog call <SID>termlog()
