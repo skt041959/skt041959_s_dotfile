@@ -72,8 +72,8 @@ call plug#begin()
     Plug 'vim-pandoc/vim-pandoc-syntax'
     Plug 'vim-pandoc/vim-pandoc-after'
     Plug 'dhruvasagar/vim-table-mode'
-    "Plug 'skt041959/markdown-preview.vim', {'for': ['pandoc', 'markdown']}
     Plug 'miyakogi/livemark.vim'
+    "Plug 'skt041959/markdown-preview.vim', {'for': ['pandoc', 'markdown']}
 
     Plug 'fatih/vim-go', {'for': 'go'}
     Plug 'peterhoeg/vim-qml', {'for': 'qml'}
@@ -89,11 +89,9 @@ call plug#begin()
     Plug 'skt041959/vim-color-skt'
     Plug 'nanotech/jellybeans.vim'
 
-    Plug 'skt041959/vim-libpinyin'
+    "Plug 'skt041959/vim-libpinyin'
 
     Plug '~/code/gdbmi.nvim'
-
-    "Plug '~/.vim/plugged/eclim/', {'for': ['java', 'python']}
 
     "Plug 'rhysd/nyaovim-popup-tooltip'
     "Plug 'rhysd/nyaovim-markdown-preview'

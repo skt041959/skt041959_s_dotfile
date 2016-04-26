@@ -94,10 +94,9 @@ set timeoutlen=4000
 set ttimeoutlen=100
 set updatetime=300
 
-"stm32
-augroup BASIC
-    "{{{
+augroup BASIC "{{{
     autocmd!
+    "stm32
     autocmd FileType c                    syn keyword cType u8 u16 u32 s8 s16 s32
     autocmd FileType c,cpp                syn keyword cType UINT8 UINT32
 
@@ -116,8 +115,7 @@ augroup BASIC
 
     autocmd BufNewFile,BufRead .tmux.conf*,tmux.conf* set ft=tmux
     autocmd BufNewFile,BufRead *.dat set ft=dat
-    "}}}
-augroup END
+augroup END "}}}
 
 let g:mapleader = ';'
 
@@ -128,10 +126,8 @@ set number
 set autowrite
 "au BufEnter * set noro
 set backspace=indent,eol,start
-"set guifont=Source\ Code\ Pro\ Semi-Bold\ 9
 set guifont=Droid\ Sans\ Mono\ 10
 set guifontwide=Source\ Han\ Sans\ SC\ 10
-"set guifont=Droid\ Sans\ Mono\ 8
 set guioptions=aegit
 set wildmode=longest,list,full
 set wildmenu
@@ -227,11 +223,11 @@ nnoremap [l :lprevious<CR>
 nnoremap ]e :lnext<CR>
 nnoremap [e :lprevious<CR>
 
+nnoremap <C-Q>      :q!<CR>
 nnoremap <leader>qq :q<CR>
-nnoremap <C-Q>     :q!<CR>
-nnoremap <leader>w :up<CR>
-nnoremap <leader>s :split<CR>
-nnoremap <leader>v :vsplit<CR>
+nnoremap <leader>w  :up<CR>
+nnoremap <leader>s  :split<CR>
+nnoremap <leader>v  :vsplit<CR>
 
 " Yank and paste from clipboard
 nnoremap ,y "+y
