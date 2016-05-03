@@ -1,7 +1,7 @@
 
 fpath=($HOME/.fpath $fpath)
 
-export GOPATH=/home/skt/code/go
+export GOPATH=$HOME/code/go
 export NPM_PACKAGES=$HOME/.npm-packages
 export NODE_PATH=$NPM_PACKAGES/lib/node_modules
 
@@ -10,6 +10,10 @@ export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
 export PATH=$HOME/.local/bin:$HOME/code/go/bin:$NPM_PACKAGES/bin:$PATH
 export MANPATH=$NPM_PACKAGES/share/man:$MANPATH
+
+export LM_LICENSE_FILE=$HOME/.local/share/microsemi/Linux_Licensing_Daemon/License.dat
+export SYNPSLMD_LICENSE_FILE=$LM_LICENSE_FILE
+export SYNPLCTYD_LICENSE_FILE=$LM_LICENSE_FILE
 
 #{{{
 source $HOME/.zsh_plugin/autojump.plugin.zsh
@@ -36,17 +40,17 @@ zhisall()
 {
     case $1 in
         '-a')
-            find /home/skt/.zsh_history -name 'zhistory' -print0|xargs -0 -l -i cat '{}'|grep '^:'|sort|\
+            find $HOME/.zsh_history -name 'zhistory' -print0|xargs -0 -l -i cat '{}'|grep '^:'|sort|\
                 sed 's/^:\([ 0-9]*\):[0-9]*;\(.*\)/\1::::::\2/' |\
                 awk -F"::::::" '{ $1=strftime("%Y-%m-%d %T",$1) "|"; print}';;
         '-d')
-            find "/home/skt/.zsh_history$(pwd -P)" -name 'zhistory' -print0|xargs -0 -l -i cat '{}'|grep '^:'|sort|\
+            find "$HOME/.directory_history$(pwd -P)" -name 'history' -print0|xargs -0 -l -i cat '{}'|grep '^:'|sort|\
                 sed 's/^:\([ 0-9]*\):[0-9]*;\(.*\)/\1::::::\2/' |\
                 awk -F"::::::" '{ $1=strftime("%Y-%m-%d %T",$1) "|"; print}'|tail -$2;;
         *)
-        find /home/skt/.zsh_history -name 'zhistory' -print0|xargs -0 -l -i cat '{}'|grep '^:'|sort|\
-            sed 's/^:\([ 0-9]*\):[0-9]*;\(.*\)/\1::::::\2/' |\
-            awk -F"::::::" '{ $1=strftime("%Y-%m-%d %T",$1) "|"; print}'|tail -$@;;
+            find $HOME/.zsh_history -name 'zhistory' -print0|xargs -0 -l -i cat '{}'|grep '^:'|sort|\
+                sed 's/^:\([ 0-9]*\):[0-9]*;\(.*\)/\1::::::\2/' |\
+                awk -F"::::::" '{ $1=strftime("%Y-%m-%d %T",$1) "|"; print}'|tail -$@;;
     esac
 }
 
@@ -93,8 +97,8 @@ google()
 
 gt()
 {
-	nvidia-smi -q -d TEMPERATURE | grep Gpu | cut -c35-38;
-	return 0;
+    nvidia-smi -q -d TEMPERATURE | grep Gpu | cut -c35-38;
+    return 0;
 }
 
 wlt()
@@ -127,13 +131,13 @@ lgh()
 
 clip()
 {
-	qdbus org.kde.klipper /klipper  'setClipboardContents'  $1
+    qdbus org.kde.klipper /klipper  'setClipboardContents'  $1
 }
 
 vbox()
 {
     set -x;
-	sudo modprobe vboxdrv;
+    sudo modprobe vboxdrv;
     sudo modprobe vboxnetflt;
     sudo modprobe vboxnetadp;
     sudo modprobe vboxpci;
@@ -142,7 +146,7 @@ vbox()
 vbox_prewin8()
 {
     set -x;
-	sudo modprobe vboxdrv;
+    sudo modprobe vboxdrv;
     sudo modprobe vboxnetflt;
     sudo modprobe vboxnetadp;
     sudo modprobe vboxpci;
@@ -154,20 +158,20 @@ vbox_prewin8()
 emu()
 {
     set -x
-	qemu-system-arm  -cpu cortex-m3 -S -s -singlestep -nographic -m 513 -monitor null -serial null -semihosting -kernel $1
+    qemu-system-arm  -cpu cortex-m3 -S -s -singlestep -nographic -m 513 -monitor null -serial null -semihosting -kernel $1
 }
 
 # Set colors for man pages
 #man() {
 #    env \
-#        LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-#        LESS_TERMCAP_md=$(printf "\e[1;31m") \
-#        LESS_TERMCAP_me=$(printf "\e[0m") \
-#        LESS_TERMCAP_se=$(printf "\e[0m") \
-#        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-#        LESS_TERMCAP_ue=$(printf "\e[0m") \
-#        LESS_TERMCAP_us=$(printf "\e[1;32m") \
-#        nvim -c "Man $1 $2" -c 'silent only'
+    #        LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+    #        LESS_TERMCAP_md=$(printf "\e[1;31m") \
+    #        LESS_TERMCAP_me=$(printf "\e[0m") \
+    #        LESS_TERMCAP_se=$(printf "\e[0m") \
+    #        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+    #        LESS_TERMCAP_ue=$(printf "\e[0m") \
+    #        LESS_TERMCAP_us=$(printf "\e[1;32m") \
+    #        nvim -c "Man $1 $2" -c 'silent only'
 #}
 
 proxy()
@@ -189,28 +193,28 @@ proxy()
 
 uproxy()
 {
-	unset http_proxy
-	unset https_proxy
+    unset http_proxy
+    unset https_proxy
 }
 
 dirtree()
 {
-	find . -print 2>/dev/null|awk '!/\.$/ {for (i=1;i<NF;i++){d=length($i);if ( d < 5 && i != 1 )d=5;printf("%"d"s","|")}print "---"$NF}' FS='/'
+    find . -print 2>/dev/null|awk '!/\.$/ {for (i=1;i<NF;i++){d=length($i);if ( d < 5 && i != 1 )d=5;printf("%"d"s","|")}print "---"$NF}' FS='/'
 }
 
 y()
 {
-	sdcv -n $1;
-	#ydcv --color=never $1;
-	ydcv $1;
+    sdcv -n $1;
+    #ydcv --color=never $1;
+    ydcv $1;
 }
 
 # Memory overview
 memusage()
 {
     ps aux |grep $1|grep -v grep| awk '{print $5;
-                   if (NR > 1) print "+"}
-                   END { print "p" }' | dc
+    if (NR > 1) print "+"}
+    END { print "p" }' | dc
 }
 
 # print hex value of a number
@@ -266,17 +270,17 @@ back_sys()
 
 back_home()
 {
-    rsync -aAXvu $@ --exclude="view/" /home/skt/.vim /run/media/skt/arch_bak/home/skt/
-    rsync -aAXvu $@ /home/skt/.nvim /run/media/skt/arch_bak/home/skt/
-    rsync -aAXvu $@ /home/skt/.zsh_plugin /run/media/skt/arch_bak/home/skt/
-    rsync -aAXvu $@ /home/skt/.zshrc /run/media/skt/arch_bak/home/skt/
-    rsync -aAXvu $@ /home/skt/.tmux.conf /run/media/skt/arch_bak/home/skt/
-    rsync -aAXvu $@ /home/skt/.directory_history /run/media/skt/arch_bak/home/skt/
-    rsync -aAXvu $@ /home/skt/.gitconfig /run/media/skt/arch_bak/home/skt/
-    rsync -aAXvu $@ /home/skt/.xprofile /run/media/skt/arch_bak/home/skt/
-    rsync -aAXvu $@ /home/skt/.kde4 /run/media/skt/arch_bak/home/skt/
-    rsync -aAXvu $@ --exclude="chromium/" /home/skt/.config /run/media/skt/arch_bak/home/skt/
-    rsync -aAXvu $@ --exclude={"Zeal","cache","baloo"} /home/skt/.local /run/media/skt/arch_bak/home/skt/
+    rsync -aAXvu $@ --exclude="view/" $HOME/.vim /run/media/skt/arch_bak/home/skt/
+    rsync -aAXvu $@ $HOME/.nvim /run/media/skt/arch_bak/home/skt/
+    rsync -aAXvu $@ $HOME/.zsh_plugin /run/media/skt/arch_bak/home/skt/
+    rsync -aAXvu $@ $HOME/.zshrc /run/media/skt/arch_bak/home/skt/
+    rsync -aAXvu $@ $HOME/.tmux.conf /run/media/skt/arch_bak/home/skt/
+    rsync -aAXvu $@ $HOME/.directory_history /run/media/skt/arch_bak/home/skt/
+    rsync -aAXvu $@ $HOME/.gitconfig /run/media/skt/arch_bak/home/skt/
+    rsync -aAXvu $@ $HOME/.xprofile /run/media/skt/arch_bak/home/skt/
+    rsync -aAXvu $@ $HOME/.kde4 /run/media/skt/arch_bak/home/skt/
+    rsync -aAXvu $@ --exclude="chromium/" $HOME/.config /run/media/skt/arch_bak/home/skt/
+    rsync -aAXvu $@ --exclude={"Zeal","cache","baloo"} $HOME/.local /run/media/skt/arch_bak/home/skt/
 
     pacman -Q > /run/media/skt/arch_bak/home/skt/pacman.lst
 }
@@ -284,8 +288,8 @@ back_home()
 rsync_afms()
 {
     rsync -avzu -e "ssh -p 22718 -o StrictHostKeyChecking=no " --exclude={"*.swp","*.pri"} --progress \
-        /home/skt/code/tunicorn/afms/AFMS \
-        127.0.0.1:/home/skt/afms/
+        $HOME/code/tunicorn/afms/AFMS \
+        127.0.0.1:$HOME/afms/
 }
 
 pic2jpg()
@@ -295,12 +299,7 @@ pic2jpg()
 
 lmgrd()
 {
-    /home/skt/.local/bin/wine_subreap.py wine lmgrd.exe -z -c "C:\\Cadence\\LicenseManager\\license.dat" -l "C:\\Cadence\\LicenseManager\\debug.log"
-}
-
-m_rpi()
-{
-    sshfs alarm@192.168.3.101:/home/alarm /home/skt/code/udiskbox/rpi/run/
+    $HOME/.local/bin/wine_subreap.py wine lmgrd.exe -z -c "C:\\Cadence\\LicenseManager\\license.dat" -l "C:\\Cadence\\LicenseManager\\debug.log"
 }
 
 #命令别名 {{{
