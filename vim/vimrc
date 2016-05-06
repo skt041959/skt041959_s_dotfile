@@ -107,7 +107,8 @@ augroup BASIC "{{{
 
     "autocmd FileType python               setlocal foldignore='#'
     "autocmd FileType python               setlocal foldmethod=indent
-    autocmd FileType verilog,cmake        setlocal foldmethod=indent
+    autocmd FileType cmake                setlocal foldmethod=indent
+    autocmd FileType verilog              setlocal foldmethod=syntax
     autocmd FileType xml,svg,vim,qml      setlocal foldmethod=indent
     autocmd FileType xml                  setlocal tabstop=2 shiftwidth=2
 
@@ -303,7 +304,7 @@ fun! <SID>StripTrailingWhitespaces()
     exec '%s/\s\+$//e'
     call cursor(l:l, l:c)
 endfun
-autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,verilog autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,verilog,vhdl autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 "}}}
 
 if isdirectory('./build')

@@ -13,9 +13,13 @@ call plug#begin()
     Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
     Plug 'tmhedberg/SimpylFold'
 
-    Plug 'Valloric/YouCompleteMe', {'for': ['c', 'cpp', 'cmake', 'python', 'rust']}
+    Plug 'Valloric/YouCompleteMe', {
+                \'for': ['c', 'cpp', 'cmake', 'python', 'rust']}
 
-    Plug 'Shougo/deoplete.nvim', {'for': ['java', 'lua', 'pandoc', 'markdown', 'sh', 'vim', 'html', 'make'], 'on': ['DeopleteEnable']}
+    Plug 'Shougo/deoplete.nvim', {
+                \'for': ['java', 'lua', 'pandoc', 'markdown', 'sh', 'vim', 'verilog', 'verilog_systemverilog', 'html', 'make'],
+                \'on': ['DeopleteEnable']
+                \ }
     Plug 'Shougo/echodoc.vim'
     Plug 'zchee/deoplete-jedi', {'for': ['python']}
     Plug 'artur-shaik/vim-javacomplete2', {'for': []}
@@ -76,8 +80,10 @@ call plug#begin()
     "Plug 'skt041959/markdown-preview.vim', {'for': ['pandoc', 'markdown']}
 
     Plug 'fatih/vim-go', {'for': 'go'}
-    Plug 'peterhoeg/vim-qml', {'for': 'qml'}
     Plug 'rust-lang/rust.vim', {'for': 'rust'}
+    Plug 'peterhoeg/vim-qml', {'for': 'qml'}
+    Plug 'Cognoscan/vim-vhdl', {'for': []}
+    Plug 'vhda/verilog_systemverilog.vim', {'for': ['verilog', 'verilog_systemverilog']}
 
     Plug 'kurayama/systemd-vim-syntax'
     Plug 'chrisbra/csv.vim', {'on': ['InitCSV']}
@@ -146,7 +152,10 @@ let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets'
 
 "====neomake===={{{
 let g:neomake_python_enabled_makers = ['flake8']
-let g:neomake_python_flake8_args = ['--first', '--ignore=E111,E114,E121,E125,E126,E127,E128,E129,E131,E133,E201,E202,E203,E211,E221,E222,E241,E251,E261,E303,E402,E501,W503']
+let g:neomake_python_flake8_args = ['--first'
+            \, '--ignore='
+            \ .'E111,E114,E121,E125,E126,E127,E128,E129,E131,E133,E201,E202'
+            \ .',E203,E211,E221,E222,E241,E251,E261,E303,E402,E501,W503']
 let g:neomake_vim_enabled_makers = ['vint']
 let g:neomake_cpp_enabled_makers = []
 let g:neomake_c_enabled_makers = []
@@ -169,7 +178,6 @@ function Map_nvim_ipy()
     nmap <space>? <Plug>(IPy-WordObjInfo)
     imap <C-F> <Plug>(IPy-Complete)
 endfunction
-autocmd FileType python call Map_nvim_ipy()
 "}}}
 
 "====lldb.nvim===={{{
@@ -205,8 +213,24 @@ let g:livemark_python = '/usr/bin/python'
 "====jellybeans===={{{
 let g:jellybeans_use_lowcolor_black = 0
 let g:jellybeans_overrides = {
-            \ 'Todo': { 'guifg': '303030', 'guibg': 'f0f000', 'ctermfg': 'Black', 'ctermbg': 'Yellow', 'attr': 'bold' } }
+            \ 'Todo': { 'guifg': '303030', 'guibg': 'f0f000'
+            \ , 'ctermfg': 'Black', 'ctermbg': 'Yellow', 'attr': 'bold' } }
 "}}}
+
+"====vimhdl===={{{
+" Configure the project file
+"let g:vimhdl_conf_file = '<config/file>'
+" Tell Syntastic to use vim-hdl
+let g:syntastic_vhdl_checkers = ['vimhdl']
+"}}}}
+
+"====verilog===={{{
+let g:verilog_syntax_fold = 'class,'
+            \.'function,'
+            \.'task,'
+            \.'block,'
+            \.'comment'
+"}}}}
 
 "{{{
 function! s:termlog() abort
