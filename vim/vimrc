@@ -304,7 +304,7 @@ fun! <SID>StripTrailingWhitespaces()
     exec '%s/\s\+$//e'
     call cursor(l:l, l:c)
 endfun
-autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,verilog,vhdl autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,verilog,verilog_systemverilog,vhdl autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 "}}}
 
 if isdirectory('./build')
@@ -459,11 +459,15 @@ let g:syntastic_warning_symbol = '⚠'
 "}}}
 
 "====jedi-vim===={{{
-let g:jedi#auto_vim_configuration = 1
+let g:jedi#auto_initialization = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#popup_on_dot = 0
 let g:jedi#use_tabs_not_buffers = 0
-let g:jedi#use_splits_not_buffers = 'right'
+let g:jedi#use_splits_not_buffers = 'winwidth'
 let g:jedi#popup_select_first = 0
-let g:jedi#force_py_version = 3
+let g:jedi#smart_auto_mappings = 1
+nnoremap <silent> <buffer> <leader>jd :call jedi#goto()<cr>
+nnoremap <silent> <buffer> K :call jedi#show_documentation()<cr>
 "}}}
 
 "====airline===={{{
@@ -592,17 +596,6 @@ nmap <space>] <Plug>GitGutterNextHunk
 nmap <space>[ <Plug>GitGutterPrevHunk
 nmap <space>a <Plug>GitGutterStageHunk
 nmap <space>u <Plug>GitGutterRevertHunk
-"}}}
-
-"====vimim===={{{
-let g:vimim_cloud = ''
-let g:vimim_map = 'tab_as_gi'
-"let g:vimim_mode = 'dynamic'
-let g:vimim_mycloud = 0
-"let g:vimim_plugin = 'C:/var/mobile/vim/vimfiles/plugin'
-"let g:vimim_punctuation = 2
-"let g:vimim_shuangpin = 0
-"let g:vimim_toggle = 'pinyin,google,sogou'
 "}}}
 
 "====SimpylFold===={{{

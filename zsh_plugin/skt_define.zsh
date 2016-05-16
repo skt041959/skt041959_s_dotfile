@@ -12,7 +12,7 @@ export PATH=$HOME/.local/bin:$HOME/code/go/bin:$NPM_PACKAGES/bin:$PATH
 export MANPATH=$NPM_PACKAGES/share/man:$MANPATH
 
 export LM_LICENSE_FILE=$HOME/.local/share/microsemi/Linux_Licensing_Daemon/License.dat
-export SYNPSLMD_LICENSE_FILE=$LM_LICENSE_FILE
+export SNPSLMD_LICENSE_FILE=$LM_LICENSE_FILE
 export SYNPLCTYD_LICENSE_FILE=$LM_LICENSE_FILE
 
 #{{{

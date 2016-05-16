@@ -8,7 +8,7 @@ call plug#begin()
 
     Plug 'kshenoy/vim-signature'
     Plug 'scrooloose/syntastic', {'for': []}
-    Plug 'davidhalter/jedi-vim', {'for': []}
+    Plug 'davidhalter/jedi-vim', {'for': ['python']}
     Plug 'bfredl/nvim-ipy', {'for': 'python'}
     Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
     Plug 'tmhedberg/SimpylFold'
@@ -22,8 +22,9 @@ call plug#begin()
                 \ }
     Plug 'Shougo/echodoc.vim'
     Plug 'zchee/deoplete-jedi', {'for': ['python']}
-    Plug 'artur-shaik/vim-javacomplete2', {'for': []}
-    Plug 'Shougo/neco-vim'
+    Plug 'artur-shaik/vim-javacomplete2', {'for': ['java']}
+    Plug 'racer-rust/vim-racer', {'for': ['rust']}
+    Plug 'Shougo/neco-vim', {'for': ['vim']}
     Plug 'Shougo/neosnippet.vim', {'for': []}
     Plug 'Shougo/neosnippet-snippets'
 
@@ -95,7 +96,7 @@ call plug#begin()
     Plug 'skt041959/vim-color-skt'
     Plug 'nanotech/jellybeans.vim'
 
-    "Plug 'skt041959/vim-libpinyin'
+    Plug 'skt041959/vim-libpinyin', {'for': []}
 
     Plug '~/code/gdbmi.nvim'
 
@@ -104,9 +105,10 @@ call plug#begin()
 "}}}
 call plug#end()
 
-execute 'source' fnamemodify(expand('<sfile>'), ':h').'/vimrc'
+execute 'source' fnamemodify(expand('<sfile>'), ':h') . '/vimrc'
 colorscheme darkblack_skt
 
+set termguicolors
 set termencoding=utf-8
 
 cnoremap <M-b> <S-Left>
@@ -123,7 +125,6 @@ nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
-let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 
 "let $NVIM_PYTHON_LOG_FILE = '/home/skt/tmp/nvimlog-python'
@@ -138,8 +139,6 @@ Guifont Source Code Pro:h10
 
 "====deoplete===={{{
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#ignore_sources = {}
-let g:deoplete#ignore_sources._ = ['javacomplete2']
 "}}}
 
 "====neosnippt===={{{
@@ -216,13 +215,6 @@ let g:jellybeans_overrides = {
             \ 'Todo': { 'guifg': '303030', 'guibg': 'f0f000'
             \ , 'ctermfg': 'Black', 'ctermbg': 'Yellow', 'attr': 'bold' } }
 "}}}
-
-"====vimhdl===={{{
-" Configure the project file
-"let g:vimhdl_conf_file = '<config/file>'
-" Tell Syntastic to use vim-hdl
-let g:syntastic_vhdl_checkers = ['vimhdl']
-"}}}}
 
 "====verilog===={{{
 let g:verilog_syntax_fold = 'class,'
