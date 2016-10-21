@@ -114,8 +114,9 @@ augroup BASIC "{{{
 
     "autocmd BufNewFile,BufRead *.pro set filetype=qtproject
 
-    autocmd BufNewFile,BufRead .tmux.conf*,tmux.conf* set ft=tmux
-    autocmd BufNewFile,BufRead *.dat set ft=dat
+    autocmd BufNewFile,BufRead .tmux.conf*,tmux.conf* setlocal ft=tmux
+    autocmd BufNewFile,BufRead *.dat      setlocal ft=dat
+    autocmd BufRead,BufNewFile *.cson     setlocal ft=coffee
 augroup END "}}}
 
 let g:mapleader = ';'
@@ -142,6 +143,8 @@ set grepprg=grep\ -nH\ $*
 
 set cursorline
 set hlsearch
+set splitbelow
+set splitright
 set showcmd
 set showmatch
 set ignorecase smartcase
@@ -162,7 +165,7 @@ set completeopt+=menuone
 set completeopt+=longest
 
 set makeprg=make\ \-j\ 2
-nnoremap <C-B> :make!<CR>
+nnoremap <C-B> :call EMake()<CR>
 
 set viewoptions=cursor,folds,slash,unix
 
@@ -298,19 +301,24 @@ augroup END
 "}}}
 
 "====StripTrailingWhitespaces===={{{
-fun! <SID>StripTrailingWhitespaces()
+function! <SID>StripTrailingWhitespaces()
     let l:l = line('.')
     let l:c = col('.')
     exec '%s/\s\+$//e'
     call cursor(l:l, l:c)
-endfun
-autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,verilog,verilog_systemverilog,vhdl autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+endfunction
+augroup STW
+    autocmd!
+    autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,verilog,verilog_systemverilog,vhdl autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+augroup END
 "}}}
 
-if isdirectory('./build')
-    set makeprg=make\ \-j\ 2\ -C\ build
-endif
-
+function! EMake()
+    if isdirectory('./build')
+        set makeprg=make\ \-j\ 2\ -C\ build
+    endif
+    execute 'make!'
+endfunction
 "=============plugin below================
 nnoremap <leader>S :call EMksession()<CR>
 
@@ -319,15 +327,14 @@ nnoremap <C-E> :A<CR>
 
 nnoremap <leader>e :FencView<CR>
 
-let g:NERDCustomDelimiters = {'c': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' } }
-
-"====zealdoc===={{{
+"====zeavim===={{{
 let g:zv_disable_mapping = 1
 nmap gz <Plug>Zeavim
 vmap gz <Plug>ZVVisSelection
 nmap gZ <Plug>ZVKeyDocset
 let g:zv_file_types = {
-            \ 'python': 'python 3,numpy',
+            \ 'python': 'python,numpy,scipy,pandas,opencv',
+            \ 'c++': 'c,c++,opencv',
             \ 'vim': 'vim',
             \ }
 let g:zv_docsets_dir = '/home/skt/.local/share/Zeal/Zeal/docsets'
@@ -349,7 +356,7 @@ autocmd FileType tagbar setlocal nocursorline nocursorcolumn
 "}}}
 
 "====undotree===={{{
-nnoremap <leader>ul :UndotreeToggle<CR>
+nnoremap <leader>u :UndotreeToggle<CR>
 let g:undotree_WindowLayout = 4
 let g:undotree_SplitWidth = 30
 let g:undotree_SetFocusWhenToggle = 1
@@ -362,6 +369,13 @@ let g:NERDTreeWinPos = 'right'
 let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '~'
+"}}}
+
+"====NERDComment===={{{
+let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
+" let g:NERDCustomDelimiters = {'c': { 'left': '//', 'leftAlt': '/*', 'rightAlt': '*/' } }
+let g:NERDAltDelims_c = 1
 "}}}
 
 "====bufE===={{{
@@ -437,7 +451,7 @@ let g:pymode_syntax = 0
 "====UltiSnips===={{{
 let g:UltiSnipsExpandTrigger='<C-k>'
 let g:UltiSnipsJumpForwardTrigger='<C-k>'
-let g:UltiSnipsJumpBackwardTrigger='<leader><s-tab>'
+let g:UltiSnipsJumpBackwardTrigger='<C-j>'
 let g:UltiSnipsUsePythonVersion = 2
 "}}}
 
@@ -459,15 +473,21 @@ let g:syntastic_warning_symbol = '⚠'
 "}}}
 
 "====jedi-vim===={{{
-let g:jedi#auto_initialization = 0
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#popup_on_dot = 0
 let g:jedi#use_tabs_not_buffers = 0
 let g:jedi#use_splits_not_buffers = 'winwidth'
-let g:jedi#popup_select_first = 0
-let g:jedi#smart_auto_mappings = 1
-nnoremap <silent> <buffer> <leader>jd :call jedi#goto()<cr>
-nnoremap <silent> <buffer> K :call jedi#show_documentation()<cr>
+let g:jedi#auto_initialization = 1
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#smart_auto_mappings = 0
+let g:jedi#popup_on_dot = 0
+let g:jedi#completions_command = ''
+let g:jedi#show_call_signatures = '1'
+let g:jedi#show_call_signatures_delay = 0
+augroup JEDI_MANUAL
+    autocmd!
+    " autocmd FileType python nnoremap <silent> <buffer> <leader>jd :call jedi#goto()<cr>
+    autocmd FileType python nnoremap <silent> <buffer> K :call jedi#show_documentation()<cr>
+augroup END
 "}}}
 
 "====airline===={{{
@@ -499,14 +519,17 @@ let g:airline_extensions = ['branch',
 "}}}
 
 "====unite===={{{
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
+
+autocmd FileType unite nmap     <buffer> <C-j>  <Plug>(unite_toggle_auto_preview)
+autocmd FileType unite nnoremap <buffer><silent> <C-z>  :call unite#filters#matcher_default#use(['matcher_fuzzy'])<CR>
+nnoremap <space>p :Unite -start-insert file_rec/async:.<CR>
 nnoremap <space>f :Unite -start-insert file_rec/async:.<CR>
 nnoremap <space>g :Unite grep:.::<C-R><C-W><CR>
-nnoremap <space>G :Unite grep:%::<C-R><C-W><CR>
+nnoremap <space>G :Unite vimgrep:%:<C-R><C-W><CR>
 vnoremap <space>g y<Esc>:silent exec
             \ ":<C-u>Unite grep:.::<C-R>"<CR>"<CR>
 vnoremap <space>G y<Esc>:silent exec
-            \ ":<C-u>Unite grep:%::<C-R>"<CR>"<CR>
+            \ ":<C-u>Unite vimgrep:%:<C-R>"<CR>"<CR>
 nnoremap <space>s :Unite grep:.<CR>
 nnoremap <space>t :Unite -start-insert outline<CR>
 nnoremap <space>y :Unite history/yank<CR>
@@ -567,6 +590,7 @@ let g:quickrun_config={
             \'_' : {
             \    'runner' : 'vimproc',
             \    'runner/vimproc/updatetime' : 60,
+            \    'outputter' : 'message',
             \    },
             \'qml/qmlscene' : {
             \    'command': 'qmlscene',

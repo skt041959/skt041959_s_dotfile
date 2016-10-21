@@ -5614,3 +5614,2067 @@
 
 # 2016-05-08 04:20:02.362779
 +import deepcopy
+
+# 2016-05-16 18:41:28.629354
++from sympy import sin,tan,Eq,solve
+
+# 2016-05-16 18:41:42.485888
++from sympy import symbol
+
+# 2016-05-16 18:42:09.508795
++x,y = symbol('x y')
+
+# 2016-05-16 18:42:30.316051
++from sympy import Symbol
+
+# 2016-05-16 18:42:32.208224
++x,y = symbol('x y')
+
+# 2016-05-16 18:42:37.179237
++x,y = Symbol('x y')
+
+# 2016-05-16 18:43:13.757949
++x,y = Symbols('x y')
+
+# 2016-05-16 18:43:19.005237
++from sympy import Symbols
+
+# 2016-05-16 18:43:36.427765
++from sympy import symbols
+
+# 2016-05-16 18:43:41.638339
++x,y = symbols('x y')
+
+# 2016-05-16 18:43:45.963617
++solve([Eq(2.6*tan(x)+0.9*tan(y), 1.76), Eq(sin(x), 1.458*sin(y))], [x,y])
+
+# 2016-05-16 19:01:30.356749
++solve([Eq(sin(x), x)], [x])
+
+# 2016-05-16 19:02:37.447158
++solve([Eq(sin(x), y), Eq(y, 1)], [x, y])
+
+# 2016-05-16 19:09:40.257635
++solve([Eq(2.6*tan(x)+0.9*tan(y), 1.76), Eq(sin(x), 1.458*sin(y))], [x,y])
+
+# 2016-05-16 19:10:17.016408
++solve([Eq(sin(x), 2)], [x])
+
+# 2016-05-16 19:10:31.602530
++solve([Eq(sin(x), 3)], [x])
+
+# 2016-05-16 19:11:04.781908
++solve([Eq(2.6*tan(x)+0.9*tan(y), 1.76), Eq(sin(x), 1.458*sin(y))], [x,y])
+
+# 2016-05-16 19:13:54.122869
++Eq
+
+# 2016-05-16 19:15:32.570261
++help(solve)
+
+# 2016-05-16 19:31:16.904625
++__IPYTHON__active
+
+# 2016-05-16 19:31:22.120440
++__IPYTHON__
+
+# 2016-05-16 19:31:37.606789
++__spec__
+
+# 2016-05-16 19:31:40.271174
++__package__
+
+# 2016-05-16 19:31:43.781711
++__name__
+
+# 2016-05-16 19:31:46.043148
++__loader__
+
+# 2016-05-16 19:31:51.837308
++__import__
+
+# 2016-05-16 19:31:56.311476
++__debug__
+
+# 2016-05-18 13:12:12.356475
++import protobuf
+
+# 2016-05-18 13:12:20.759759
++import google.protobuf
+
+# 2016-05-19 22:23:56.059773
++import tf
+
+# 2016-05-19 22:24:18.225267
++import tensorflow as tf
+
+# 2016-05-19 22:28:25.124881
++help(tensorflow)
+
+# 2016-05-19 22:31:08.574657
++import tensorflow as tf
+
+# 2016-05-19 22:31:35.342621
++tf.nn.embedding_lookup
+
+# 2016-05-19 22:31:48.962413
++help(tf.nn.embedding_lookup)
+
+# 2016-05-20 14:51:21.335675
++a = "a"
+
+# 2016-05-20 14:51:25.729200
++a is "a"
+
+# 2016-05-20 14:51:41.863320
++"w"
+
+# 2016-06-08 09:46:28.730352
++115200/2
+
+# 2016-06-08 09:46:33.922841
++57600/2
+
+# 2016-06-08 09:46:41.015863
++12*12*8
+
+# 2016-06-13 22:34:58.434819
++import pandas as pd
+
+# 2016-06-13 22:36:06.420628
++ a = pd.DataFrame(['111', '222'], columns=['a', 'b'])
+
+# 2016-06-13 22:36:54.341998
++ a = pd.DataFrame([['111', '222'], ['333', '444']], columns=['a', 'b'])
+
+# 2016-06-13 22:36:55.290666
++a
+
+# 2016-06-13 22:37:31.538473
++a.loc[:, 'a']
+
+# 2016-06-13 22:38:00.457070
++a.loc[:, 'a'] = a.loc[:, 'a'].apply(lambda i: i*2)
+
+# 2016-06-13 22:38:01.056288
++a
+
+# 2016-06-13 22:38:53.623993
++s = ['222', '111', '444', '333']
+
+# 2016-06-13 22:39:16.333791
++ a = pd.DataFrame([['111', '222'], ['333', '444']], columns=['a', 'b'])
+
+# 2016-06-13 22:39:30.504208
++a.loc[:, 'a'] = a.loc[:, 'a'].apply(lambda i: s.index(i))
+
+# 2016-06-13 22:39:31.384189
++a
+
+# 2016-06-13 22:39:41.623640
++type(a)
+
+# 2016-06-13 22:39:46.645276
++print(a)
+
+# 2016-06-13 22:39:55.946608
++ a = pd.DataFrame([['111', '222'], ['333', '444']], columns=['a', 'b'])
+
+# 2016-06-13 22:39:56.778874
++a
+
+# 2016-06-13 22:41:24.157808
++a.loc[:, 'a'] = a.loc[:, 'a'].apply(lambda i: s.index(i))
+
+# 2016-06-13 22:41:26.720566
++a
+
+# 2016-06-24 20:01:31.177718
++import cv2
+
+# 2016-06-24 20:01:48.870666
++from Xlib import X, display, error
+
+# 2016-06-24 20:02:24.002609
++import cv2
+
+# 2016-06-24 20:02:29.504447
++from Xlib import X, display, error
+
+# 2016-06-24 20:05:52.793041
++wid = 0x3a00001
+
+# 2016-06-24 20:06:24.288920
++dpy = display.Display()
+
+# 2016-06-24 20:07:05.809728
++window = dpy.create_resource_object('window', wid)
+
+# 2016-06-24 20:09:17.124873
++window.get_full_property()
+
+# 2016-06-24 20:10:52.907840
++window.get_image(0, 0, 1080, 720, X.ZPixmap, 0xffffffff)
+
+# 2016-06-24 20:11:30.525702
++raw = window.get_image(0, 0, 1080, 720, X.ZPixmap, 0xffffffff)
+
+# 2016-06-24 20:11:56.810338
++sizeof(raw)
+
+# 2016-06-24 20:12:18.587341
++import sys
+
+# 2016-06-24 20:12:24.048337
++sys.sizeof(raw)
+
+# 2016-06-24 20:12:56.336327
++sys.getsizeof(raw)
+
+# 2016-06-24 20:14:01.784230
++type(raw)
+
+# 2016-06-24 20:15:10.048885
++raw.__sizeof__
+
+# 2016-06-24 20:15:12.124442
++raw.__sizeof__()
+
+# 2016-06-24 20:28:11.401178
++raw = window.get_image(0, 0, 1080, 720, X.ZPixmap, 0xffffffff)
+
+# 2016-06-25 19:51:27.796725
++from scipy.special import expit
+
+# 2016-06-25 19:51:30.533355
++expit?
+
+# 2016-06-25 19:52:00.020957
++expit(1)
+
+# 2016-06-26 12:39:20.809255
++from IPython.display import Image
+
+# 2016-06-26 12:41:12.441928
++Image(filename='./snapshot12.png')
+
+# 2016-06-27 16:44:16.240325
++import numpy
+
+# 2016-06-27 16:44:58.870757
++%%cython --compile-args=-fopenmp --link-args=-fopenmp --force
+
+# 2016-06-27 16:48:19.783984
++%load_ext Cython
+
+# 2016-06-27 16:48:31.044846
++%%cython --compile-args=-fopenmp --link-args=-fopenmp --force
+
+# 2016-06-27 16:48:36.223696
++import numpy
+
+# 2016-07-01 10:02:04.663230
++d = dict()
+
+# 2016-07-01 10:02:08.519462
++import sys
+
+# 2016-07-01 10:02:16.037363
++sys.getsizeof(d)
+
+# 2016-07-01 11:24:11.501557
++import pyximport;
+
+# 2016-07-01 11:24:14.941864
++pyximport.install()
+
+# 2016-07-01 11:24:40.462477
++import helloworld
+
+# 2016-07-01 15:14:17.584703
++from collections import Counter
+
+# 2016-07-01 15:14:32.200255
++c = Counter('gallahad')
+
+# 2016-07-01 15:14:32.731418
++c
+
+# 2016-07-04 14:06:18.148544
++import collections
+
+# 2016-07-04 14:06:34.609357
++counter = collections.defaultdict(collections.Counter())
+
+# 2016-07-04 14:14:42.815411
++counter = collections.defaultdict(collections.Counter)
+
+# 2016-07-05 12:10:09.343252
++ls
+
+# 2016-07-05 12:10:20.472166
++%load_ext Cython
+
+# 2016-07-05 12:10:58.111232
++cimport numpy
+
+# 2016-07-05 12:11:07.449246
++%cython
+
+# 2016-07-05 12:11:14.885322
++%%cython
+
+# 2016-07-05 12:11:19.114900
++cimport numpy
+
+# 2016-07-05 12:11:28.516828
++%%cython?
+
+# 2016-07-05 12:11:54.289543
++%%cython
++cimport numpy
+
+# 2016-07-06 14:11:42.245920
++def stupid_fib(n):
++    index = 0
++    a = 0
++    b = 1
++    while index < n:
++        sleep_cnt = yield b
++        print('let me think {0} secs'.format(sleep_cnt))
++        time.sleep(sleep_cnt)
++        a, b = b, a + b
++        index += 1
+
+# 2016-07-06 14:12:02.455234
++def copy_stupid_fib(n):
++    print('I am copy from stupid fib')
++    yield from stupid_fib(n)
++    print('Copy end')
++print('-'*10 + 'test yield from and send' + '-'*10)
++N = 20
++csfib = copy_stupid_fib(N)
++fib_res = next(csfib)
++while True:
++    print(fib_res)
++    try:
++        fib_res = csfib.send(random.uniform(0, 0.5))
++    except StopIteration:
++        break
+
+# 2016-07-06 14:12:13.252143
++import random
+
+# 2016-07-06 14:12:21.663922
++def copy_stupid_fib(n):
++    print('I am copy from stupid fib')
++    yield from stupid_fib(n)
++    print('Copy end')
++print('-'*10 + 'test yield from and send' + '-'*10)
++N = 20
++csfib = copy_stupid_fib(N)
++fib_res = next(csfib)
++while True:
++    print(fib_res)
++    try:
++        fib_res = csfib.send(random.uniform(0, 0.5))
++    except StopIteration:
++        break
++        
+
+# 2016-07-06 14:12:27.900679
++import time
+
+# 2016-07-06 14:12:29.593805
++def copy_stupid_fib(n):
++    print('I am copy from stupid fib')
++    yield from stupid_fib(n)
++    print('Copy end')
++print('-'*10 + 'test yield from and send' + '-'*10)
++N = 20
++csfib = copy_stupid_fib(N)
++fib_res = next(csfib)
++while True:
++    print(fib_res)
++    try:
++        fib_res = csfib.send(random.uniform(0, 0.5))
++    except StopIteration:
++        break
+
+# 2016-07-12 18:41:37.823782
++map(lambda x: "Happ Birtthday to " + ("you" if x != 2 else "dear Name"), range(4))
+
+# 2016-07-12 18:42:05.138877
++print(map(lambda x: "Happ Birtthday to " + ("you" if x != 2 else "dear Name"), range(4)))
+
+# 2016-07-12 18:42:53.809318
++print map(lambda x: "Happ Birtthday to " + ("you" if x != 2 else "dear Name"), range(4))
+
+# 2016-07-12 18:43:28.415478
++a = map(lambda x: "Happ Birtthday to " + ("you" if x != 2 else "dear Name"), range(4))
+
+# 2016-07-12 18:43:29.929456
++a()
+
+# 2016-07-12 18:43:39.190824
++a
+
+# 2016-07-12 18:44:03.227472
++next(a)
+
+# 2016-07-27 00:45:17.149495
++import os
+
+# 2016-08-12 19:27:12.288053
++import pyuserinput
+
+# 2016-08-12 19:27:58.994775
++from pymouse import PyMouse
+
+# 2016-08-12 19:28:45.341255
++from six import create_unbound_method
+
+# 2016-08-12 19:29:14.252816
++from Xlib.display import Display
+
+# 2016-08-12 19:33:59.421745
++from pymouse import PyMouse
+
+# 2016-08-12 19:34:14.151311
++from six import create_unbound_method
+
+# 2016-08-12 19:36:03.633266
++import sys
+
+# 2016-08-12 19:36:07.430458
++sys.version_info
+
+# 2016-08-12 19:36:11.930036
++sys.version_info[0]
+
+# 2016-08-12 19:36:17.914989
++import six
+
+# 2016-08-12 19:36:20.448329
++six.create_bound_method
+
+# 2016-08-12 19:49:37.404685
++from six import create_unbound_method
+
+# 2016-08-12 20:13:32.878278
++from pykeyboard import PyKeyboardEvent
+
+# 2016-08-12 20:13:43.501466
++from pymouse import PyMouseEvent
+
+# 2016-08-12 20:33:08.736916
++from Xlib.display import Display
+
+# 2016-08-12 21:04:53.458643
++dpy = display.Display()
+
+# 2016-08-12 21:05:05.164368
++dpy = Display()
+
+# 2016-08-12 21:05:28.019658
++window = dpy.get_input_focus()
+
+# 2016-08-12 21:05:30.369103
++window
+
+# 2016-08-12 21:05:40.370369
++window.focus
+
+# 2016-08-12 21:05:48.580682
++w = window.focus
+
+# 2016-08-12 21:05:49.402273
++w
+
+# 2016-08-12 21:06:41.658123
++help(w.get_image)
+
+# 2016-08-12 21:08:09.954377
++w.get_geometry()
+
+# 2016-08-12 21:10:36.822823
++_.data.x
+
+# 2016-08-12 21:10:49.530755
++_.data
+
+# 2016-08-12 21:11:05.598503
++gg = w.get_geometry()
+
+# 2016-08-12 21:11:06.990214
++gg
+
+# 2016-08-12 21:11:09.345695
++gg.data
+
+# 2016-08-12 21:11:22.344643
++gg.x
+
+# 2016-08-12 21:11:31.632154
++gg.width
+
+# 2016-08-12 21:59:40.886544
++help(w.get_image)
+
+# 2016-08-12 22:01:14.022680
++from Xlib import X
+
+# 2016-08-12 22:01:39.663625
++r = window.get_image(0, 0, 100, 100, X.ZPixmap, 0xffffffff)
+
+# 2016-08-12 22:01:54.592473
++window
+
+# 2016-08-12 22:02:15.863340
++window = dpy.get_input_focus()
+
+# 2016-08-12 22:02:19.436905
++window
+
+# 2016-08-12 22:02:23.072177
++window.focus
+
+# 2016-08-12 22:02:28.438455
++w = window.focus
+
+# 2016-08-12 22:03:02.052068
++w.get_image(0, 0, 100, 100, X.ZPixmap, 0xffffffff)
+
+# 2016-08-12 22:03:23.333251
++r = w.get_image(0, 0, 100, 100, X.ZPixmap, 0xffffffff)
+
+# 2016-08-12 22:03:32.391226
++w
+
+# 2016-08-12 22:03:44.318003
++r = w.get_image(0, 0, 100, 100, X.ZPixmap, 0xffffffff)
+
+# 2016-08-12 22:04:44.809652
++w.get_wm_name()
+
+# 2016-08-12 22:04:45.712918
++w
+
+# 2016-08-12 22:04:48.328130
++window
+
+# 2016-08-12 22:05:00.311086
++w = window.focus
+
+# 2016-08-12 22:05:26.732415
++w.get_wm_name()
+
+# 2016-08-12 22:07:55.076077
++dpy.create_resource_object('window', 0)
+
+# 2016-08-12 22:08:04.517088
++w.id
+
+# 2016-08-12 23:03:09.189522
++id = 0xa00006
+
+# 2016-08-12 23:03:44.317416
++id
+
+# 2016-08-12 23:04:16.583936
++window = dpy.create_resource_object('window', id)
+
+# 2016-08-12 23:05:52.723079
++r = window.get_image(0, 0, 100, 100, X.ZPixmap, 0xffffffff)
+
+# 2016-08-12 23:55:48.865857
++from PyQt5.QtGui import QPixmap
+
+# 2016-08-12 23:58:09.743638
++from PyQt5.QtWidgets import QApplication
+
+# 2016-08-12 23:58:26.084391
++import sys
+
+# 2016-08-12 23:58:37.765803
++app = QApplication(sys.argv)
+
+# 2016-08-12 23:59:26.757974
++from PyQt5.QtGui import QScreen
+
+# 2016-08-13 00:00:16.816346
++QScreen.grabWindow(QApplication.desktop().winId()).save('screen.jpg', 'jpg')
+
+# 2016-08-13 00:01:12.612015
++QApplication.desktop().winId()
+
+# 2016-08-13 00:01:23.490683
++QApplication.desktop()
+
+# 2016-08-13 00:01:27.575721
++QApplication.desktop().winId()
+
+# 2016-08-13 00:02:14.473539
++from PyQt5.QtWidgets import QWidget
+
+# 2016-08-13 00:02:23.930602
++QWidget.winId()
+
+# 2016-08-13 00:02:26.227005
++QWidget.winId
+
+# 2016-08-13 00:02:41.647553
++QWidget.winId(QApplication.desktop())
+
+# 2016-08-13 00:03:38.053525
++import sys
+
+# 2016-08-13 00:03:50.688736
++from PyQt4.QtGui import QPixmap, QApplication
+
+# 2016-08-13 00:03:58.681487
++app = QApplication(sys.argv)
+
+# 2016-08-13 00:04:25.982293
++QPixmap.grabWindow(QApplication.desktop().winId()).save('screen.jpg', 'jpg')
+
+# 2016-08-13 00:04:27.792674
++ls
+
+# 2016-08-13 00:09:23.120159
++QApplication.desktop().winId()
+
+# 2016-08-13 00:10:08.568934
++QPixmap.grabWindow(0x3e00093).save('screen.jpg', 'jpg')
+
+# 2016-08-25 10:22:47.554495
++from serial import Serial
+
+# 2016-08-25 10:22:51.976677
++s = Serial
+
+# 2016-08-25 10:23:18.310759
++s = Serial("/dev/usb_serial", baudrate=115200)
+
+# 2016-08-25 10:24:08.800132
++s.read(2)
+
+# 2016-08-25 10:25:10.562455
++s.readall()
+
+# 2016-08-25 10:25:19.898529
++s.read(2)
+
+# 2016-08-25 10:25:48.632420
++int(b'\x93\t')
+
+# 2016-08-25 10:25:56.330092
++a = b'\x93\t'
+
+# 2016-08-25 10:25:56.742218
++a
+
+# 2016-08-25 10:25:59.578405
++a[0]
+
+# 2016-08-25 10:26:01.857931
++a[1]
+
+# 2016-08-25 10:27:50.173330
++for _ in range(20):
++    raw = s.read(2)
++    print(raw[0]*16+raw[1])
+
+# 2016-08-25 10:28:51.059262
++int('0xffff', 16)
+
+# 2016-08-25 10:31:20.627815
++for _ in range(20):
++    raw = s.read(2)
++    v = raw[0]*16+raw[1]
++    print(v/65535*10)
+
+# 2016-08-25 11:49:33.904068
++s.read_all()
+
+# 2016-08-25 11:49:39.855676
++for _ in range(20):
++    raw = s.read(2)
++    v = raw[0]*16+raw[1]
++    print(v/65535*10)
+
+# 2016-08-25 11:50:11.748936
++s.read_all()
+
+# 2016-08-25 11:50:14.103143
++for _ in range(20):
++    raw = s.read(2)
++    v = raw[0]*16+raw[1]
++    print(v/65535*10)
+
+# 2016-08-25 11:59:34.661235
++s.read_all()
+
+# 2016-08-25 11:59:38.459870
++for _ in range(20):
++    raw = s.read(2)
++    v = raw[0]*16+raw[1]
++    print(v/65535*10)
+
+# 2016-08-25 11:59:44.569681
++s.read_all()
+
+# 2016-08-25 11:59:47.457817
++for _ in range(20):
++    raw = s.read(2)
++    v = raw[0]*16+raw[1]
++    print(v/65535*10)
+
+# 2016-08-25 12:05:57.303864
++s.read_all()
+
+# 2016-08-25 12:06:43.307126
++s.readall()
++for _ in range(20):
++    raw = s.read(2)
++    v = raw[0]*16+raw[1]
++    print(v/65535*10)
+
+# 2016-08-25 12:07:21.134348
++s.read_all()
+
+# 2016-08-25 12:07:38.573585
++s.readall()
++
++for _ in range(20):
++    raw = s.read(2)
++    v = raw[0]*16+raw[1]
++    print(v/65535*10)
+
+# 2016-08-25 12:07:49.802860
++for _ in range(20):
++    raw = s.read(2)
++    v = raw[0]*16+raw[1]
++    print(v/65535*10)
+
+# 2016-08-25 12:08:31.786794
++s.read_all()
+
+# 2016-08-25 12:08:35.717186
++for _ in range(20):
++    raw = s.read(2)
++    v = raw[0]*16+raw[1]
++    print(v/65535*10)
+
+# 2016-08-25 12:10:25.450205
++for _ in range(20):
++    raw = s.read(2)
++    v = raw[0]*16+raw[1]
++    print(v)
+
+# 2016-08-25 14:32:47.361615
++s.read_all()
+
+# 2016-08-25 14:32:50.230778
++for _ in range(20):
++    raw = s.read(2)
++    v = raw[0]*16+raw[1]
++    print(v)
+
+# 2016-08-25 14:33:00.078764
++for _ in range(20):
++    raw = s.read(2)
++    v = raw[0]*16+raw[1]
++    print(v/65535*10)
+
+# 2016-08-25 14:36:37.636923
++s.read_all()
+
+# 2016-08-25 14:36:40.910192
++for _ in range(20):
++    raw = s.read(2)
++    v = raw[0]*16+raw[1]
++    print(v/65535*10)
++    
+
+# 2016-08-25 14:36:52.917978
++s.read_all()
+
+# 2016-08-25 14:36:55.006894
++for _ in range(20):
++    raw = s.read(2)
++    v = raw[0]*16+raw[1]
++    print(v/65535*10)
++    
+
+# 2016-08-25 14:37:27.183298
++for _ in range(20):
++    raw = s.read(2)
++    v = raw[0]*16+raw[1]
++    print(v)
++    
+
+# 2016-08-25 14:37:47.095777
++for _ in range(20):
++    raw = s.read(2)
++    v = raw[1]*16+raw[0]
++    print(v)
++
+
+# 2016-08-25 14:38:55.422191
++for _ in range(20):
++    raw = s.read(2)
++    v = raw[1]*256+raw[0]
++    print(v)
+
+# 2016-08-25 14:39:08.164703
++for _ in range(20):
++    raw = s.read(2)
++    v = raw[0]*256+raw[1]
++    print(v)
+
+# 2016-08-25 14:39:30.208907
++for _ in range(20):
++    raw = s.read(2)
++    v = raw[0]*256+raw[1]
++    print(v/65535*10)
+
+# 2016-08-25 14:39:55.047660
++for _ in range(20):
++    raw = s.read(2)
++    v = raw[1]*256+raw[0]
++    print(v/65535*10)
+
+# 2016-08-25 14:41:32.293605
++s.read_all()
+
+# 2016-08-25 14:41:38.267580
++s.read(2)
+
+# 2016-08-25 14:41:46.857187
++s.read_all()
+
+# 2016-08-25 14:42:19.173654
++for _ in range(20):
++    raw = s.read(2)
++    v = raw[1]*256+raw[0]
++    print(v/65535*10)
+
+# 2016-08-25 14:42:44.751658
++for _ in range(20):
++    raw = s.read(2)
++    v = raw[0]*256+raw[1]
++    print(v/65535*10)
+
+# 2016-08-25 14:43:08.464195
++for _ in range(20):
++    raw = s.read(2)
++    v = raw[0]*256+raw[1]
++    print(v)
+
+# 2016-08-25 14:43:23.444142
++for _ in range(20):
++    raw = s.read(2)
++    v = raw[1]*256+raw[0]
++    print(v)
+
+# 2016-08-25 14:44:26.167151
++7188/65535*10
+
+# 2016-08-25 14:44:34.272616
++7190/65535*10
+
+# 2016-08-25 14:46:46.396345
++s.read_all()
+
+# 2016-08-25 14:48:20.391775
++from serial import Serial
+
+# 2016-08-25 14:48:26.055768
++s = Serial("/dev/usb_serial", baudrate=115200)
+
+# 2016-08-25 14:48:28.220304
++s.read_all()
+
+# 2016-08-25 14:48:47.176691
++r = _
+
+# 2016-08-25 14:48:53.927635
++r[0]*256+r[1]
+
+# 2016-08-25 14:48:59.877008
++r[1]*256+r[0]
+
+# 2016-08-25 14:49:31.869117
++s.read_all()
+
+# 2016-08-25 14:49:34.761574
++r = _
+
+# 2016-08-25 14:49:36.933218
++r[1]*256+r[0]
+
+# 2016-08-25 15:15:40.358088
++s.read_all()
+
+# 2016-08-25 15:16:09.495318
++s.close()
+
+# 2016-08-25 15:16:13.202555
++s.open()
+
+# 2016-08-25 15:16:45.657884
++raw = s.read(10)
+
+# 2016-08-25 15:16:50.987073
++raw
+
+# 2016-08-25 15:17:01.819472
++raw = s.read(10)
+
+# 2016-08-25 15:17:02.705947
++raw
+
+# 2016-08-25 15:17:05.429063
++raw = s.read(10)
+
+# 2016-08-25 15:17:06.664381
++raw
+
+# 2016-08-25 15:17:09.949834
++raw = s.read(10)
+
+# 2016-08-25 15:17:10.921434
++raw
+
+# 2016-08-25 15:23:29.599580
++s = [a0 + a1*256 for a0, a1 in zip(*([iter(raw)]*2))]
+
+# 2016-08-25 15:23:30.418522
++s
+
+# 2016-08-25 15:24:31.412523
++s = Serial("/dev/usb_serial", baudrate=115200)
+
+# 2016-08-25 15:24:35.004828
++s.close()
+
+# 2016-08-25 15:24:37.763172
++s.open()
+
+# 2016-08-25 15:25:43.534865
++while 1:
++    raw = s.read(10)
++    print([a0 + a1*256 for a0, a1 in zip(*([iter(raw)]*2))])
++    
+
+# 2016-08-25 15:25:47.607120
++s.close()
+
+# 2016-08-25 15:25:51.364331
++s.open()
+
+# 2016-08-25 15:26:07.173042
++while 1:
++    raw = s.read(10)
++    print([a0 + a1*256 for a0, a1 in zip(*([iter(raw)]*2))])
++    
+
+# 2016-08-25 15:26:56.640230
++while 1:
++    raw = s.read(10)
++    print([(a0 + a1*256)/65536*10 for a0, a1 in zip(*([iter(raw)]*2))])
++    
+
+# 2016-08-25 15:27:00.791836
++s.read_all()
+
+# 2016-08-25 15:30:10.016820
++while 1:
++    raw = s.read(10)
++    print([(a0 + a1*256)/65536*10 for a0, a1 in zip(*([iter(raw)]*2))])
+
+# 2016-08-25 15:31:12.963735
++while 1:
++    raw = s.read(10)
++    print([(a0 + a1*256) for a0, a1 in zip(*([iter(raw)]*2))])
+
+# 2016-08-25 15:31:18.017008
++s.read_all()
+
+# 2016-08-25 15:33:04.622150
++while 1:
++    raw = s.read(10)
++    print([(a0 + a1*256) for a0, a1 in zip(*([iter(raw)]*2))])
++    
+
+# 2016-08-25 15:39:55.015627
++while 1:
++    raw = s.read(10)
++    print([(a0 + a1*256)/65536*10 for a0, a1 in zip(*([iter(raw)]*2))])
+
+# 2016-08-25 15:40:23.812743
++s.read_all()
+
+# 2016-08-25 15:40:53.231618
++while 1:
++    raw = s.read(10)
++    print([(a0 + a1*256)/65536*10 for a0, a1 in zip(*([iter(raw)]*2))])
++    
+
+# 2016-08-25 15:43:57.423839
++s.read_all()
+
+# 2016-08-25 15:44:04.329202
++s.close()
+
+# 2016-08-25 15:44:06.268738
++s.open()
+
+# 2016-08-25 15:44:07.870803
++s.read_all()
+
+# 2016-08-25 15:45:34.979442
++while 1:
++    raw = s.read(10)
++    print([(a0 + a1*256)/65536*10 for a0, a1 in zip(*([iter(raw)]*2))])
+
+# 2016-08-25 15:45:36.717261
++s.read_all()
+
+# 2016-08-25 15:46:41.612411
++while 1:
++    raw = s.read(10)
++    print([(a0 + a1*256)/65536*10 for a0, a1 in zip(*([iter(raw)]*2))])
+
+# 2016-08-25 19:29:11.526109
++from serial import Serial
++s = Serial("/dev/usb_serial", baudrate=115200)
++s.read_all()
+
+# 2016-08-25 19:29:19.526459
++s.read_all()
+
+# 2016-08-25 19:29:32.246020
++while 1:
++    raw = s.read(10)
++    
++    print([(a0 + a1*256)/65536*10 for a0, a1 in zip(*([iter(raw)]*2))])
+
+# 2016-09-08 13:42:25.272785
++import sqlite3
+
+# 2016-09-08 13:43:09.256392
++conn = sqlite3.connect('example.db')
+
+# 2016-09-08 13:43:16.094903
++c = conn.cursor()
+
+# 2016-09-08 13:45:03.970005
++c.execute('''create table stocks
++(date text, trans text, symbol text, qty real, price teal)''')
+
+# 2016-09-08 13:46:12.394636
++c.execute("insert into stocks value ('2006-01-05', 'BUY', 'RHAT', 100, 35.14)")
+
+# 2016-09-08 13:46:37.636967
++c.execute("insert into stocks values ('2006-01-05', 'BUY', 'RHAT', 100, 35.14)")
+
+# 2016-09-08 13:48:56.117681
++conn.commit()
+
+# 2016-09-08 13:49:00.213438
++conn.close()
+
+# 2016-09-08 14:03:41.093780
++conn = sqlite3.connect('example.db')
+
+# 2016-09-08 14:03:44.328328
++c = conn.cursor()
+
+# 2016-09-08 14:03:59.736485
++symbol = 'RHAT'
++c.execute("SELECT * FROM stocks WHERE symbol = '%s'" % symbol)
++
+
+# 2016-09-08 14:04:21.034777
++c.execute("SELECT * FROM stocks WHERE symbol = '%s'" % symbol)
+
+# 2016-09-08 14:04:56.057159
++t = ('RHAT',)
++c.execute('SELECT * FROM stocks WHERE symbol=?', t)
+
+# 2016-09-08 14:05:23.325743
++print(c.fetchone())
+
+# 2016-09-08 14:05:55.653661
++purchases = [('2006-03-28', 'BUY', 'IBM', 1000, 45.00),
++             ('2006-04-05', 'BUY', 'MSFT', 1000, 72.00),
++             ('2006-04-06', 'SELL', 'IBM', 500, 53.00),
++            ]
++c.executemany('INSERT INTO stocks VALUES (?,?,?,?,?)', purchases)
+
+# 2016-09-08 14:06:02.182290
++t = ('RHAT',)
++c.execute('SELECT * FROM stocks WHERE symbol=?', t)
+
+# 2016-09-08 14:06:12.423819
++print(c.fetchall())
+
+# 2016-09-08 14:07:43.274862
++for row in c.execute('select * from stocks ordered by price'):
++    print(row)
+
+# 2016-09-08 14:07:56.236510
++for row in c.execute('select * from stocks order by price'):
++    print(row)
+
+# 2016-09-08 14:29:07.143518
++conn.commit()
+
+# 2016-09-08 14:29:17.657235
++conn.close()
+
+# 2016-09-09 15:18:44.445623
++import serial
+
+# 2016-09-09 15:18:55.309498
++s = Serial("/dev/rotary0", baudrate=115200)
+
+# 2016-09-09 15:19:02.898041
++s = serial.Serial("/dev/rotary0", baudrate=115200)
+
+# 2016-09-09 15:19:41.345234
++s.write(6)
+
+# 2016-09-09 15:21:15.289327
++s.write(bytes.fromhex('0x06'))
+
+# 2016-09-09 15:21:31.769532
++s.write(bytes.fromhex('6'))
+
+# 2016-09-09 15:22:13.685686
++s.write(b'\x06')
+
+# 2016-09-09 15:22:20.519302
++s.read_all()
+
+# 2016-09-09 15:23:38.052242
++b'\x06'.hex()
+
+# 2016-09-13 19:27:23.608283
++# Working with multiple figure windows and subplots
++import matplotlib.pyplot as plt
++import numpy as np
++
++t = np.arange(0.0, 2.0, 0.01)
++s1 = np.sin(2*np.pi*t)
++s2 = np.sin(4*np.pi*t)
++
++plt.figure(1)
++plt.subplot(211)
++plt.plot(t, s1)
++plt.subplot(212)
++plt.plot(t, 2*s1)
++
++plt.figure(2)
++plt.plot(t, s2)
++
++# now switch back to figure 1 and make some changes
++plt.figure(1)
++plt.subplot(211)
++plt.plot(t, s2, 'gs')
++ax = plt.gca()
++ax.set_xticklabels([])
++
++plt.show()
+
+# 2016-09-13 19:31:15.589708
++# Working with multiple figure windows and subplots
++import matplotlib.pyplot as plt
++import numpy as np
++
++t = np.arange(0.0, 2.0, 0.01)
++s1 = np.sin(2*np.pi*t)
++s2 = np.sin(4*np.pi*t)
++
++plt.figure(1)
++plt.subplot(211)
++plt.plot(t, s1)
++plt.subplot(212)
++plt.plot(t, 2*s1)
++
++plt.figure(2)
++plt.plot(t, s2)
++
++# now switch back to figure 1 and make some changes
++plt.figure(1)
++plt.subplot(211)
++plt.plot(t, s2, 'gs')
++ax = plt.gca()
++ax.set_xticklabels([])
++
++plt.draw()
+
+# 2016-09-13 19:31:22.116191
++plt.draw()
+
+# 2016-09-13 19:31:31.963292
++plt.show(0)
+
+# 2016-09-13 19:31:51.836783
++plt.show()
+
+# 2016-09-13 19:32:05.587853
++plt.show(1)
+
+# 2016-09-13 19:32:07.998513
++plt.show()
+
+# 2016-09-13 19:32:10.481385
++plt.show(0)
+
+# 2016-09-23 20:08:54.067690
++import subprocess
+
+# 2016-09-23 20:09:10.389684
++subprocess.STDOUT
+
+# 2016-09-23 20:10:05.599223
++import sysy
+
+# 2016-09-23 20:10:07.021542
++import sys
+
+# 2016-09-23 20:10:11.176347
++sys.stdout
+
+# 2016-09-23 20:14:20.056641
++import subprocess
++while 1:
++    fifo = open('./nvim_fifo', 'r')
++    pid = fifo.readline().strip()
++    p = subprocess.Popen('tail -f /home/skt/tmp/nvimlog-python_{}'.format(pid), stdout = sys.stdout)
++    s = fifo.read()
++    if s == '':
++        p.terminate()
+
+# 2016-09-23 20:14:50.177932
++ 
+
+# 2016-09-23 20:15:08.949482
++import subprocess
+
+# 2016-09-23 20:15:48.948631
++while 1:
++    fifo = open('./nvim_fifo', 'r')
++    pid = fifo.readline().strip()
++    p = subprocess.Popen('tail -f /home/skt/tmp/nvimlog-python_{}'.format(pid), stdout = sys.stdout)
++    s = fifo.read()
++    if s == '':
++        p.terminate()
+
+# 2016-09-23 20:17:14.100381
++import os
+
+# 2016-09-23 20:17:18.295789
++import fcntl
+
+# 2016-09-23 20:17:39.287889
++fifo_fd = os.open("./nvim_fifo", os.O_NONBLOCK | os.O_WRONLY)
+
+# 2016-09-23 20:17:39.287966
++fifo = open('./nvim_fifo', 'r')
+
+# 2016-09-23 20:18:11.657148
++fcntl.fcntl(fifo_fd, fcntl.F_SETFL, os.O_NONBLOCK|os.O_NONBLOCK)
+
+# 2016-09-23 20:18:28.072116
++fifo = os.fdopen(fifo_fd, 'w')
+
+# 2016-09-23 20:18:45.806658
++fifo.write('122')
+
+# 2016-09-23 20:18:50.638715
++fifo.flush()
+
+# 2016-09-23 20:19:01.372862
++fifo.write('122\n')
+
+# 2016-09-23 20:19:02.927967
++fifo.flush()
+
+# 2016-09-23 20:19:02.928291
++fifo.readline()
+
+# 2016-09-23 20:20:00.391275
++os.close(fifo_fd)
+
+# 2016-09-23 20:20:10.788794
++fifo_fd = os.open("./nvim_fifo", os.O_NONBLOCK | os.O_WRONLY)
+
+# 2016-09-23 20:20:18.539193
++fcntl.fcntl(fifo_fd, fcntl.F_SETFL, os.O_NONBLOCK|os.O_NONBLOCK)
+
+# 2016-09-23 20:20:23.391507
++fifo = os.fdopen(fifo_fd, 'w')
+
+# 2016-09-23 20:20:26.868402
++fifo.write('122\n')
+
+# 2016-09-23 20:20:31.182586
++fifo.flush()
+
+# 2016-09-23 20:20:31.188802
++while 1:
++    fifo = open('./nvim_fifo', 'r')
++    pid = fifo.readline().strip()
++    p = subprocess.Popen('tail -f /home/skt/tmp/nvimlog-python_{}'.format(pid), stdout = sys.stdout)
++    s = fifo.read()
++    if s == '':
++        fifo.close()
++        p.terminate()
+
+# 2016-09-23 20:21:53.607537
++int('122\n')
+
+# 2016-09-23 20:23:01.198473
++while 1:
++    fifo = open('./nvim_fifo', 'r')
++    pid = fifo.read()
++    p = subprocess.Popen('tail -f /home/skt/tmp/nvimlog-python_{}'.format(pid), stdout = sys.stdout)
++    s = fifo.read()
++    if s == '':
++        fifo.close()
++        p.terminate()
+
+# 2016-09-23 20:24:14.320556
++fifo = open('./nvim_fifo', 'r')
++pid = fifo.read()
+
+# 2016-09-23 20:24:18.257658
++pid
+
+# 2016-09-23 20:25:26.457854
++fifo = open('./nvim_fifo', 'r')
++pid = fifo.read()
++
+
+# 2016-09-23 20:25:26.459107
++import os
++import fcntl
++fifo_fd = os.open("/home/skt/tmp/nvim_fifo", os.O_NONBLOCK | os.O_WRONLY)
++fcntl.fcntl(fifo_fd, fcntl.F_SETFL, 1)
++fifo = os.fdopen(fifo_fd, 'w')
++fifo.write(str(os.getpid())+'\n')
++os.close(fifo_fd)
+
+# 2016-09-23 20:25:34.439611
++pid
+
+# 2016-09-23 20:25:44.567722
++os.getpid()
+
+# 2016-09-23 20:26:12.261147
++fifo_fd = os.open("/home/skt/tmp/nvim_fifo", os.O_NONBLOCK | os.O_WRONLY)
+
+# 2016-09-23 20:26:28.718172
++fcntl.fcntl(fifo_fd, fcntl.F_SETFL, 0)
+
+# 2016-09-23 20:26:47.773597
++fifo = os.fdopen(fifo_fd, 'w')
+
+# 2016-09-23 20:26:55.901162
++fifo.write(str(os.getpid())+'\n')
+
+# 2016-09-23 20:27:02.243329
++fifo.flush()
+
+# 2016-09-23 20:27:27.395761
++fifo.close()
+
+# 2016-09-23 20:27:27.395888
++fifo = open('./nvim_fifo', 'r')
++pid = fifo.read()
+
+# 2016-09-23 20:28:05.612617
++fifo_fd = os.open("/home/skt/tmp/nvim_fifo", os.O_NONBLOCK | os.O_WRONLY)
+
+# 2016-09-23 20:28:12.979386
++os.close(fifo_fd)
+
+# 2016-09-23 20:28:29.923320
++fifo_fd = os.open("/home/skt/tmp/nvim_fifo", os.O_NONBLOCK | os.O_WRONLY)
+
+# 2016-09-23 20:28:39.494508
++fcntl.fcntl(fifo_fd, fcntl.F_SETFL, 0)
+
+# 2016-09-23 20:28:48.968714
++fifo = os.fdopen(fifo_fd, 'w')
+
+# 2016-09-23 20:28:59.777264
++fifo.write(str(os.getpid())+'\n')
+
+# 2016-09-23 20:29:07.783547
++fifo = open('./nvim_fifo', 'r')
++print('===')
++pid = fifo.read()
+
+# 2016-09-23 20:29:18.590486
++os.close(fifo_fd)
+
+# 2016-09-23 20:29:18.590612
++fifo = open('./nvim_fifo', 'r')
++print('===')
++pid = fifo.readline()
+
+# 2016-09-23 20:39:36.406333
++fifo_fd = os.open("/home/skt/tmp/nvim_fifo", os.O_NONBLOCK | os.O_WRONLY)
+
+# 2016-09-23 20:39:39.523224
++fifo_fd
+
+# 2016-09-23 20:39:50.656662
++import os
+
+# 2016-09-23 20:39:52.202001
++fifo_fd = os.open("/home/skt/tmp/nvim_fifo", os.O_NONBLOCK | os.O_WRONLY)
+
+# 2016-09-23 20:39:55.184008
++fifo_fd
+
+# 2016-09-23 20:41:26.003828
++while 1:
++    fifo = open('./nvim_fifo', 'r')
++    pid = fifo.read()
++    p = subprocess.Popen('tail -f /home/skt/tmp/nvimlog-python_{}'.format(pid), stdout = sys.stdout)
++    s = fifo.read()
++    if s == '':
++        fifo.close()
++        p.terminate()
+
+# 2016-09-23 20:42:13.561015
++import os
+
+# 2016-09-23 20:42:18.574140
++fifo_fd = 7
+
+# 2016-09-23 20:42:24.870605
++import fcntl
+
+# 2016-09-23 20:42:27.802343
++fcntl.fcntl(fifo_fd, fcntl.F_SETFL, 0)
+
+# 2016-09-23 20:42:49.048275
++fifo_fd = os.open("/home/skt/tmp/nvim_fifo", os.O_NONBLOCK | os.O_WRONLY)
+
+# 2016-09-23 20:42:51.186880
++fcntl.fcntl(fifo_fd, fcntl.F_SETFL, 0)
+
+# 2016-09-23 20:42:55.088182
++fifo_fd
+
+# 2016-09-23 20:43:27.112145
++fifo_fd = os.open("/home/skt/tmp/nvim_fifo", os.O_NONBLOCK | os.O_WRONLY)
+
+# 2016-09-23 20:43:28.777411
++fcntl.fcntl(fifo_fd, fcntl.F_SETFL, 0)
+
+# 2016-09-23 20:43:49.854043
++fifo = os.fdopen(fifo_fd, 'w')
+
+# 2016-09-23 20:43:59.019162
++fifo.write(str(os.getpid())+'\n')
+
+# 2016-09-23 20:44:03.731125
++fifo.flush()
+
+# 2016-09-23 20:44:07.504268
++while 1:
++    fifo = open('./nvim_fifo', 'r')
++    pid = fifo.read()
++    print(pid)
++   
++    p = subprocess.Popen('tail -f /home/skt/tmp/nvimlog-python_{}'.format(pid), stdout = sys.stdout)
++    s = fifo.read()
++    if s == '':
++        fifo.close()
++        p.terminate()
+
+# 2016-09-23 20:44:22.557524
++fifo.write(str(os.getpid())+'\n')
+
+# 2016-09-23 20:44:24.064219
++fifo.flush()
+
+# 2016-09-23 20:44:27.364093
++fifo_fd = os.open("/home/skt/tmp/nvim_fifo", os.O_NONBLOCK | os.O_WRONLY)
+
+# 2016-09-23 20:44:31.457136
++fcntl.fcntl(fifo_fd, fcntl.F_SETFL, 0)
+
+# 2016-09-23 20:44:37.335603
++fifo = os.fdopen(fifo_fd, 'w')
+
+# 2016-09-23 20:44:41.398588
++fifo.write(str(os.getpid())+'\n')
+
+# 2016-09-23 20:44:44.381450
++fifo.flush()
+
+# 2016-09-23 20:44:48.999597
++while 1:
++    fifo = open('./nvim_fifo', 'r')
++    pid = fifo.read()
++    print(pid)
++   
++    p = subprocess.Popen('tail -f /home/skt/tmp/nvimlog-python_{}'.format(pid), stdout = sys.stdout)
++    s = fifo.readline()
++    if s == '':
++        fifo.close()
++        p.terminate()
+
+# 2016-09-23 20:48:12.300321
++while 1:
++    fifo = open('./nvim_fifo', 'r')
++    pid = fifo.read()
++    print(pid)
++   
++    p = subprocess.Popen('tail -f /home/skt/tmp/nvimlog-python_{}'.format(pid), stdout = sys.stdout)
++    s = fifo.readline().strip()
++    if s == '':
++        fifo.close()
++        p.terminate()
+
+# 2016-09-23 20:49:12.015666
++while 1:
++    fifo = open('./nvim_fifo', 'r')
++    pid = fifo.read().strip()
++    print(pid)
++   
++    p = subprocess.Popen('tail -f /home/skt/tmp/nvimlog-python_{}'.format(pid), stdout = sys.stdout)
++    s = fifo.readline()
++    if s == '':
++        fifo.close()
++        p.terminate()
+
+# 2016-09-23 20:50:08.386413
++while 1:
++    fifo = open('./nvim_fifo', 'r')
++    pid = fifo.read().strip()
++    print(pid)
++   
++    p = subprocess.Popen(['tail','-f','/home/skt/tmp/nvimlog-python_{}'.format(pid)], stdout = sys.stdout)
++    s = fifo.readline()
++    if s == '':
++        fifo.close()
++        p.terminate()
+
+# 2016-09-25 20:18:09.392150
++import asyncio
++async def foo():
++    await asyncio.sleep(1)
++    return "foo done"
++
++async def bar():
++    await asyncio.sleep(.5)
++    return "bar done"
++
++async def ker():
++    await asyncio.sleep(3)
++    return "ker done"
++
++async def task():
++    res = await foo()
++    print(res)
++    res = await bar()
++    print(res)
++    res = await ker()
++    print(res)
++
++loop = asyncio.get_event_loop()
++loop.run_until_complete(task())
+
+# 2016-09-25 20:18:49.243355
++import asyncio
++async def foo():
++    await asyncio.sleep(1)
++    return "foo done"
++
++async def bar():
++    await asyncio.sleep(.5)
++    return "bar done"
++
++async def ker():
++    await asyncio.sleep(3)
++    return "ker done"
++
++async def task():
++    res = await foo()
++    print(res)
++    res = await ker()
++    print(res)
++    res = await bar()
++    print(res)
++
++loop = asyncio.get_event_loop()
++loop.run_until_complete(task())
+
+# 2016-09-25 20:19:49.792456
++import asyncio
++async def foo():
++    await asyncio.sleep(1)
++    print("in foo done")
++    return "foo done"
++
++async def bar():
++    await asyncio.sleep(.5)
++    print("in bar done")
++    return "bar done"
++
++async def ker():
++    await asyncio.sleep(3)
++    print("in ker done")
++    return "ker done"
++
++async def task():
++    res = await foo()
++    print(res)
++    res = await ker()
++    print(res)
++    res = await bar()
++    print(res)
++
++loop = asyncio.get_event_loop()
++loop.run_until_complete(task())
+
+# 2016-09-27 00:41:22.791234
++import ast
+
+# 2016-09-27 00:42:33.418928
++ast.literal_eval('bkpt={number="1",type="breakpoint",disp="keep",enabled="y",addr="0x0000000000400547",func="main",file="hello.c",fullname="/home/skt/code/python-gdb-mi/test/hello.c",line="31",thread-groups=["i1"],times="1",original-location="main"}')
+
+# 2016-09-27 00:43:28.433823
++ast.literal_eval('number="1",type="breakpoint",disp="keep",enabled="y",addr="0x0000000000400547",func="main",file="hello.c",fullname="/home/skt/code/python-gdb-mi/test/hello.c",line="31",thread-groups=["i1"],times="1",original-location="main"')
+
+# 2016-09-27 00:50:05.066974
++escaped_str = "One \\\'example\\\'"
++import codecs
++print(codecs.getdecoder("unicode_escape")(escaped_str))
+
+# 2016-09-27 00:58:18.784836
++escaped_str = "21\t    printf(\"Hello world\\n\");\n"
++print(codecs.getdecoder("unicode_escape")(escaped_str))
+
+# 2016-09-27 00:58:43.862094
++escaped_str = "21\t    printf(\"Hello world\\n\");\n"
++print(codecs.getdecoder("unicode_escape")(escaped_str)[0])
+
+# 2016-09-27 01:00:12.625157
++ast.literal_eval("21\t    printf(\"Hello world\\n\");\n")
+
+# 2016-09-27 01:01:00.224834
++ast.literal_eval('"21\t    printf(\"Hello world\\n\");\n"')
+
+# 2016-09-27 01:02:09.824402
++ast.literal_eval("'21\t    printf(\"Hello world\\n\");\n'")
+
+# 2016-09-27 01:03:06.138526
++ast.literal_eval(r"'21\t    printf(\"Hello world\\n\");\n'")
+
+# 2016-09-27 01:04:38.178828
++with open("./tmp/test", 'rb'):
++    src = [e for e in f]
+
+# 2016-09-27 01:04:47.866646
++with open("./tmp/test", 'rb') as f:
++    src = [e for e in f]
+
+# 2016-09-27 01:04:49.537749
++rc
+
+# 2016-09-27 01:04:51.180076
++src
+
+# 2016-09-27 01:05:04.651454
++with open("./tmp/test", 'r') as f:
++    src = [e for e in f]
+
+# 2016-09-27 01:05:07.996662
++src
+
+# 2016-09-27 01:05:22.522803
++ast.literal_eval(src[0])
+
+# 2016-09-27 01:05:43.074498
++print(_)
+
+# 2016-09-27 01:08:57.545877
++ast.literal_eval("a = 3")
+
+# 2016-09-27 15:20:58.799009
++import re
+
+# 2016-09-27 15:21:23.990544
++pat = re.compile(r'\"(?P<CONST>(.*?))(?<!\\\")')
+
+# 2016-09-27 15:21:33.962928
++pat.match("\"")
+
+# 2016-09-27 15:22:06.577950
++pat.match("\"\\\"")
+
+# 2016-09-27 15:22:25.968120
++pat.match("\"\\\"\"")
+
+# 2016-09-27 15:23:45.399254
++pat.findall("\"\\\"\"")
+
+# 2016-09-27 15:24:30.719680
++s = "\"\\\"\""
+
+# 2016-09-27 15:25:07.548082
++for m in pat.finditer(s):
++    print(m.lastgroup, m.group(m.lastgroup))
+
+# 2016-09-27 15:26:00.917111
++s = "\"wwwwwww\\\"\""
+
+# 2016-09-27 15:26:02.840310
++for m in pat.finditer(s):
++    print(m.lastgroup, m.group(m.lastgroup))
+
+# 2016-09-27 15:26:35.591263
++s
+
+# 2016-09-27 15:26:50.179137
++print(s)
+
+# 2016-09-27 15:27:15.864991
++pat = re.compile(r'\"(?P<CONST>(.*?))\"')
+
+# 2016-09-27 15:27:18.609241
++for m in pat.finditer(s):
++    print(m.lastgroup, m.group(m.lastgroup))
+
+# 2016-09-27 15:29:50.204839
++s = "\"wwwwwww\\\"\"\\n"
+
+# 2016-09-27 15:29:53.681651
++print(s)
+
+# 2016-09-27 15:31:11.662126
++pat = re.compile(r'\"(?P<CONST>(.*?))\"(?=\n)')
+
+# 2016-09-27 15:31:16.411193
++for m in pat.finditer(s):
++    print(m.lastgroup, m.group(m.lastgroup))
+
+# 2016-09-27 15:31:49.933216
++pat = re.compile(r'\"(?P<CONST>(.*?))\"(?=\\n)')
+
+# 2016-09-27 15:31:51.900150
++for m in pat.finditer(s):
++    print(m.lastgroup, m.group(m.lastgroup))
+
+# 2016-09-27 20:46:31.966556
++a = [1]
+
+# 2016-09-27 20:46:49.555066
++filter(lambda x: x>0, a)
+
+# 2016-09-27 20:47:01.200177
++list(filter(lambda x: x>0, a))
+
+# 2016-09-27 20:47:12.743454
++a = {1:2}
+
+# 2016-09-27 20:47:22.172954
++list(filter(lambda k,v: k>v, a))
+
+# 2016-09-27 20:47:52.524882
++list(filter(lambda k: print(k), a))
+
+# 2016-09-27 20:48:03.746483
++list(filter(lambda k: True, a))
+
+# 2016-09-27 20:48:20.928323
++dict(filter(lambda k: True, a))
+
+# 2016-09-29 10:52:39.694257
++from mpl_toolkits.mplot3d import Axes3D
++import matplotlib.pyplot as plt
++import numpy as np
++
++from matplotlib.patches import FancyArrowPatch
++from mpl_toolkits.mplot3d import proj3d
++
++# define a 3D arrow
++class Arrow3D(FancyArrowPatch):
++    def __init__(self, xs, ys, zs, *args, **kwargs):
++        FancyArrowPatch.__init__(self, (0,0), (0,0), *args, **kwargs)
++        self._verts3d = xs, ys, zs
++
++    def draw(self, renderer):
++        xs3d, ys3d, zs3d = self._verts3d
++        xs, ys, zs = proj3d.proj_transform(xs3d, ys3d, zs3d, renderer.M)
++        self.set_positions((xs[0],ys[0]),(xs[1],ys[1]))
++        FancyArrowPatch.draw(self, renderer)
++
++fig = plt.figure()
++ax = fig.add_subplot(111, projection='3d')
++normal = np.array([0,0,1])
++
++# the coordinate of axis plane
++xx = np.array([[ 1, 0 ,-1],
++               [ 1, 0 ,-1],
++               [ 1, 0 ,-1]])
++xy = np.array([[ 1, 1, 1],
++               [ 0, 0, 0],
++               [-1, -1, -1]])
++zero = np.array([[0, 0, 0],
++                 [0, 0, 0],
++                 [0, 0, 0]])
++
++ax.set_axis_off()
++
++# plot axis plane
++ax.plot_surface(xx, xy, zero,  rstride=2, cstride=2, color='b', linewidth=0, alpha=0.3)
++ax.plot_surface(xx, zero, xy,  rstride=2, cstride=2, color='b', linewidth=0, alpha=0.3)
++ax.plot_surface(zero, xx, xy,  rstride=2, cstride=2, color='b', linewidth=0, alpha=0.3)
++
++# add arrow
++arrow = Arrow3D([0,0],[0,0],[-1,1], mutation_scale=20, lw=1,
++        arrowstyle="<|-|>", color="k", linestyle="solid")
++ax.add_artist(arrow)
++# add text
++ax.text(0,0,1.1, '3', fontsize=14)
++ax.text(0,0,-1.1, '4', fontsize=14)
++
++arrow = Arrow3D([0,0],[-1,1],[0,0], mutation_scale=20, lw=1,
++        arrowstyle="<|-|>", color="k", linestyle="solid")
++ax.add_artist(arrow)
++ax.text(0, 1.1,0, '6', fontsize=14)
++ax.text(0,-1.1,0, '5', fontsize=14)
++
++arrow = Arrow3D([-1,1],[0,0],[0,0], mutation_scale=20, lw=1,
++        arrowstyle="<|-|>", color="k", linestyle="solid")
++ax.add_artist(arrow)
++ax.text( 1.1,0,0, '1', fontsize=14)
++ax.text(-1.1,0,0, '2', fontsize=14)
++
++arrow = Arrow3D([1,-1],[0,0],[1,-1], mutation_scale=20, lw=1,
++        arrowstyle="<|-|>", color='w', linestyle="dashed")
++ax.add_artist(arrow)
++ax.text( 1.1,0, 1.1, '10', fontsize=14)
++ax.text(-1.1,0,-1.1, '9', fontsize=14)
++
++arrow = Arrow3D([1,-1],[0,0],[-1,1], mutation_scale=20, lw=1,
++        arrowstyle="<|-|>", color='w', linestyle="dashed")
++ax.add_artist(arrow)
++ax.text(-1.1,0, 1.1, '14', fontsize=14)
++ax.text( 1.1,0,-1.1, '13', fontsize=14)
++
++plt.show()
+
+# 2016-09-29 13:38:09.723489
++width = 40
+
+# 2016-09-29 13:38:10.786231
++"{0:-10}{3:-{2}}".format("variables", width-20, "-")
+
+# 2016-09-29 13:38:43.189803
++"{0:->10}{3:->{2}}".format("variables", width-20, "-")
+
+# 2016-09-29 13:39:04.832300
++"{0:->10}".format("variables")
+
+# 2016-09-29 13:39:10.428519
++"{0:->20}".format("variables")
+
+# 2016-10-18 23:23:59.011395
++from PyQt5 import QtGui
+
+# 2016-10-18 23:24:10.433268
++from PyQt5 import QtWebEngineWidgets
+
+# 2016-10-18 23:24:31.759824
++from PyQt5 import QtCore, QtGui, QtWidgets
+
+# 2016-10-18 23:24:46.464325
++from PyQt5.QtWidgets import QApplication
+
+# 2016-10-18 23:24:57.362068
++app = QApplication()
+
+# 2016-10-18 23:25:01.669776
++app = QApplication(None)
+
+# 2016-10-18 23:25:06.118986
++import sys
+
+# 2016-10-18 23:25:13.166823
++app = QApplication(sys.argv)
+
+# 2016-10-18 23:25:34.557735
++webView = QtWebEngineWidgets.QWebEngineView()
+
+# 2016-10-18 23:25:41.193493
++webView.show()
+
+# 2016-10-18 23:26:27.430727
++webView.load("file:///home/skt/Documents/localnote/笔记本/bt协议详解 基础篇（上）.html")
+
+# 2016-10-18 23:26:54.737209
++webView.load(QtCore.QUrl("file:///home/skt/Documents/localnote/笔记本/bt协议详解 基础篇（上）.html"))
+
+# 2016-10-18 23:27:11.260859
++webView.load(QtCore.QUrl("/home/skt/Documents/localnote/笔记本/bt协议详解 基础篇（上）.html"))
+
+# 2016-10-18 23:27:32.060059
++webView.load(QtCore.QUrl("www.baidu.com"))
+
+# 2016-10-20 23:25:25.286933
++from __future__ import print_function, division
++from functools import partial, wraps
++from collections import deque
++import os, sys
++import json
++import re
++
++from jupyter_client import KernelManager
++from jupyter_client.threaded import ThreadedKernelClient
++from jupyter_core.application import JupyterApp
++from jupyter_client.consoleapp import JupyterConsoleApp
++from jupyter_core import version_info
++
++import greenlet
++from traceback import format_exc
++
++from .ansi_code_processor import AnsiCodeProcessor
++
++# from http://serverfault.com/questions/71285/in-centos-4-4-how-can-i-strip-escape-sequences-from-a-text-file
++strip_ansi = re.compile('\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]')
++
++import logging
++logger = logging.getLogger(__name__)
++error, debug, info, warn = (logger.error, logger.debug, logger.info, logger.warn,)
++if 'NVIM_IPY_DEBUG_FILE' in os.environ:
++    logfile = os.environ['NVIM_IPY_DEBUG_FILE'].strip()
++    logger.addHandler(logging.FileHandler(logfile, 'w'))
++    logger.level = logging.DEBUG
++
++class RedirectingKernelManager(KernelManager):
++    def _launch_kernel(self, cmd, **b):
++        # stdout is used to communicate with nvim, redirect it somewhere else
++        self._null = open("/dev/null","wb",0)
++        b['stdout'] = self._null.fileno()
++        b['stderr'] = self._null.fileno()
++        return super(RedirectingKernelManager, self)._launch_kernel(cmd, **b)
++
++class JupyterVimApp(JupyterApp, JupyterConsoleApp):
++    # don't use blocking client; we override call_handlers below
++    kernel_client_class = ThreadedKernelClient
++    kernel_manager_class = RedirectingKernelManager
++    aliases = JupyterConsoleApp.aliases #this the way?
++    flags = JupyterConsoleApp.flags
++    def init_kernel_client(self):
++        #TODO: cleanup this (by subclassing kernel_clint or something)
++        if self.kernel_manager is not None:
++            self.kernel_client = self.kernel_manager.client()
++        else:
++            self.kernel_client = self.kernel_client_class(
++                                session=self.session,
++                                ip=self.ip,
++                                transport=self.transport,
++                                shell_port=self.shell_port,
++                                iopub_port=self.iopub_port,
++                                stdin_port=self.stdin_port,
++                                hb_port=self.hb_port,
++                                connection_file=self.connection_file,
++                                parent=self,
++            )
++        self.kernel_client.shell_channel.call_handlers = self.target.on_shell_msg
++        self.kernel_client.iopub_channel.call_handlers = self.target.on_iopub_msg
++        self.kernel_client.stdin_channel.call_handlers = self.target.on_stdin_msg
++        self.kernel_client.hb_channel.call_handlers = self.target.on_hb_msg
++        self.kernel_client.start_channels()
++
++    def initialize(self, target, argv):
++        self.target = target
++        super(JupyterVimApp, self).initialize(argv)
++        JupyterConsoleApp.initialize(self, argv)
+
+# 2016-10-20 23:25:42.734015
++from __future__ import print_function, division
++from functools import partial, wraps
++from collections import deque
++import os, sys
++import json
++import re
++
++from jupyter_client import KernelManager
++from jupyter_client.threaded import ThreadedKernelClient
++from jupyter_core.application import JupyterApp
++from jupyter_client.consoleapp import JupyterConsoleApp
++from jupyter_core import version_info
++
++import greenlet
++from traceback import format_exc
++
++from ansi_code_processor import AnsiCodeProcessor
++
++# from http://serverfault.com/questions/71285/in-centos-4-4-how-can-i-strip-escape-sequences-from-a-text-file
++strip_ansi = re.compile('\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]')
++
++import logging
++logger = logging.getLogger(__name__)
++error, debug, info, warn = (logger.error, logger.debug, logger.info, logger.warn,)
++if 'NVIM_IPY_DEBUG_FILE' in os.environ:
++    logfile = os.environ['NVIM_IPY_DEBUG_FILE'].strip()
++    logger.addHandler(logging.FileHandler(logfile, 'w'))
++    logger.level = logging.DEBUG
++
++class RedirectingKernelManager(KernelManager):
++    def _launch_kernel(self, cmd, **b):
++        # stdout is used to communicate with nvim, redirect it somewhere else
++        self._null = open("/dev/null","wb",0)
++        b['stdout'] = self._null.fileno()
++        b['stderr'] = self._null.fileno()
++        return super(RedirectingKernelManager, self)._launch_kernel(cmd, **b)
++
++class JupyterVimApp(JupyterApp, JupyterConsoleApp):
++    # don't use blocking client; we override call_handlers below
++    kernel_client_class = ThreadedKernelClient
++    kernel_manager_class = RedirectingKernelManager
++    aliases = JupyterConsoleApp.aliases #this the way?
++    flags = JupyterConsoleApp.flags
++    def init_kernel_client(self):
++        #TODO: cleanup this (by subclassing kernel_clint or something)
++        if self.kernel_manager is not None:
++            self.kernel_client = self.kernel_manager.client()
++        else:
++            self.kernel_client = self.kernel_client_class(
++                                session=self.session,
++                                ip=self.ip,
++                                transport=self.transport,
++                                shell_port=self.shell_port,
++                                iopub_port=self.iopub_port,
++                                stdin_port=self.stdin_port,
++                                hb_port=self.hb_port,
++                                connection_file=self.connection_file,
++                                parent=self,
++            )
++        self.kernel_client.shell_channel.call_handlers = self.target.on_shell_msg
++        self.kernel_client.iopub_channel.call_handlers = self.target.on_iopub_msg
++        self.kernel_client.stdin_channel.call_handlers = self.target.on_stdin_msg
++        self.kernel_client.hb_channel.call_handlers = self.target.on_hb_msg
++        self.kernel_client.start_channels()
++
++    def initialize(self, target, argv):
++        self.target = target
++        super(JupyterVimApp, self).initialize(argv)
++        JupyterConsoleApp.initialize(self, argv)
+
+# 2016-10-20 23:25:58.907943
++ip_app = JupyterVimApp.instance()

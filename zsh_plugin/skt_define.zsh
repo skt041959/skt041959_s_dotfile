@@ -23,7 +23,7 @@ source $HOME/.zsh_plugin/compl.zsh
 source $HOME/.zsh_plugin/zsh-git-prompt/zshrc.sh
 source $HOME/.zsh_plugin/bd.zsh
 source $HOME/.zsh_plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $HOME/.vim/plugged/neoman.vim/scripts/neovim.zsh
+source $HOME/.vim/plugged/neoman.vim/scripts/nman.zsh
 #}}}
 
 #{{{
@@ -317,8 +317,8 @@ alias bbs='luit -encoding gbk telnet 202.38.64.3'
 alias wl='wc -l'
 alias feh='/home/skt/.local/bin/feh.sh'
 alias pgrep='nocorrect pgrep -lf'
-alias ppy='ptipython'
-alias ppy2='ptipython2'
+alias ppy='ptpython'
+alias ppy2='ptpython2'
 alias vim='nvim'
 alias vims='nvim -S Session.vim'
 alias vimrc='nvim /home/skt/.vim/vimrc'
