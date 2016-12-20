@@ -21,8 +21,10 @@ call plug#begin()
                 \'for': ['java', 'lua', 'pandoc', 'markdown', 'sh', 'vim', 'verilog', 'verilog_systemverilog', 'html', 'make'],
                 \'on': ['DeopleteEnable']
                 \ }
+    Plug 'zchee/deoplete-go', {'do': 'make'}
+    Plug 'zchee/deoplete-zsh'
     Plug 'Shougo/echodoc.vim'
-    Plug 'zchee/deoplete-jedi', {'for': ['python']}
+    Plug 'zchee/deoplete-jedi'
     Plug 'artur-shaik/vim-javacomplete2', {'for': ['java'],}
                 " \ 'tag': 'v2.3.5',
                 " \ }
@@ -40,10 +42,13 @@ call plug#begin()
     Plug 'scrooloose/nerdcommenter'
     Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
     Plug 'Xuyuanp/nerdtree-git-plugin', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight', {'on': ['NERDTreeToggle', 'NERDTreeFind']}
+    " Plug 'ryanoasis/vim-devicons'
     Plug 'Raimondi/delimitMate'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-repeat'
     Plug 'SirVer/ultisnips'
+    Plug 'godlygeek/tabular'
 
     Plug 'honza/vim-snippets'
     Plug 'mbbill/fencview'
@@ -70,6 +75,7 @@ call plug#begin()
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
     " Plug 'c0r73x/neotags.nvim'
+    Plug 'christoomey/vim-tmux-navigator'
 
     Plug 'majutsushi/tagbar'
     Plug 'vim-airline/vim-airline'
@@ -82,6 +88,7 @@ call plug#begin()
     Plug 'a.vim'
     Plug 'Mark--Karkat'
     Plug 'renamer.vim'
+    Plug 'zenbro/mirror.vim'
     Plug 'fcitx.vim'
     Plug 'DoxygenToolkit.vim'
     Plug 'bps/vim-textobj-python'
@@ -94,7 +101,7 @@ call plug#begin()
     Plug 'miyakogi/livemark.vim'
     "Plug 'skt041959/markdown-preview.vim', {'for': ['pandoc', 'markdown']}
 
-    Plug 'fatih/vim-go', {'for': 'go'}
+    " Plug 'fatih/vim-go', {'for': 'go'}
     Plug 'rust-lang/rust.vim', {'for': 'rust'}
     Plug 'peterhoeg/vim-qml', {'for': 'qml'}
     Plug 'Cognoscan/vim-vhdl', {'for': []}
@@ -104,7 +111,7 @@ call plug#begin()
     Plug 'kurayama/systemd-vim-syntax'
     Plug 'chrisbra/csv.vim', {'on': ['InitCSV']}
     Plug 'keith/tmux.vim'
-    Plug 'nhooyr/neoman.vim'
+    " Plug 'nhooyr/neoman.vim'
     Plug 'lambdalisue/vim-gista'
 
     Plug 'guns/xterm-color-table.vim'
@@ -115,10 +122,10 @@ call plug#begin()
 
     Plug 'skt041959/vim-libpinyin', {'for': []}
 
-    " Plug '~/code/gdbmi.nvim'
+    Plug '~/code/gdbmi.nvim', {'on': ['GDBLaunch']}
 
     "Plug 'rhysd/nyaovim-popup-tooltip'
-    Plug 'rhysd/nyaovim-markdown-preview'
+    " Plug 'rhysd/nyaovim-markdown-preview'
 "}}}
 call plug#end()
 
@@ -128,6 +135,8 @@ colorscheme darkblack_skt
 xnoremap p "_dP
 set termguicolors
 set termencoding=utf-8
+set exrc
+set inccommand=split
 
 cnoremap <M-b> <S-Left>
 cnoremap <M-f> <S-Right>
@@ -245,6 +254,8 @@ let g:neomake_python_flake8_args = ['--first'
 let g:neomake_vim_enabled_makers = ['vint']
 let g:neomake_cpp_enabled_makers = []
 let g:neomake_c_enabled_makers = []
+let g:neomake_markdown_enabled_makers = []
+let g:neomake_pandoc_enabled_makers = []
 let g:neomake_c_cscope_maker = {
             \ 'exec': 'cscope',
             \ 'args': ['-RbqkU'],
@@ -257,6 +268,8 @@ autocmd! BufWritePost * Neomake
 
 "====nvim-ipy===={{{
 let g:nvim_ipy_perform_mappings = 1
+let g:ipy_set_ft = 1
+let g:ipy_truncate_input = 30
 function Map_nvim_ipy()
     nmap <F5> <Plug>(IPy-Run)
     vmap <F5> <Plug>(IPy-Run)
@@ -359,4 +372,24 @@ let g:autoformat_retab=0
 let g:autoformat_remove_trailing_spaces=0
 "}}}
 
+"====vim-tmux-navigator===={{{
+let g:tmux_navigator_no_mappings = 1
+let g:tmux_navigator_save_on_switch = 0
+
+nnoremap <silent> ;h :TmuxNavigateLeft<cr>
+nnoremap <silent> ;j :TmuxNavigateDown<cr>
+nnoremap <silent> ;k :TmuxNavigateUp<cr>
+nnoremap <silent> ;l :TmuxNavigateRight<cr>
+nnoremap <silent> ;p :TmuxNavigatePrevious<cr>
+"}}}
+
+"====gdbmi.nvim===={{{
+let g:gdbmi#auto_mapping=1
+"}}}
+
+"===={{{
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+"}}}
 " vim: set fdm=marker

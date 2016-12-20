@@ -167,7 +167,7 @@ set completeopt+=longest
 set makeprg=make\ \-j\ 2
 nnoremap <C-B> :call EMake()<CR>
 
-set viewoptions=cursor,folds,slash,unix
+set viewoptions=cursor,slash,unix
 
 set sessionoptions-=options
 set sessionoptions-=blank
@@ -199,11 +199,11 @@ vnoremap <C-d> <C-d>zz
 vnoremap <C-f> <C-f>zz
 vnoremap <C-b> <C-b>zz
 
-nnoremap <leader>k <C-W>k
-nnoremap <leader>j <C-W>j
-nnoremap <leader>h <C-W>h
-nnoremap <leader>l <C-W>l
-nnoremap <leader>p <C-W>p
+" nnoremap <leader>k <C-W>k
+" nnoremap <leader>j <C-W>j
+" nnoremap <leader>h <C-W>h
+" nnoremap <leader>l <C-W>l
+" nnoremap <leader>p <C-W>p
 
 nnoremap <leader>3 :tabp<CR>
 nnoremap <leader>4 :tabn<CR>
@@ -333,12 +333,11 @@ nmap gz <Plug>Zeavim
 vmap gz <Plug>ZVVisSelection
 nmap gZ <Plug>ZVKeyDocset
 let g:zv_file_types = {
-            \ 'python': 'python,numpy,scipy,pandas,opencv',
-            \ 'c++': 'c,c++,opencv',
+            \ 'python': 'python,numpy,scipy,pandas',
+            \ 'cpp': 'c,cpp,cvcpp',
             \ 'vim': 'vim',
             \ }
 let g:zv_docsets_dir = '/home/skt/.local/share/Zeal/Zeal/docsets'
-"nnoremap gz :!zeal 'dash://<cword>'&<CR><CR>
 "}}}
 
 "====tagbar===={{{
@@ -415,7 +414,6 @@ let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_autoclose_preview_window_after_insertion = 0
 let g:ycm_error_symbol = '✗'
 let g:ycm_warning_symbol = '⚠'
-let g:ycm_python_binary_path = '/usr/bin/python2'
 let g:ycm_goto_buffer_command = 'horizontal-split'
 let g:ycm_rust_src_path = '/usr/src/rust/src/'
 nnoremap <leader>yg :YcmCompleter GoTo<CR>
@@ -480,14 +478,10 @@ let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#smart_auto_mappings = 0
 let g:jedi#popup_on_dot = 0
-let g:jedi#completions_command = ''
+let g:jedi#completions_command = 'K'
+let g:jedi#rename_command = "'r"
 let g:jedi#show_call_signatures = '1'
 let g:jedi#show_call_signatures_delay = 0
-augroup JEDI_MANUAL
-    autocmd!
-    " autocmd FileType python nnoremap <silent> <buffer> <leader>jd :call jedi#goto()<cr>
-    autocmd FileType python nnoremap <silent> <buffer> K :call jedi#show_documentation()<cr>
-augroup END
 "}}}
 
 "====airline===={{{
@@ -505,7 +499,7 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
+let g:airline_powerline_fonts = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#flags = 's'
 let g:airline_extensions = ['branch',
@@ -623,14 +617,17 @@ nmap <space>u <Plug>GitGutterRevertHunk
 "}}}
 
 "====SimpylFold===={{{
-"autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
-"autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
+augroup SIMPYLFOLD
+    autocmd!
+    autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
+    autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
+augroup END
 let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_docstring = 1
 "}}}
 
 "====neoman===={{{
-set keywordprg=:Nman
+set keywordprg=:Man
 autocmd FileType vim                  set keywordprg=
 "}}}
 
