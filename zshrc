@@ -4,7 +4,7 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
 #. /usr/share/zsh/site-contrib/powerline.zsh
-source $HOME/.zsh_plugin/skt_define.zsh
+source $HOME/.zsh.d/skt_define.zsh
 
 #autoload colors
 #colors
@@ -54,7 +54,7 @@ case $TERM in (*xterm*|*rxvt*|(dt|k|E)term)
 esac
 
 export EDITOR=nvim
-export TERM=screen
+export TERM=screen-256color
 
 #关于历史纪录的配置 {{{
 export HISTFILESIZE=1000000
@@ -132,7 +132,7 @@ setopt EXTENDED_GLOB
 #prompt redhat
 
 # adopt orphan process
-zmodload zsh/subreap
+# zmodload zsh/subreap
 #subreap
 
 setopt correctall

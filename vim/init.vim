@@ -15,10 +15,11 @@ call plug#begin()
     Plug 'tmhedberg/SimpylFold'
 
     Plug 'Valloric/YouCompleteMe', {
-                \'for': ['c', 'cpp', 'cmake', 'python', 'rust']}
+                \'for': ['c', 'cpp', 'cmake', 'rust']}
 
     Plug 'Shougo/deoplete.nvim', {
-                \'for': ['java', 'lua', 'pandoc', 'markdown', 'sh', 'vim', 'verilog', 'verilog_systemverilog', 'html', 'make'],
+                \'for': ['java', 'lua', 'pandoc', 'markdown', 'sh', 'python',
+                \        'vim', 'verilog', 'verilog_systemverilog', 'html', 'make', 'go'],
                 \'on': ['DeopleteEnable']
                 \ }
     Plug 'zchee/deoplete-go', {'do': 'make'}
@@ -58,15 +59,18 @@ call plug#begin()
 
     Plug 'Shougo/vimproc.vim', {'do': 'make'}
     Plug 'Shougo/unite.vim'
+    Plug 'Shougo/denite.nvim'
     Plug 'Shougo/unite-outline'
     Plug 'Shougo/neoyank.vim'
     Plug 'Shougo/neomru.vim'
     Plug 'Shougo/unite-session'
     Plug 'Shougo/unite-help'
+    Plug 'msprev/unite-bibtex', {'for': 'pandoc'}
     Plug 'chemzqm/unite-git-log'
     Plug 'thinca/vim-unite-history'
     Plug 'junegunn/vim-peekaboo'
     Plug 'wellle/visual-split.vim'
+    Plug 'chrisbra/NrrwRgn'
 
     Plug 'easymotion/vim-easymotion'
     Plug 'haya14busa/incsearch.vim'
@@ -86,7 +90,7 @@ call plug#begin()
     Plug 'Chiel92/vim-autoformat'
 
     Plug 'a.vim'
-    Plug 'Mark--Karkat'
+    Plug 'skt041959/Mark--Karkat'
     Plug 'renamer.vim'
     Plug 'zenbro/mirror.vim'
     Plug 'fcitx.vim'
@@ -97,6 +101,7 @@ call plug#begin()
     Plug 'vim-pandoc/vim-pandoc'
     Plug 'vim-pandoc/vim-pandoc-syntax'
     Plug 'vim-pandoc/vim-pandoc-after'
+    Plug 'vim-pandoc/vim-markdownfootnotes'
     Plug 'dhruvasagar/vim-table-mode'
     Plug 'miyakogi/livemark.vim'
     "Plug 'skt041959/markdown-preview.vim', {'for': ['pandoc', 'markdown']}

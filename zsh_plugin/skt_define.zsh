@@ -1,6 +1,7 @@
 
 fpath=($HOME/.fpath $fpath)
 
+export MANPAGER="nvim -c 'set ft=man' -"
 export GOPATH=$HOME/code/go
 export NPM_PACKAGES=$HOME/.npm-packages
 export NODE_PATH=$NPM_PACKAGES/lib/node_modules
@@ -16,13 +17,13 @@ export SNPSLMD_LICENSE_FILE=$LM_LICENSE_FILE
 export SYNPLCTYD_LICENSE_FILE=$LM_LICENSE_FILE
 
 #{{{
-source $HOME/.zsh_plugin/autojump.plugin.zsh
-source $HOME/.zsh_plugin/rsync.plugin.zsh
-source $HOME/.zsh_plugin/per-directory-history.zsh
-source $HOME/.zsh_plugin/compl.zsh
-source $HOME/.zsh_plugin/zsh-git-prompt/zshrc.sh
-source $HOME/.zsh_plugin/bd.zsh
-source $HOME/.zsh_plugin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.zsh.d/autojump.plugin.zsh
+source $HOME/.zsh.d/rsync.plugin.zsh
+source $HOME/.zsh.d/per-directory-history.zsh
+source $HOME/.zsh.d/compl.zsh
+source $HOME/.zsh.d/zsh-git-prompt/zshrc.sh
+source $HOME/.zsh.d/bd.zsh
+source $HOME/.zsh.d/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOME/.vim/plugged/neoman.vim/scripts/nman.zsh
 #}}}
 
@@ -204,9 +205,10 @@ dirtree()
 
 y()
 {
+    trans $1;
+    ydcv $1;
     sdcv -n $1;
     #ydcv --color=never $1;
-    ydcv $1;
 }
 
 # Memory overview
@@ -302,6 +304,12 @@ lmgrd()
     $HOME/.local/bin/wine_subreap.py wine lmgrd.exe -z -c "C:\\Cadence\\LicenseManager\\license.dat" -l "C:\\Cadence\\LicenseManager\\debug.log"
 }
 
+function list_all() {
+    emulate -L zsh
+    ls --color=auto
+}
+
+chpwd_functions=(${chpwd_functions[@]} "list_all")
 #命令别名 {{{
 alias cp='cp -i -v'
 alias mv='mv -i -v'
@@ -336,7 +344,6 @@ alias ycm_gen='/home/skt/.vim/plugged/YCM-Generator/config_gen.py'
 alias rez='source /home/skt/.zsh_plugin/skt_define.zsh'
 alias restart_kde='kbuildsycoca5 && kquitapp plasmashell && kstart plasmashell'
 alias arc='tar zcvf config.tar.gz .vim/ .ptpython/ .zsh_plugin/ .pandoc/ .zshrc .tmux.conf --exclude="*.git" --exclude="racer"'
-alias man='nman'
 #alias -g DASH='-ex "dashboard -output $(tmux splitw -d -h -P -F \"#{pane_tty}\")"'
 #}}}
 

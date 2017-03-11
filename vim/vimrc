@@ -1,5 +1,5 @@
-"skt041959
-"scriptencoding utf8
+" vim:fdm=marker
+scriptencoding utf8
 
 if !has('nvim')
     set nocompatible
@@ -110,7 +110,7 @@ augroup BASIC "{{{
     autocmd FileType cmake                setlocal foldmethod=indent
     autocmd FileType verilog              setlocal foldmethod=syntax
     autocmd FileType xml,svg,vim,qml      setlocal foldmethod=indent
-    autocmd FileType xml                  setlocal tabstop=2 shiftwidth=2
+    autocmd FileType xml,vim              setlocal tabstop=2 shiftwidth=2
 
     "autocmd BufNewFile,BufRead *.pro set filetype=qtproject
 
@@ -125,6 +125,7 @@ set noerrorbells vb t_vb=
 autocmd GUIEnter * set vb t_vb=
 
 set number
+set relativenumber
 set autowrite
 "au BufEnter * set noro
 set backspace=indent,eol,start
@@ -247,7 +248,7 @@ nnoremap <silent> <C-Down> :resize -1<CR>
 
 noremap <F1> <Esc>
 "nnoremap <F2> :set wrap! wrap?<CR>
-nnoremap <F3> :set number! number?<CR>
+nnoremap <F3> :set number! number?<CR>:set relativenumber! relativenumber?<CR>
 "nnoremap <F3> :set list! list?<CR>
 
 "set paste
@@ -446,6 +447,10 @@ let g:pymode_rope = 0
 let g:pymode_syntax = 0
 "}}}
 
+"====Mark-Karkat===={{{
+let g:mwDefaultHighlightingPalette = 'extended'
+"}}}
+
 "====UltiSnips===={{{
 let g:UltiSnipsExpandTrigger='<C-k>'
 let g:UltiSnipsJumpForwardTrigger='<C-k>'
@@ -480,26 +485,20 @@ let g:jedi#smart_auto_mappings = 0
 let g:jedi#popup_on_dot = 0
 let g:jedi#completions_command = 'K'
 let g:jedi#rename_command = "'r"
-let g:jedi#show_call_signatures = '1'
-let g:jedi#show_call_signatures_delay = 0
+" let g:jedi#show_call_signatures = '1'
+" let g:jedi#show_call_signatures_delay = 0
 "}}}
 
 "====airline===={{{
 let g:airline_theme = 'light'
-"let g:airline_left_sep = '▶'
-"let g:airline_right_sep = '◀'
-"let g:airline_left_alt_sep = '▶'
-"let g:airline_right_alt_sep = '◀'
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_alt_sep = ''
+let g:airline_symbols_ascii = 1
+let g:airline_powerline_fonts = 0
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
-let g:airline_powerline_fonts = 0
+let g:airline_symbols.linenr = ''
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#flags = 's'
 let g:airline_extensions = ['branch',
@@ -508,8 +507,18 @@ let g:airline_extensions = ['branch',
             \ 'whitespace',
             \ 'unite',
             \ 'virtualenv',
-            \ 'tagbar',
             \ ]
+let g:airline_mode_map = {
+            \ '__' : '-',
+            \ 'n'  : 'N',
+            \ 'i'  : 'I',
+            \ 'R'  : 'R',
+            \ 'c'  : 'C',
+            \ 'v'  : 'V',
+            \ 'V'  : 'V',
+            \ 's'  : 'S',
+            \ 'S'  : 'S',
+            \ }
 "}}}
 
 "====unite===={{{
@@ -571,6 +580,7 @@ function! ToPdf()
 endfunction
 let g:pandoc#spell#enabled = 0
 let g:pandoc#after#modules#enabled = ['unite', 'ultisnips', 'tablemode']
+let g:pandoc#after#modules#enabled = ['nrrwrgn', 'ultisnips']
 "}}}
 
 "====indentguide===={{{
@@ -617,11 +627,11 @@ nmap <space>u <Plug>GitGutterRevertHunk
 "}}}
 
 "====SimpylFold===={{{
-augroup SIMPYLFOLD
-    autocmd!
-    autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
-    autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
-augroup END
+" augroup SIMPYLFOLD
+"     autocmd!
+"     autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
+"     autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
+" augroup END
 let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_fold_docstring = 1
 "}}}
