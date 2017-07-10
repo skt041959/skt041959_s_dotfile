@@ -108,6 +108,7 @@ augroup BASIC "{{{
     "autocmd FileType python               setlocal foldignore='#'
     "autocmd FileType python               setlocal foldmethod=indent
     autocmd FileType cmake                setlocal foldmethod=indent
+    autocmd FileType cs                   setlocal foldmethod=indent
     autocmd FileType verilog              setlocal foldmethod=syntax
     autocmd FileType xml,svg,vim,qml      setlocal foldmethod=indent
     autocmd FileType xml,vim              setlocal tabstop=2 shiftwidth=2
@@ -337,6 +338,7 @@ let g:zv_file_types = {
             \ 'python': 'python,numpy,scipy,pandas',
             \ 'cpp': 'c,cpp,cvcpp',
             \ 'vim': 'vim',
+            \ 'cs': 'net',
             \ }
 let g:zv_docsets_dir = '/home/skt/.local/share/Zeal/Zeal/docsets'
 "}}}

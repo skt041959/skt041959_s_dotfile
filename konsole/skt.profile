@@ -7,7 +7,7 @@ Font=Source Code Pro,10,-1,5,57,0,0,0,0,0
 CursorShape=0
 
 [General]
-Command=tmux new-session
+Command=/usr/bin/zsh
 Environment=TERM=screen
 Name=skt
 Parent=FALLBACK/

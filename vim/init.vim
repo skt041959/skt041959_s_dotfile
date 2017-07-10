@@ -15,7 +15,7 @@ call plug#begin()
     Plug 'tmhedberg/SimpylFold'
 
     Plug 'Valloric/YouCompleteMe', {
-                \'for': ['c', 'cpp', 'cmake', 'rust']}
+                \'for': ['c', 'cpp', 'cs', 'cmake', 'rust']}
 
     Plug 'Shougo/deoplete.nvim', {
                 \'for': ['java', 'lua', 'pandoc', 'markdown', 'sh', 'python',
@@ -102,7 +102,7 @@ call plug#begin()
     Plug 'vim-pandoc/vim-pandoc-syntax'
     Plug 'vim-pandoc/vim-pandoc-after'
     Plug 'vim-pandoc/vim-markdownfootnotes'
-    Plug 'dhruvasagar/vim-table-mode'
+    " Plug 'dhruvasagar/vim-table-mode'
     Plug 'miyakogi/livemark.vim'
     "Plug 'skt041959/markdown-preview.vim', {'for': ['pandoc', 'markdown']}
 
@@ -112,6 +112,8 @@ call plug#begin()
     Plug 'Cognoscan/vim-vhdl', {'for': []}
     Plug 'vhda/verilog_systemverilog.vim', {'for': ['verilog', 'verilog_systemverilog']}
     Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
+
+    Plug 'udalov/kotlin-vim'
 
     Plug 'kurayama/systemd-vim-syntax'
     Plug 'chrisbra/csv.vim', {'on': ['InitCSV']}
@@ -129,6 +131,8 @@ call plug#begin()
 
     Plug '~/code/gdbmi.nvim', {'on': ['GDBLaunch']}
 
+    Plug 'equalsraf/neovim-gui-shim'
+
     "Plug 'rhysd/nyaovim-popup-tooltip'
     " Plug 'rhysd/nyaovim-markdown-preview'
 "}}}
@@ -138,7 +142,7 @@ execute 'source' fnamemodify(expand('<sfile>'), ':h') . '/vimrc'
 colorscheme darkblack_skt
 
 xnoremap p "_dP
-set termguicolors
+" set termguicolors
 set termencoding=utf-8
 set exrc
 set inccommand=split
@@ -157,8 +161,6 @@ nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
-
 "let $NVIM_PYTHON_LOG_FILE = '/home/skt/tmp/nvimlog-python'
 "let $NVIM_PYTHON_LOG_LEVEL = 'DEBUG'
 
@@ -168,6 +170,10 @@ let g:python3_host_prog = '/usr/bin/python'
 " Neovim-qt Guifont command
 command -nargs=? Guifont call rpcnotify(0, 'Gui', 'SetFont', "<args>") | let g:Guifont="<args>"
 Guifont Source Code Pro:h10
+
+" Gonvim GuiFont 
+" GuiFont Source Code Pro:h10
+" GuiLinespace 8
 
 "====vim-plug===={{{
 function! s:plug_doc()
@@ -225,6 +231,23 @@ augroup PlugDiffExtra
     autocmd!
     autocmd FileType vim-plug call s:setup_extra_keys()
 augroup END
+"}}}
+
+"====markdown_tagbar===={{{
+let g:tagbar_type_pandoc = {
+      \ 'ctagstype': 'markdown',
+      \ 'ctagsbin' : '~/.vim/markdown2ctags.py',
+      \ 'ctagsargs' : '-f - --sort=yes',
+      \ 'kinds' : [
+      \ 's:sections',
+      \ 'i:images'
+      \ ],
+      \ 'sro' : '|',
+      \ 'kind2scope' : {
+      \ 's' : 'section',
+      \ },
+      \ 'sort': 0,
+      \ }
 "}}}
 
 "====deoplete===={{{

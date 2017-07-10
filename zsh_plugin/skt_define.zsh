@@ -1,6 +1,8 @@
 
 fpath=($HOME/.fpath $fpath)
 
+export ANDROID_HOME=$HOME/Android
+
 export MANPAGER="nvim -c 'set ft=man' -"
 export GOPATH=$HOME/code/go
 export NPM_PACKAGES=$HOME/.npm-packages
